@@ -72,3 +72,4 @@ praktikum/week1-intro-arsitektur-os/laporan.md
 1. Abraham Silberschatz, Peter Baer Galvin, Greg Gagne. *Operating System Concepts*, 10th Edition, Wiley, 2018.  
 2. Andrew S. Tanenbaum, Herbert Bos. *Modern Operating Systems*, 4th Edition, Pearson, 2015.  
 3. Linux Kernel Documentation – https://www.kernel.org/doc/  
+,
