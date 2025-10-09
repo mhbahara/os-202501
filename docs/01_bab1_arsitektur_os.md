@@ -79,10 +79,56 @@ Setelah menyelesaikan tugas ini, mahasiswa mampu:
 
 ### Quiz
 Jawab pertanyaan berikut di bagian **Quiz** pada laporan:
-1. Sebutkan tiga fungsi utama sistem operasi.  
-2. Jelaskan perbedaan antara *kernel mode* dan *user mode*.  
-3. Sebutkan contoh OS dengan arsitektur monolithic dan microkernel.
+1. Sebutkan tiga fungsi utama sistem operasi. 
+   Peran utama OS adalah mengatur dan mendistribusikan semua sumber daya perangkat keras komputer secara efisien kepada proses atau program yang bersaing untuk mengaksesnya.
 
+Ini mencakup:
+
+Manajemen Proses: Mengatur waktu dan durasi CPU dalam menjalankan suatu program (penjadwalan CPU).
+
+Manajemen Memori: Mengatur, melindungi, dan melepaskan memori utama (RAM) untuk program yang aktif, termasuk memori virtual.
+
+Manajemen Perangkat I/O: Mengatur dan mengoordinasikan akses ke seluruh perangkat input/output seperti disk, keyboard, mouse, dan printer, melalui pengandar perangkat.
+
+
+
+OS memberikan fasilitas bagi pengguna untuk berkomunikasi dengan perangkat keras komputer. Tanpa adanya antarmuka ini, pengguna tidak dapat mengeksekusi program atau mengatur file.
+
+Terdapat dua kategori utama:
+
+CLI (Antarmuka Baris Perintah): Antarmuka yang berfungsi melalui teks (contohnya, Terminal pada Linux atau Command Prompt pada Windows).
+
+GUI (Antarmuka Pengguna Grafis): Antarmuka yang menggunakan elemen grafis seperti jendela, ikon, dan penunjuk (contohnya, Desktop di Windows atau GNOME di Linux).
+
+
+OS berfungsi sebagai penghubung antara aplikasi dan perangkat keras, menawarkan serangkaian layanan standar yang aman dan konsisten untuk seluruh aplikasi. Hal ini dilakukan melalui Panggilan Sistem.
+
+Layanan yang ditawarkan mencakup:
+
+Manajemen Berkas: Menciptakan, menghapus, mengubah, dan mengakses berkas di media penyimpanan.
+
+Eksekusi Program: Mengambil dan melaksanakan program ke dalam memori.
+
+Pengelolaan Kesalahan: Mengidentifikasi dan merespons kesalahan pada perangkat keras serta perangkat lunak guna mempertahankan integritas sistem.
+
+Keamanan dan Perlindungan: Melindungi sistem dari akses yang tidak diizinkan dan memastikan setiap aplikasi beroperasi dalam ruang yang terpisah 
+
+1. Jelaskan perbedaan antara *kernel mode* dan *user mode*. 
+   Perbedaan antara Kernel Mode dan User Mode adalah konsep fundamental dalam arsitektur sistem operasi (OS) yang berfungsi untuk melindungi perangkat keras (hardware) dan menjaga stabilitas sistem.
+
+Ini adalah dua mode operasi atau tingkat hak istimewa (privilege levels) yang digunakan oleh CPU untuk menjalankan kode.
+
+ 
+3. Sebutkan contoh OS dengan arsitektur monolithic dan microkernel.
+Arsitektur Monolitik (Monolithic Architecture)
+Linux: Kernel Linux adalah contoh klasik dari arsitektur monolitik.
+Unix (Tradisional): Banyak versi Unix awal didesain secara monolitik.
+MS-DOS: Sistem operasi yang sangat sederhana dan sepenuhnya monolitik.
+
+Microkernel 
+Mach: Kernel yang dikembangkan di Carnegie Mellon University, merupakan basis untuk sistem seperti macOS dan iOS (meskipun keduanya menggunakan arsitektur Hybrid yang berevolusi dari Mach).
+QNX: OS real-time yang sangat stabil dan umum digunakan dalam sistem otomotif dan embedded.
+Minix: Kernel microkernel minimalis yang dikembangkan untuk tujuan edukasi.
 ---
 
 ## E. Output yang Diharapkan
