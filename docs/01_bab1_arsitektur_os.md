@@ -113,7 +113,7 @@ Pengelolaan Kesalahan: Mengidentifikasi dan merespons kesalahan pada perangkat k
 
 Keamanan dan Perlindungan: Melindungi sistem dari akses yang tidak diizinkan dan memastikan setiap aplikasi beroperasi dalam ruang yang terpisah 
 
-1. Jelaskan perbedaan antara *kernel mode* dan *user mode*. 
+2. Jelaskan perbedaan antara *kernel mode* dan *user mode*. 
    Perbedaan antara Kernel Mode dan User Mode adalah konsep fundamental dalam arsitektur sistem operasi (OS) yang berfungsi untuk melindungi perangkat keras (hardware) dan menjaga stabilitas sistem.
 
 Ini adalah dua mode operasi atau tingkat hak istimewa (privilege levels) yang digunakan oleh CPU untuk menjalankan kode.
