@@ -1,82 +1,6 @@
+Eksperimen 1 – Analisis System Call : 
 
-# Laporan Praktikum Minggu 2
-Topik: Struktur System Call dan Fungsi Kernel
-
----
-
-## Identitas
-- **Nama**  : Farhan Ramdhani  
-- **NIM**   : 250202938  
-- **Kelas** : 1IKRB
-
----
-
-## Tujuan
-1. Menjelaskan konsep dan fungsi system call dalam sistem operasi.
-2. Mengidentifikasi jenis-jenis system call dan fungsinya.
-3. Mengamati alur perpindahan mode user ke kernel saat system call terjadi.
-4. Menggunakan perintah Linux untuk menampilkan dan menganalisis system call.
-
----
-
-## Dasar Teori
-Sistem operasi (Operating System/OS) merupakan perangkat lunak yang berperan sebagai penghubung antara pengguna dengan perangkat keras komputer. Melalui sistem operasi, pengguna dapat menjalankan berbagai program aplikasi dengan aman dan efisien tanpa perlu berinteraksi langsung dengan perangkat keras. Di dalam sistem operasi terdapat dua komponen utama, yaitu kernel dan system call. Kernel berfungsi sebagai inti dari sistem operasi yang menyediakan berbagai layanan penting agar komputer dapat beroperasi dengan baik. Sementara itu, system call berperan sebagai pintu masuk bagi aplikasi untuk meminta layanan dari kernel. Dengan kata lain, system call memungkinkan program aplikasi berkomunikasi dengan kernel untuk melakukan tugas-tugas seperti membaca file, mengakses memori, atau berinteraksi dengan perangkat keras. Tanpa adanya system call, aplikasi tidak dapat mengakses sumber daya sistem secara aman. Sebaliknya, tanpa kernel, system call tidak memiliki sistem yang dapat menjalankan perintah tersebut. Keduanya saling bergantung dan bekerja sama agar sistem operasi dapat berjalan secara optimal.
-
----
-
-## Langkah Praktikum
-1. **Setup Environment**
-   - Gunakan Linux (Ubuntu/WSL).
-   - Pastikan perintah `strace` dan `man` sudah terinstal.
-   - Konfigurasikan Git (jika belum dilakukan di minggu sebelumnya).
-
-2. **Eksperimen 1 – Analisis System Call**
-   Jalankan perintah berikut:
-   ```bash
-   strace ls
-   ```
-   > Catat 5–10 system call pertama yang muncul dan jelaskan fungsinya.  
-   Simpan hasil analisis ke `results/syscall_ls.txt`.
-
-3. **Eksperimen 2 – Menelusuri System Call File I/O**
-   Jalankan:
-   ```bash
-   strace -e trace=open,read,write,close cat /etc/passwd
-   ```
-   > Analisis bagaimana file dibuka, dibaca, dan ditutup oleh kernel.
-
-4. **Eksperimen 3 – Mode User vs Kernel**
-   Jalankan:
-   ```bash
-   dmesg | tail -n 10
-   ```
-   > Amati log kernel yang muncul. Apa bedanya output ini dengan output dari program biasa?
-
-5. **Diagram Alur System Call**
-   - Buat diagram yang menggambarkan alur eksekusi system call dari program user hingga kernel dan kembali lagi ke user mode.
-   - Gunakan draw.io / mermaid.
-   - Simpan di:
-     ```
-     praktikum/week2-syscall-structure/screenshots/syscall-diagram.png
-     ```
-
-6. **Commit & Push**
-   ```bash
-   git add .
-   git commit -m "Minggu 2 - Struktur System Call dan Kernel Interaction"
-   git push origin main
-   ```
-
----
-
-## Kode / Perintah
-```bash
-strace ls
-strace -e trace=open,read,write,close cat /etc/passwd
-dmesg | tail -n 10
-```
-### 1. strace ls
-- root@DESKTOP-R1GLO2B:~# strace ls
+root@DESKTOP-R1GLO2B:~# strace ls
 execve("/usr/bin/ls", ["ls"], 0x7ffdf785a1a0 /* 28 vars */) = 0
 brk(NULL)                               = 0x63f59647f000
 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x72d604b77000
@@ -228,8 +152,63 @@ close(2)                                = 0
 exit_group(0)                           = ?
 +++ exited with 0 +++
 
-### 2. strace -e trace=open,read,write,close cat /etc/passwd
-- root@DESKTOP-R1GLO2B:~# strace -e trace=open,read,write,close cat /etc/passwd
+Jawaban :
+
+1. execve("/usr/bin/ls", ["ls"], 0x7ffdf785a1a0 /* 28 vars */) = 0
+
+Fungsi: Menjalankan program ls dengan path /usr/bin/ls.
+Penjelasan: execve menggantikan proses saat ini dengan program baru (ls). Argumen kedua adalah daftar argumen, argumen ketiga adalah environment variables.
+
+2. brk(NULL) = 0x63f59647f000
+
+Fungsi: Mengecek posisi break (batas atas area heap).
+Penjelasan: Meminta alamat memori terakhir yang dialokasikan di heap. brk digunakan untuk manajemen heap.
+
+3. mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x72d604b77000
+
+Fungsi: Memetakan 8192 byte (8KB) memori baru yang anonim (tidak terkait file).
+Penjelasan: Memesan area memori untuk keperluan internal proses (misal stack, heap, buffer).
+
+4. access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+
+Fungsi: Mengecek apakah file /etc/ld.so.preload dapat dibaca.
+Penjelasan: File ini digunakan untuk preload shared libraries. Hasil ENOENT berarti file tidak ditemukan, jadi tidak ada library tambahan yang di-preload.
+
+5. openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+
+Fungsi: Membuka file cache loader dynamic linker /etc/ld.so.cache untuk baca.
+Penjelasan: File ini berisi cache lokasi shared libraries agar proses loading lebih cepat.
+
+6. fstat(3, {st_mode=S_IFREG|0644, st_size=26567, ...}) = 0
+
+Fungsi: Mendapatkan informasi file descriptor 3 (file /etc/ld.so.cache).
+Penjelasan: Mengecek jenis file, ukuran, permission, dll.
+
+7. mmap(NULL, 26567, PROT_READ, MAP_PRIVATE, 3, 0) = 0x72d604b70000
+
+Fungsi: Memetakan isi file /etc/ld.so.cache ke memori.
+Penjelasan: Agar isi file dapat diakses langsung di memori, lebih efisien dari membaca file berulang.
+
+8. close(3) = 0
+
+Fungsi: Menutup file descriptor 3.
+Penjelasan: Setelah mmap, file descriptor bisa ditutup karena data sudah di memori.
+
+9. openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3
+
+Fungsi: Membuka shared library libselinux.so.1.
+Penjelasan: Library ini terkait keamanan SELinux, dipakai oleh ls jika sistem memakai SELinux.
+
+10. read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+
+Fungsi: Membaca 832 byte pertama dari file library (format ELF header).
+Penjelasan: Header ELF berisi informasi tentang executable atau shared library.
+
+
+
+Eksperimen 2 – Menelusuri System Call File I/O
+
+root@DESKTOP-R1GLO2B:~# strace -e trace=open,read,write,close cat /etc/passwd
 close(3)                                = 0
 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
 close(3)                                = 0
@@ -285,8 +264,54 @@ close(1)                                = 0
 close(2)                                = 0
 +++ exited with 0 +++
 
-### 3. dmesg | tail -n 10
-- root@DESKTOP-R1GLO2B:~# dmesg | tail -n 10
+Jawaban :
+
+1. Membuka File
+
+Meski di output ini tidak muncul eksplisit system call open(), biasanya urutan lengkap ketika sebuah file dibuka oleh program adalah:
+Proses memanggil system call open() atau openat() untuk membuka file /etc/passwd.
+Kernel mencari inode dari file tersebut di filesystem.
+Kernel membuat file descriptor (FD) baru, misalnya nomor 3, yang mereferensikan file tersebut di dalam proses.
+Kernel menginisialisasi struktur data internal untuk mengelola akses file.
+Dalam output ini, FD 3 digunakan secara berulang kali untuk operasi baca dan tutup, yang berarti FD 3 ini merepresentasikan file /etc/passwd.
+
+2. Membaca File
+
+Setelah file berhasil dibuka, proses membaca data dari file tersebut terjadi dengan system call read(), contohnya:
+read(3, "root:x:0:0:root:/root:/bin/bash\n"..., 131072) = 1380
+Kernel menerima permintaan read pada FD 3 dengan buffer dan ukuran maksimal 131072 byte.
+Kernel mencari data yang diminta di cache filesystem terlebih dahulu.
+Jika data ada di cache, kernel langsung mengirimkannya ke buffer pengguna.
+Jika tidak, kernel membaca data dari disk ke cache, lalu menyalinnya ke buffer pengguna.
+Kernel mengembalikan jumlah byte yang berhasil dibaca (misal 1380 bytes).
+read() berulang hingga akhir file tercapai (muncul read(...)=0 sebagai tanda EOF).
+
+3. Menulis ke Output
+
+Data yang sudah dibaca kemudian ditulis ke file descriptor 1 (stdout) dengan write():
+write(1, "root:x:0:0:root:/root:/bin/bash\n"..., 1380)
+Kernel menerima data dari buffer pengguna untuk ditulis ke FD 1.
+Kernel memproses data tersebut dan mengirimkannya ke device output, misalnya terminal.
+
+4. Menutup File
+
+Setelah selesai membaca dan menulis, file descriptor harus ditutup agar resource dilepaskan, contohnya:
+close(3) = 0
+Kernel menutup FD 3 yang merujuk ke file /etc/passwd.
+Kernel mengurangi referensi ke inode file.
+Jika tidak ada FD lain yang membuka file ini, kernel dapat membersihkan cache atau resource terkait file.
+File descriptor tidak lagi valid untuk proses tersebut.
+Ringkasan Alur oleh Kernel:
+Open: Proses memanggil open() → kernel membuka file, mengembalikan FD.
+Read: Proses memanggil read() berulang kali → kernel mengirim data file ke buffer pengguna.
+Write: Proses memanggil write() untuk output → kernel mengirim data ke device.
+Close: Proses memanggil close() → kernel melepaskan FD dan resource.
+
+
+
+Eksperimen 3 – Mode User vs Kernel
+
+root@DESKTOP-R1GLO2B:~# dmesg | tail -n 10
 [ 3431.716885] systemd-journald[55]: Time jumped backwards, rotating.
 [ 3474.171045] WSL (247) ERROR: CheckConnection: getaddrinfo() failed: -5
 [ 3536.970557] systemd-journald[55]: Time jumped backwards, rotating.
@@ -298,142 +323,65 @@ close(2)                                = 0
 [ 5587.058647] mini_init (232): drop_caches: 1
 [ 5591.302300] systemd-journald[55]: Time jumped backwards, rotating.
 
----
+Jawaban :
 
-## Hasil Eksekusi
-![alt text](<../week2-syscall-structures/screenshots/Screenshot 2025-10-10 003743.png>)
-![alt text](<../week2-syscall-structures/screenshots/Screenshot 2025-10-09 202429.png>)
+1. Sumber dan konteks output
 
-![alt text](<../week2-syscall-structures/screenshots/Screenshot 2025-10-09 202615.png>)
+Log Kernel (dmesg) :
+Output ini berasal langsung dari kernel Linux, lapisan inti sistem operasi.
+Berisi pesan-pesan yang berkaitan dengan aktivitas kernel, seperti inisialisasi hardware, driver, manajemen memori, manajemen proses, dan error sistem tingkat rendah.
+Bersifat sangat teknis, sering kali berhubungan dengan debugging sistem atau masalah hardware.
+Dihasilkan oleh kernel dan subsistemnya (misal: driver, modul kernel, sistem logging).
 
-![alt text](<../week2-syscall-structures/screenshots/Screenshot 2025-10-09 202658.png>)
+Output Program Biasa :
+Dihasilkan oleh aplikasi user-space, seperti editor teks, browser, atau perintah shell biasa.
+Biasanya adalah hasil eksekusi program yang ingin dilihat pengguna, berupa teks biasa, grafik, atau data yang sudah diproses.
+Output ini adalah apa yang program ingin tampilkan ke pengguna.
 
----
+2. Cara output disimpan dan diakses
 
-## Tugas
-- Dokumentasikan hasil eksperimen `strace` dan `dmesg` dalam bentuk tabel observasi.
-- Mengapa system call penting untuk keamanan OS?
-- Bagaimana OS memastikan transisi user–kernel berjalan aman?
-- Sebutkan contoh system call yang sering digunakan di Linux.
+Log Kernel :
+Disimpan dalam kernel ring buffer — buffer khusus yang diatur oleh kernel.
+Bisa diakses dengan perintah dmesg atau melalui file seperti /proc/kmsg.
+Terbatas ukurannya, dan lama-kelamaan data lama akan ter-overwrite.
+Tidak secara langsung tampil di layar kecuali dipanggil atau diarahkan.
 
-**Jawaban :**
-## 1. Dokumentasi Hasil Eksperimen strace dan dmesg
+Output Program Biasa :
+Biasanya langsung muncul di terminal (stdout), atau disimpan di file jika diarahkan.
+Bisa berupa teks, gambar, atau data lain, tergantung aplikasi.
+Lebih fleksibel dan dapat dikendalikan oleh program dan pengguna.
 
-### Tabel Observasi
+3. Isi dan tujuan informasi
 
-| No | Perintah | Fungsi Perintah | Cuplikan Output | Analisis Singkat |
-|----|-----------|----------------|------------------|------------------|
-| 1 | strace ls | Melacak semua system call yang dijalankan oleh perintah ls. | openat(AT_FDCWD, ".", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 3 | Terlihat bahwa ls memanggil system call openat untuk membuka direktori dan membaca isinya. |
-| 2 | strace cat file.txt | Melacak system call yang terjadi saat membaca file teks. | read(3, "Isi file\n", 9) = 9 | System call read() digunakan untuk membaca isi file dari disk. |
-| 3 | dmesg | head | Menampilkan pesan log kernel pada saat sistem berjalan. | [0.000000] Linux version 5.15.153.1-microsoft-standard-WSL2 ... | Menunjukkan informasi kernel dan pesan inisialisasi sistem pada saat booting. |
-| 4 | dmesg | tail | Menampilkan pesan kernel terbaru. | [1234.567890] usb 1-2: new device found... | Kernel mencatat aktivitas perangkat keras seperti koneksi USB. |
+Log Kernel :
+Menyediakan informasi tentang keadaan internal sistem operasi.
+Digunakan untuk debugging masalah sistem, memantau hardware, atau menelusuri kesalahan kernel.
 
-## 2. Mengapa system call penting untuk keamanan OS?
+Contohnya: pesan tentang driver, pesan error hardware, peringatan kernel, aktivitas subsystem.
 
-System call memiliki peran besar dalam menjaga keamanan sistem operasi. Fungsinya seperti gerbang pengaman yang membatasi interaksi antara aplikasi dan kernel. Kernel adalah inti dari sistem operasi yang memiliki kendali penuh terhadap perangkat keras. Jika semua aplikasi bisa mengakses kernel secara bebas, risiko terjadinya kerusakan sistem atau penyalahgunaan sumber daya akan sangat tinggi. Melalui system call, setiap permintaan dari aplikasi diperiksa terlebih dahulu oleh kernel. Misalnya, ketika aplikasi ingin membuka sebuah file, kernel akan memeriksa apakah pengguna memiliki izin untuk mengakses file tersebut. Jika tidak, permintaan tersebut akan ditolak. Proses ini memastikan bahwa setiap tindakan di sistem berjalan sesuai aturan keamanan.
+Output Program Biasa :
+Menyediakan hasil kerja program yang diminta oleh pengguna.
+Fokus pada penyajian data yang mudah dimengerti oleh manusia (atau aplikasi lain).
 
-## 2. Bagaimana OS memastikan transisi user–kernel berjalan aman?
+Contohnya: daftar file, hasil perhitungan, tampilan halaman web.
 
-Sistem operasi membagi ruang kerja menjadi dua bagian, yaitu user mode dan kernel mode. Aplikasi berjalan di user mode, di mana aksesnya terbatas. Saat aplikasi butuh bantuan kernel, misalnya untuk membaca file atau membuat proses baru, aplikasi akan memanggil system call yang menyebabkan perpindahan sementara ke kernel mode. Proses perpindahan ini tidak dilakukan sembarangan. Kernel hanya mengeksekusi perintah yang sudah tercatat di tabel system call. Sebelum menjalankan perintah, kernel akan memeriksa data yang dikirim aplikasi agar tidak menimbulkan gangguan atau celah keamanan. Setelah tugas selesai, sistem otomatis kembali ke user mode. Dengan cara ini, OS memastikan tidak ada aplikasi yang bisa menguasai kernel atau mengubah sistem secara langsung, sehingga sistem tetap aman dan stabil.
+4. Karakteristik output yang kamu lihat
 
-## 3. Contoh system call yang sering digunakan di Linux
+Output dmesg :
+Baris diawali dengan timestamp relatif (misal: [ 3431.716885]).
+Mengandung nama proses kernel (systemd-journald, mini_init, WSL) dan pesan teknis.
+Menunjukkan event terkait waktu sistem, error jaringan, operasi kernel.
 
-**Beberapa system call yang sering digunakan di Linux antara lain :**
+Output program biasa (misal ls atau cat) :
+Biasanya cuma daftar file, isi teks, atau hasil operasi langsung tanpa metadata teknis seperti timestamp kernel.
 
-open untuk membuka file,
+Contoh: daftar user di /etc/passwd, teks yang bisa dibaca langsung.
 
-read untuk membaca data,
+Kesimpulan :
 
-write untuk menulis data ke file,
-
-close untuk menutup file,
-
-fork untuk membuat proses baru,
-
-exec untuk menjalankan program lain,
-
-exit untuk keluar dari proses,
-
-wait untuk menunggu proses anak selesai,
-
-getpid untuk mengetahui ID proses yang sedang berjalan.
-
----
-
-## Analisis
-- Jelaskan makna hasil percobaan.
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?
-
-**Jawaban :**
-
-### Makna Hasil Percobaan
-
-Bisa disimpulkan bahwa setiap tindakan sederhana yang kita lakukan di sistem operasi ternyata melibatkan proses yang cukup kompleks di belakang layar. Aplikasi tidak langsung berhubungan dengan perangkat keras, tapi lewat system call yang menjadi penghubung antara program dan kernel. Jadi, hasil percobaan ini menunjukkan bagaimana sistem operasi bekerja dengan teratur dan aman melalui lapisan-lapisan yang saling terhubung.
-
-### Hubungan Hasil Dengan Teori (fungsi kernel, system call, arsitektur OS).
-
-Hasil percobaan ini sejalan dengan teori tentang fungsi kernel dan system call yang sudah dipelajari sebelumnya. Kernel berfungsi sebagai pusat pengendali sistem operasi yang bertugas mengatur akses ke perangkat keras, memori, dan file. Sedangkan system call menjadi cara resmi bagi aplikasi untuk meminta bantuan kernel.
-
-### Perbedaan hasil di OS berbeda (Linux vs Windows) ?
-
-Pada Linux, system call bisa dilihat secara terbuka menggunakan alat seperti strace. Ini membuat kita bisa mempelajari dan memahami bagaimana aplikasi berinteraksi dengan kernel secara langsung. Linux memang bersifat open source, jadi pengguna bisa memantau aktivitas sistem dengan bebas.
-
-Sedangkan di Windows, mekanisme system call lebih tertutup. Aplikasi biasanya tidak langsung berinteraksi dengan kernel, tapi lewat lapisan yang disebut Windows API (Win32 API). Karena itu, pengguna tidak bisa melihat system call secara langsung tanpa alat tambahan seperti Process Monitor. Pendekatan ini membuat Windows terlihat lebih tertutup, tapi tetap aman karena setiap interaksi dikontrol oleh sistemnya sendiri.
-
-Secara sederhana, Linux lebih transparan, sedangkan Windows lebih tertutup namun tetap menjaga keamanan melalui lapisan API-nya.
-
----
-
-## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
-
-**Jawaban :** 
-System call dan kernel bekerja seperti dua sisi yang saling melengkapi. System call memberikan jalan yang aman bagi aplikasi untuk berinteraksi dengan kernel, sementara kernel memastikan semua permintaan itu diproses dengan benar tanpa mengancam keamanan sistem. Dengan mekanisme ini, sistem operasi seperti Linux bisa berjalan stabil, efisien, dan tetap aman bagi penggunanya.
-
----
-
-## Quiz
-### 1. Apa fungsi utama system call dalam sistem operasi?
-
-   **Jawaban:** Fungsi utama system call adalah sebagai jembatan antara program pengguna dan kernel. Melalui system call, program bisa meminta layanan dari sistem operasi, seperti membaca atau menulis file, mengatur proses, dan berkomunikasi dengan perangkat keras. Tanpa system call, aplikasi tidak bisa berinteraksi dengan sumber daya komputer secara aman dan terkontrol.
- 
-### 2. Sebutkan 4 kategori system call yang umum digunakan.
-
-   **Jawaban:** 
-
-- Process control → untuk mengatur proses, seperti fork, exec, exit.
-
-
-- File management → untuk mengakses file, seperti open, read, write, close.
-
-
-- Device management → untuk mengatur perangkat keras melalui ioctl atau request.
-
-
-- Information maintenance → untuk mendapatkan informasi sistem, seperti getpid, alarm, time.
-
-
-
-### 3. Mengapa system call tidak bisa dipanggil langsung oleh user program?
-   **Jawaban:**  Karena system call bekerja di kernel mode, sedangkan program pengguna berjalan di user mode. Kalau user program bisa langsung memanggil kernel tanpa batasan, sistem bisa rusak atau tidak aman. Maka, system call harus lewat mekanisme resmi agar setiap permintaan bisa diverifikasi dan dikontrol oleh kernel, supaya sistem tetap aman dan stabil.
-
-
-
-
----
-
-## Refleksi Diri
-Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
-**Jawaban :** Bagian yang paling menantang minggu ini adalah memahami bagaimana system call benar-benar bekerja di balik perintah yang kita jalankan di terminal. Awalnya agak bingung karena banyak istilah baru seperti user mode, kernel mode, dan interrupt yang perlu dipahami dulu.
-
-
-
-- Bagaimana cara Anda mengatasinya?  
-**Jawaban :** Saya mengatasinya dengan membaca ulang materi dari modul praktikum, mencari contoh-contoh system call di Linux lewat strace, dan menonton beberapa video penjelasan tentang cara kerja kernel di YouTube. Dengan begitu, saya jadi lebih paham alurnya dan bisa melihat langsung hubungan antara teori dan hasil percobaan di sistem operasi.
-
----
-
-**Credit:**  
-_Template laporan praktikum Sistem Operasi (SO-202501) – Universitas Putra Bangsa_
+Aspek   	        Log Kernel (dmesg)      	        Output Program Biasa
+Sumber	                Kernel dan driver hardware	        Aplikasi/user-space program
+Jenis informasi 	Debugging, error, status kernel  	Hasil eksekusi program
+Format   	        Timestamp + pesan teknis	        Data teks/grafik langsung
+Cara akses	        Ring buffer kernel, dmesg command	Langsung ke terminal atau file
+Tujuan utama	        Memantau & debugging sistem      	Memberikan hasil ke pengguna
