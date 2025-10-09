@@ -70,8 +70,6 @@ Arsitektur Modular Inti dengan modul tambahan yang dapat dimuat/dihapus saat eks
 
 Kernel hibrida menggabungkan monolitik dan mikrokernel untuk efisiensi serta kestabilan. Windows NT, macOS
 
-I'm sorry, but I cannot paraphrase the text "4." since it does not provide enough content to work with. Please provide a longer passage. Peran Sistem Operasi
-
 Manajemen Proses → mengelola pelaksanaan program dan multitasking.
 
 Manajemen Memori → mengatur penggunaan dan pengembalian memori.
@@ -81,8 +79,6 @@ Manajemen File → mengelola penyimpanan, akses, dan pengaturan data.
 Manajemen I/O → mengatur perangkat input/output.
 
 Manajemen Keamanan → menjaga data dan sistem agar tidak dapat diakses secara ilegal.
-
-I'm sorry, but there seems to be a mistake as there is no text provided for paraphrasing. Could you please provide the text you'd like me to work on? Sasaran Praktikum
 
 Menyadari susunan dan desain fundamental dari sistem operasi
 
@@ -120,8 +116,6 @@ dmesg | head
 
 Mengaitkan hasil pengujian dengan teori OS merupakan proses analisis data empiris untuk mengidentifikasi dan menerangkan perilaku sistem terkait dengan prinsip desain pokoknya.
 
-I'm sorry, but I need a text to paraphrase. Please provide the text you'd like me to rephrase. Fungsi Kernel
-
 Hasil dari pengujian memperlihatkan efisiensi maupun inefisiensi modul inti sistem operasi (kernel).
 
 Contoh: Keterlambatan yang signifikan saat beralih antara tugas ⟹ isu dalam Penjadwalan Proses (peran kernel).
@@ -149,9 +143,8 @@ Kesimpulan: Data dari pengujian berperan sebagai bukti nyata yang mengonfirmasi 
 - Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)? 
 Hasil pengujian yang berbeda antara Linux dan Windows dipengaruhi secara signifikan oleh struktur internal dan filosofi desain masing-masing.
 
-Dengan sederhana, Linux biasanya lebih unggul dalam efisiensi, kecepatan I/O, dan stabilitas, sementara Windows sering kali lebih baik dalam kompatibilitas perangkat keras dan kepraktisan penggunaan.
-
-I'm sorry, but it seems there was an error in your request. Could you please provide the text you would like me to paraphrase? Kinerja dan Efisiensi
+Dengan sederhana, Linux biasanya lebih unggul dalam efisiensi, kecepatan I/O, dan stabilitas, sementara Windows sering kali lebih baik dalam kompatibilitas perangkat
+keras dan kepraktisan penggunaan.
 
 Konsep OS Linux (Monolitik, Ringan) Windows (Hibrida, Banyak Fitur) Hasil yang Diharapkan
 
@@ -161,17 +154,12 @@ Overhead Panggilan Sistem Umumnya lebih sedikit dan lebih cepat. Lebih tinggi ka
 
 Ekspor ke Lembar Kerja
 
-Sure, please provide the text you'd like me to paraphrase. Kestabilan dan Keamanan
 
 Konsep Windows OS Linux Hasil yang Diharapkan
 
 Stabilitas Kernel Sangat andal (khususnya di server). Kesalahan pada driver lebih gampang untuk diidentifikasi atau diperbaiki oleh komunitas. Rentan terhadap crash total (Layar Biru) akibat kesalahan driver pihak ketiga. Linux memiliki durasi aktif (uptime) yang jauh lebih lama tanpa perlu restart.
 
 Model Keamanan Ketiga yang sangat ketat untuk hak akses (pengguna vs. root). Secara historis, aplikasi lebih sering dijalankan dengan hak admin secara default. Linux lebih tahan terhadap malware umum karena sulit bagi malware untuk mendapatkan izin modifikasi sistem.
-
-Ekspor ke Lembar Kerja
-
-Sure! Please provide the text you would like me to paraphrase. Dukungan Perangkat Keras
 
 Konsep OS Linux Windows Hasil yang Diharapkan
 
