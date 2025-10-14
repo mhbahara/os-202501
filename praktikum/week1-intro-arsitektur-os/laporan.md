@@ -52,7 +52,7 @@ dmesg | head
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/2025-10-10(1).png)
+![Screenshot hasil](<screenshots/2025-10-10 (1).png>)
 
 ---
 
