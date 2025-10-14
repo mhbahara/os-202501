@@ -323,10 +323,10 @@ close(2)                                = 0
 
 | No | Perintah | Fungsi Perintah | Cuplikan Output | Analisis Singkat |
 |----|-----------|----------------|------------------|------------------|
-| 1 | strace ls | Melacak semua system call yang dijalankan oleh perintah ls. | openat(AT_FDCWD, ".", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 3 | Terlihat bahwa ls memanggil system call openat untuk membuka direktori dan membaca isinya. |
-| 2 | strace cat file.txt | Melacak system call yang terjadi saat membaca file teks. | read(3, "Isi file\n", 9) = 9 | System call read() digunakan untuk membaca isi file dari disk. |
-| 3 | dmesg | head | Menampilkan pesan log kernel pada saat sistem berjalan. | [0.000000] Linux version 5.15.153.1-microsoft-standard-WSL2 ... | Menunjukkan informasi kernel dan pesan inisialisasi sistem pada saat booting. |
-| 4 | dmesg | tail | Menampilkan pesan kernel terbaru. | [1234.567890] usb 1-2: new device found... | Kernel mencatat aktivitas perangkat keras seperti koneksi USB. |
+| 1 | `strace ls` | Melacak semua system call yang dijalankan oleh perintah ls. | openat(AT_FDCWD, ".", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 3 | Terlihat bahwa ls memanggil system call openat untuk membuka direktori dan membaca isinya. |
+| 2 | `strace cat file.txt` | Melacak system call yang terjadi saat membaca file teks. | read(3, "Isi file\n", 9) = 9 | System call read() digunakan untuk membaca isi file dari disk. |
+| 3 | `dmesg` | `head` | Menampilkan pesan log kernel pada saat sistem berjalan. | [0.000000] Linux version 5.15.153.1-microsoft-standard-WSL2 ... | Menunjukkan informasi kernel dan pesan inisialisasi sistem pada saat booting. |
+| 4 | `dmesg` | `tail` | Menampilkan pesan kernel terbaru. | [1234.567890] usb 1-2: new device found... | Kernel mencatat aktivitas perangkat keras seperti koneksi USB. |
 
 ## 2. Mengapa system call penting untuk keamanan OS?
 
@@ -340,23 +340,21 @@ Sistem operasi membagi ruang kerja menjadi dua bagian, yaitu user mode dan kerne
 
 **Beberapa system call yang sering digunakan di Linux antara lain :**
 
-open untuk membuka file,
+- `read` untuk membaca data,
 
-read untuk membaca data,
+- `write` untuk menulis data ke file,
 
-write untuk menulis data ke file,
+- `close` untuk menutup file,
 
-close untuk menutup file,
+- `fork` untuk membuat proses baru,
 
-fork untuk membuat proses baru,
+- `exec` untuk menjalankan program lain,
 
-exec untuk menjalankan program lain,
+- `exit` untuk keluar dari proses,
 
-exit untuk keluar dari proses,
+- `wait` untuk menunggu proses anak selesai,
 
-wait untuk menunggu proses anak selesai,
-
-getpid untuk mengetahui ID proses yang sedang berjalan.
+- `getpid` untuk mengetahui ID proses yang sedang berjalan.
 
 ---
 
