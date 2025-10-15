@@ -114,9 +114,51 @@ Sertakan screenshot hasil percobaan atau diagram:
 
 ## Analisis
 - Jelaskan makna hasil percobaan.
-   
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
+  
+```bash
+strace ls
+```
+| Aspek            | Penjelasan                                                                                 |
+| ---------------- | ------------------------------------------------------------------------------------------ |
+| **Perintah**     | `strace ls`                                                                                |
+| **Makna**        | Menjalankan `ls` sambil menampilkan semua panggilan sistem ke kernel                       |
+| **Fungsi utama** | Debugging, belajar cara kerja program, mendiagnosis error                                  |
+
+```bash
+strace -e trace=open,read,write,close cat /etc/passwd
+```
+| Bagian perintah         | Penjelasan                                                                                    |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| `strace`                | Alat untuk menelusuri (*trace*) system call antara program dan kernel                         |
+| `-e trace=...`          | Filter agar hanya menampilkan system call tertentu                                            |
+| `open,read,write,close` | Jenis system call yang ingin dilihat (yang digunakan untuk mengakses file)                    |
+| `cat /etc/passwd`       | Program yang dijalankan dan ditelusuri — `cat` membaca dan menampilkan isi file `/etc/passwd` |
+
+```bash
+dmesg | tail -n 10
+```
+| Bagian perintah | Penjelasan                                                                                                              |                                             
+| --------------- | ----------------------------------------------------------------------------------------------------------------------- | 
+| `dmesg`         | Menampilkan **pesan log kernel (kernel ring buffer)** — yaitu catatan aktivitas sistem operasi pada level paling dasar. |                                             
+| `tail -n 10`    | Menampilkan **10 baris terakhir** dari data yang diterima.                                                              |                                                                                           
+
+
+- Hubungkan hasil dengan teori tersebut
+  
+| Perintah                                                           | Hubungan dengan lainnya                                               |        
+| ------------------------------------------------------------------ | --------------------------------------------------------------------- |                                
+| `strace ls`                                                        | Program ini melakukan *system call* ke kernel                         |
+| `strace -e strace -e trace=open,read,write,close cat /etc/passwd`  | Semua aktivitas dari user-space ke kernel melewati lapisan ini        |
+| `dmesg  tail -n 10`                                                | Kernel mencatat aktivitasnya, error, atau status sistem ke buffer log | 
+ 
+- Apa perbedaan hasil dari percobaan tersebut?
+
+| Perintah                                                    | Perbedaan Utama                                                                                |
+| ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| **`strace ls`**                                             | Melacak semua aktivitas `ls` yang berhubungan dengan kernel (tanpa filter).                    |
+| **`strace -e trace=open,read,write,close cat /etc/passwd`** | Melacak hanya aktivitas file I/O dari `cat`, jadi lebih spesifik.                              |
+| **`dmesg tail -n 10`**                                      | Tidak melacak system call sama sekali — hanya menampilkan pesan kernel (log aktivitas sistem). |
+
 
 ---
 
