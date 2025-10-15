@@ -50,7 +50,11 @@ dmesg | head
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![hasil strace](./screenshots/strace%20ls.png.)
+![hasil diagram](./screenshots/screenshotssyscall-diagram.png.png)
+![hasil strace](./screenshots/strace%20ls.png)
+
+![hasil dmseg](./screenshots/dmseg.png)
+![hasil system call file](./screenshots/System%20Call%20File%20IO.png)
 
 ---
 
