@@ -1,6 +1,6 @@
 
-# Laporan Praktikum Minggu [X]
-Topik: [Tuliskan judul topik, misalnya "Arsitektur Sistem Operasi dan Kernel"]
+# Laporan Praktikum Minggu [1]
+Topik: ["Arsitektur Sistem Operasi dan Kernel"]
 
 ---
 
