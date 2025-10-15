@@ -248,7 +248,7 @@ Model paling relevan untuk sistem modern adalah **Hybrid Kernel** (gabungan Mono
 - Linux modular (dengan loadable kernel modules)
 
 ### Diagram Arsitektur 
-![Screenshot hasil](<screenshots/2025-10-10 (1).png>)
+![Screenshot hasil](<screenshots/Diagram Arsitektur OS.drawio (1).png>)
 
 
 
