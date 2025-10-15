@@ -247,5 +247,10 @@ Model paling relevan untuk sistem modern adalah **Hybrid Kernel** (gabungan Mono
 - macOS (XNU)
 - Linux modular (dengan loadable kernel modules)
 
+### Diagram Arsitektur 
+![Screenshot hasil](<screenshots/2025-10-10 (1).png>)
+
+
+
 **Credit:**  
 _Template laporan praktikum Sistem Operasi (SO-202501) – Universitas Putra Bangsa_
