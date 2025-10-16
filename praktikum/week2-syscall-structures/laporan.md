@@ -110,9 +110,11 @@ System call adalah antarmuka antara program aplikasi dan kernel yang memungkinka
 screenshot hasil percobaan atau diagram dari  `strace ls`:
 ![Screenshot hasil](<screenshots/2025-10-12.png>)
 
+screenshot hasil percobaan dari `strace -e trace=open,read,write,close cat /etc/passwd`:
 ![Screenshot](<screenshots/2025-10-12 (5).png>)
 
-
+screenshot hasil percobaan dari `dmesg | tail -n 10`:
+![Screenshot](<screenshots/2025-10-12 (7).png>)
 
 
 ---
