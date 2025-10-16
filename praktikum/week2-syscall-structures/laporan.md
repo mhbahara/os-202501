@@ -107,8 +107,8 @@ System call adalah antarmuka antara program aplikasi dan kernel yang memungkinka
 ---
 
 ## Hasil Eksekusi
-Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+screenshot hasil percobaan atau diagram dari  `strace ls`:
+![Screenshot hasil](<screenshots/2025-10-12.png>)
 
 ---
 
