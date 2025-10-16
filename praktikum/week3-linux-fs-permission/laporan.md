@@ -162,16 +162,13 @@ chown digunakan untuk mengubah siapa Pemilik (User) dan/atau Grup Pemilik (Group
 Perintah chmod (Change Mode)
 chmod digunakan untuk mengubah Hak Akses (Permissions) yang dimiliki oleh Pemilik, Grup, dan Lainnya terhadap file atau direktori (yaitu, Read/Baca, Write/Tulis, Execute/Eksekusi). Ini berfokus pada apa yang boleh dilakukan oleh setiap kelas pengguna.
 
-
-
-  
-
 ---
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
-- Bagaimana cara Anda mengatasinya?  
+- Apa bagian yang paling menantang minggu ini?  alhamdulilah sudah biasa saja
+- Bagaimana cara Anda mengatasinya?
+  chill saja
 
 ---
 
