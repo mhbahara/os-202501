@@ -116,6 +116,9 @@ screenshot hasil percobaan dari `strace -e trace=open,read,write,close cat /etc/
 screenshot hasil percobaan dari `dmesg | tail -n 10`:
 ![Screenshot](<screenshots/2025-10-12 (7).png>)
 
+Diagram alur system call dari aplikasi → kernel → hardware → kembali ke aplikasi.  
+![Screenshot](<screenshots/Diagram week 2 faiq.drawio.png>)
+
 
 ---
 
