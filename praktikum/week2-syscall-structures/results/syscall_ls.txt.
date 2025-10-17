@@ -1,1 +1,35 @@
+# Analisis System Call Jalankan perintah `strace ls`
 
+---
+
+- execve("/usr/bin/ls", ["ls"], 0x7ffc77eeb3b0 /* 25 vars */) = 0
+   - fungsinya Menjalankan program /usr/bin/ls.
+
+- brk(NULL) = 0x559568139000
+   - fungsinya Mengatur atau mendapatkan batas awal heap memori.
+
+- mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0)
+   - fungsinya Memetakan memori anonim untuk digunakan program.
+
+- access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+   - fungsinya Mengecek apakah file preload library ada.
+
+- openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+   - fungsinya Membuka file cache library dinamis.
+
+- fstat(3, {st_mode=S_IFREG|0644, st_size=17607, ...}) = 0
+   - fungsinya Mengambil info status file deskriptor nomor 3 (file /etc/ld.so.cache).
+
+- mmap(NULL, 17607, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7d192e713000
+   - fungsinyaMemetakan isi file cache ke memori.
+
+- close(3) = 0
+   - fungsinya Menutup file descriptor 3.
+
+- openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3
+   - fungsinya Membuka library dinamis libselinux.so.1.
+
+- read(3, "\177ELF\2\1\1\0\0\0...", 832) = 832
+   - fungsinya Membaca isi awal file library (header ELF).
+
+---
