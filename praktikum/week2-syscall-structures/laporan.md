@@ -170,24 +170,35 @@ dmesg | tail -n 10
 ---
 
 ## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 
+   - `strace ls` : menampilkan semua system call yang dilakukan program ls.
+
+   - `strace -e  trace=open,read,write,close cat /etc/passwd` : menampilkan hanya system call yang berhubungan dengan operasi file
+
+   - `dmesg | tail -n 10` : menampilkan log aktivitas kernel seperti pesan error, status perangkat, atau aktivitas sistem lainnya
+     
 ---
 
 ## Quiz
 1. Apa fungsi utama system call dalam sistem operasi?
-   **Jawaban:**  
+   - Fungsi utama system call dalam sistem operasi adalah sebagai komunikasi antara program pengguna dan kernel 
 2. Sebutkan 4 kategori system call yang paling umum digunakan!
-   **Jawaban:**  
+   - `open()` fungsinya Membuka file.
+   - `read()` fungsinya Membaca data dari file yang sudah dibuka.
+   - `write()` fungsinya Menulis data ke dalam file..
+   - `close()` fungsinya Menutup file yang sebelumnya dibuka.
+   - `delete()` fungsinya Menghapus file dari sistem penyimpanan.
 3. Mengapa system call tidak bisa dipanggil langsung oleh user program?
-   **Jawaban:**  
+   - System call berjalan di kernel mode, sedangkan program pengguna berjalan di user mode. Kedua mode ini dipisahkan untuk keamanan dan stabilitas sistem operasi.
 
 ---
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
-- Bagaimana cara Anda mengatasinya?  
+- Apa bagian yang paling menantang minggu ini?
+   -  Bagian yang paling menantang adalah memahami alur kerja antara user space dan kernel space
+- Bagaimana cara Anda mengatasinya?
+   -  Saya mengatasinya dengan membaca kembali materi tentang system call, dan mencoba menjalankan perintah secara langsung di terminal, serta memahami setiap hasil dan penjelasannya agar lebih mudah dipahami.
 
 ---
 
