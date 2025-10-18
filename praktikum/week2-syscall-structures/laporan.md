@@ -209,9 +209,29 @@ Tuliskan secara singkat:
 1. Dokumentasikan hasil eksperimen `strace` dan `dmesg` dalam bentuk tabel observasi.  
 2. Buat diagram alur system call dari aplikasi → kernel → hardware → kembali ke aplikasi.  
 3. Tulis analisis 400–500 kata tentang:
-   - Mengapa system call penting untuk keamanan OS?  
-   - Bagaimana OS memastikan transisi user–kernel berjalan aman?  
-   - Sebutkan contoh system call yang sering digunakan di Linux.  
+   - Mengapa system call penting untuk keamanan OS?
+     - system call penting untuk keamanan sistem operasi karena
+       1. menjadi penghubungkan antara program user (mode user) dengan kernel (mode kernel).
+       2. mencegah akses langsung ke kernel.
+       3. Menjalankan pemeriksaan izin (akses control).
+       4. Menjaga kestabilan dan keamanan sistem.
+       5. Memantau dan mencatat aktivitas sistem.
+   - Bagaimana OS memastikan transisi user–kernel berjalan aman?
+     - Sistem operasi memastikan transisi dari user mode ke kernel mode berjalan aman dengan beberapa mekanisme penting. Pertama, OS memanfaatkan pemisahan mode CPU, di mana program biasa hanya memiliki hak terbatas di user mode dan tidak bisa langsung menjalankan instruksi berhak tinggi. Saat sebuah program membutuhkan layanan kernel, ia harus memanggil system call yang akan memicu instruksi khusus (trap atau interrupt) untuk berpindah ke kernel mode. Proses ini tidak bisa diakses secara langsung oleh program user, sehingga mencegah penyalahgunaan.
+     
+   - Sebutkan contoh system call yang sering digunakan di Linux.
+     - Beberapa system call yang sering digunakan di Linux antara lain yaitu Dalam sistem operasi Linux, antara lain :
+
+ - Pertama, dalam kategori manajemen berkas (file management), terdapat system call seperti `open()` yang digunakan untuk membuka atau membuat file baru, `read()` untuk membaca data dari file, `write()` untuk menulis data ke file, dan `close()` untuk menutup file setelah digunakan. Selain itu, `lseek()` digunakan untuk memindahkan posisi pointer baca atau tulis di dalam file, sedangkan `unlink()` berfungsi untuk menghapus file dari sistem.
+
+ - Kedua, dalam kategori pengendalian proses (process control), terdapat system call penting seperti `fork()` yang digunakan untuk membuat proses baru (child process), `exec()` untuk menjalankan program baru dalam proses yang sedang berjalan, serta `exit()` untuk mengakhiri proses. System call `wait()` digunakan agar proses induk menunggu proses anak selesai, sementara` getpid()` berfungsi untuk mendapatkan ID proses yang sedang berjalan.
+
+ - Ketiga, dalam komunikasi antar-proses atau jaringan (interprocess communication), Linux menyediakan system call seperti `pipe()` untuk membuat saluran komunikasi antara dua proses,` socket()` untuk membuat koneksi jaringan, serta` connect()`,` send(),` dan `recv()` untuk menghubungkan dan bertukar data antar komputer melalui jaringan.
+
+ - Keempat, pada manajemen perangkat dan sumber daya (device and resource management), terdapat system call seperti` ioctl()` yang digunakan untuk mengatur atau mengontrol perangkat keras tertentu, `mmap()` yang berfungsi memetakan file ke ruang memori proses, serta` brk()` dan `sbrk()` yang digunakan untuk mengatur ukuran ruang memori dinamis (heap) suatu proses.
+
+- Kelima, dalam kategori keamanan dan izin akses (security and permission), terdapat system call seperti `chmod()` untuk mengubah hak akses file, `chown()` untuk mengubah kepemilikan file, dan` setuid()` maupun` setgid()` untuk mengubah identitas pengguna atau grup dari suatu proses.
+     
 4. Simpan semua hasil di:
    ```
    praktikum/week2-syscall-structure/
