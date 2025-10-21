@@ -169,6 +169,59 @@ dmesg | tail -n 10
 | **`strace -e trace=open,read,write,close cat /etc/passwd`** | Melacak hanya aktivitas file I/O dari `cat`, jadi lebih spesifik.                              |
 | **`dmesg tail -n 10`**                                      | Tidak melacak system call sama sekali — hanya menampilkan pesan kernel (log aktivitas sistem). |
 
+---
+
+1. ```bash
+   strace -e trace=open,read,write,close cat /etc/passwd`
+   ```
+   > Analisis bagaimana file dibuka, dibaca, dan ditutup oleh kernel.
+   
+1. Pembukaan Berkas (open)
+Perintah `cat` pertama-tama harus *membuka file* `/etc/passwd` untuk dapat mengakses isinya. 
+
+`open("/etc/passwd", O_RDONLY) = 3`
+`open("/etc/passwd", O_RDONLY):`
+
+   - `/etc/passwd` adalah jalur (path) ke berkas yang diminta.
+   - `O_RDONLY` adalah flag yang menentukan mode akses, dalam hal ini Read Only (hanya baca), karena cat hanya perlu membaca isinya.
+   - `= 3:` Nilai yang dikembalikan oleh kernel adalah deskriptor berkas.
+    
+2. Pembacaan Berkas (read)
+Setelah berkas berhasil dibuka, cat akan memanggil fungsi read untuk *membaca kontennya*.
+
+`read(3, "root:x:0:0:root:/root:/bin/bash\n...", 4096) = 2176`
+`read(3, ...):`
+
+   - `3` adalah deskriptor berkas yang diperoleh dari panggilan open, merujuk ke /etc/passwd.
+   - `"root:x:0:0:root:/root:/bin/bash\n..."` adalah buffer tempat data yang dibaca disimpan oleh kernel. (strace menampilkan cuplikan konten yang dibaca).
+   - `4096` adalah ukuran maksimum data yang diminta untuk dibaca dalam sekali panggilan (misalnya, 4KB).
+   - `= 2176:` Nilai yang dikembalikan adalah jumlah byte aktual yang berhasil dibaca oleh kernel dan disimpan ke buffer.
+   - Panggilan read ini akan diulang hingga seluruh isi berkas terbaca. Pada panggilan read terakhir, kernel akan mengembalikan nilai yang lebih kecil, menunjukkan bahwa sisa berkas telah dibaca.
+   -  `read(3, "", 4096) = 0 = 0:` Ini menunjukkan bahwa proses telah mencapai akhir berkas (End-of-File / EOF). Tidak ada lagi data yang dapat dibaca.
+
+3. Penutupan Berkas (close)
+proses cat akan *menutup berkas* untuk melepaskan sumber daya sistem yang dialokasikan (membebaskan deskriptor berkas, dll.).
+
+`close(3) = 0`
+`close(3):`
+
+   - `3` adalah deskriptor berkas yang merujuk ke /etc/passwd.
+   - `= 0`: Nilai yang dikembalikan menunjukkan keberhasilan penutupan berkas.
+
+2. ```bash
+   dmesg | tail -n 10`
+   ```
+   > Amati log kernel yang muncul. Apa bedanya output ini dengan output dari program biasa?
+  
+| Aspek            | `dmesg`                                                                                     | Output Program Biasa                                                |
+| ---------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| **Asal Pesan**   | Dari *kernel space* (kode kernel & driver).                                                 | Dari *user space* (program seperti `ls`, `cat`,dll).                |
+| **Tujuan utama** | Mencatat aktivitas internal sistem: deteksi perangkat, error hardware, event kernel, dll.   | Menampilkan hasil operasi program ke pengguna.                      |
+| **Media Output** | Ditulis ke **ring buffer kernel**, bisa dibaca dengan `dmesg` atau diakses via `/dev/kmsg`. | Ditulis ke **stdout/stderr** (terminal) melalui syscall `write()`.  |
+| **Format waktu** | Diawali tanda waktu dalam satuan detik sejak boot (`[ 3.321062 ]`).                         | Biasanya tidak ada, kecuali ditambahkan program sendiri.            |
+| **Akses level**  | Membutuhkan hak istimewa (`root`) untuk menulis atau membersihkan buffer.                   | Semua user bisa menghasilkan output dari program masing-masing.     |
+| **Sumber kode**  | Dibangkitkan oleh fungsi kernel seperti `printk()`.                                         | Dibangkitkan oleh fungsi library seperti `printf()`, `puts()`, dll. |
+
 
 ---
 
