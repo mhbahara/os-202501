@@ -61,6 +61,12 @@ dmesg | head
 Sertakan screenshot hasil percobaan atau diagram:
 ![Screenshot hasil](screenshots/example.png)
 
+![Screenshot hasil](screenshots/dmesg.png)
+
+![Screenshot hasil](screenshots/strace.png)
+
+![Screenshot hasil](screenshots/strace ls.png)
+
 ---
 
 ## Analisis
