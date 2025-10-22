@@ -67,7 +67,7 @@ Sertakan screenshot hasil percobaan atau diagram:
 
 ![Screenshot hasil](screenshots/strace_is.png)
 
-![Screenshot hasil](screenshots/Diagram System Call.png)
+![Screenshot hasil](screenshots/diagram_week2.png)
 
 
 ---
