@@ -76,6 +76,7 @@ strace -e trace=open,read,write,close cat /etc/passwd
 dmesg | tail -n 10
 ```
 ### 1. strace ls
+```bash
 - root@DESKTOP-R1GLO2B:~# strace ls
 execve("/usr/bin/ls", ["ls"], 0x7ffdf785a1a0 /* 28 vars */) = 0
 brk(NULL)                               = 0x63f59647f000
@@ -227,8 +228,10 @@ close(1)                                = 0
 close(2)                                = 0
 exit_group(0)                           = ?
 +++ exited with 0 +++
+```
 
 ### 2. strace -e trace=open,read,write,close cat /etc/passwd
+```bash
 - root@DESKTOP-R1GLO2B:~# strace -e trace=open,read,write,close cat /etc/passwd
 close(3)                                = 0
 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
@@ -284,8 +287,10 @@ close(3)                                = 0
 close(1)                                = 0
 close(2)                                = 0
 +++ exited with 0 +++
+```
 
 ### 3. dmesg | tail -n 10
+```bash
 - root@DESKTOP-R1GLO2B:~# dmesg | tail -n 10
 [ 3431.716885] systemd-journald[55]: Time jumped backwards, rotating.
 [ 3474.171045] WSL (247) ERROR: CheckConnection: getaddrinfo() failed: -5
@@ -297,6 +302,7 @@ close(2)                                = 0
 [ 5370.606919] WSL (247) ERROR: CheckConnection: getaddrinfo() failed: -5
 [ 5587.058647] mini_init (232): drop_caches: 1
 [ 5591.302300] systemd-journald[55]: Time jumped backwards, rotating.
+```
 
 ---
 
