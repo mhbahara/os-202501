@@ -1,0 +1,35 @@
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ pwd
+/home/rizky172007/os-202501-250202926
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ ls -1
+LICENSE
+README.md
+docs
+praktikum
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ cd /tmp
+rizky172007@LAPTOP-1DC8T04R:/tmp$ ls -a
+.
+..
+.X11-unix
+snap-private-tmp
+systemd-private-868086942d90423a8b498702005f2f0f-systemd-logind.service-SVT7x0
+systemd-private-868086942d90423a8b498702005f2f0f-systemd-resolved.service-iQ0A6x
+systemd-private-868086942d90423a8b498702005f2f0f-systemd-timesyncd.service-8lUsju
+systemd-private-868086942d90423a8b498702005f2f0f-wsl-pro.service-EzkuVx
+
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ cat /etc/passwd | head -n 5
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926/praktikum/week3-linux-fs-permission$ echo "Hello <RIZKY IQBAL HISYAM><250202926>" > percobaan.txt
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926/praktikum/week3-linux-fs-permission$ ls -l percobaan.txt
+-rw-r--r-- 1 rizky172007 rizky172007 38 Oct 20 22:07 percobaan.txt
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926/praktikum/week3-linux-fs-permission$ chmod 600 percobaan.txt
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926/praktikum/week3-linux-fs-permission$ ls -l percobaan.txt
+-rw------- 1 rizky172007 rizky172007 38 Oct 20 22:07 percobaan.txt
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926/praktikum/week3-linux-fs-permission$ sudo chown root percobaan.txt
+[sudo] password for rizky172007: 
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926/praktikum/week3-linux-fs-permission$ ls -l percobaan.txt
+-rw------- 1 root rizky172007 38 Oct 20 22:07 percobaan.txt
