@@ -10,6 +10,16 @@ Topik: Manajemen Proses dan User di Linux
 
 ---
 
+## A. Deskripsi Singkat
+Pada praktikum minggu ini, mahasiswa akan mempelajari **konsep proses dan manajemen user dalam sistem operasi Linux.**  
+Mahasiswa akan memahami bagaimana sistem operasi:
+- Membuat dan mengatur proses (process management).  
+- Mengelola user, group, serta hak akses pengguna.  
+- Menampilkan, menghentikan, dan mengontrol proses yang sedang berjalan.  
+- Menghubungkan konsep user management dengan keamanan sistem operasi.
+  
+---
+
 ## Tujuan
 Tuliskan tujuan praktikum minggu ini.  
 1. Menjelaskan konsep proses dan user dalam sistem operasi Linux.  
@@ -21,15 +31,19 @@ Tuliskan tujuan praktikum minggu ini.
 ---
 
 ## Dasar Teori
-Tuliskan ringkasan teori (3–5 poin) yang mendasari percobaan.
+1. **Proses** adalah program yang sedang berjalan di sistem Linux.
+2. Setiap proses memiliki **nomor identitas (PID)** untuk membedakannya.
+3. Perintah seperti `ps`, `top`, dan `kill` digunakan untuk melihat dan mengatur proses.
+4. **User dan group** digunakan untuk mengatur siapa yang boleh menjalankan atau mengubah sesuatu di sistem.
+5. **Hak akses (permission)** membantu menjaga keamanan agar hanya pengguna yang berwenang yang bisa melakukan tindakan tertentu.
 
 ---
 
 ## Langkah Praktikum
-1. Langkah-langkah yang dilakukan.  
-2. Perintah yang dijalankan.  
-3. File dan kode yang dibuat.  
-4. Commit message yang digunakan.
+1. Langkah-langkah yang dilakukan.
+3. Perintah yang dijalankan.  
+4. File dan kode yang dibuat.  
+5. Commit message yang digunakan.
 
 ---
 
