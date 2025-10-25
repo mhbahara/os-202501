@@ -113,8 +113,17 @@ Setelah menyelesaikan tugas ini, mahasiswa mampu:
 
 
 ## Hasil Eksekusi
-Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+
+![Screenshot hasil](<screenshots/Eksperimen 1 Bab 3.png>)
+
+![Screenshot](<screenshots/Ekspermen 2 Bab 3.png>)
+
+![Screenshot](<screenshots/Eksperimen 3 Bab 3.png>)
+
+
+
+
+
 
 ---
 
