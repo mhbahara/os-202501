@@ -5,16 +5,20 @@ Topik: [Tuliskan judul topik, misalnya "Arsitektur Sistem Operasi dan Kernel"]
 ---
 
 ## Identitas
-- **Nama**  : [Nama Mahasiswa]  
-- **NIM**   : [NIM Mahasiswa]  
-- **Kelas** : [Kelas]
+- **Nama**  : [MOHAMMAD FATIKH MAHSUN]  
+- **NIM**   : [250202952]  
+- **Kelas** : [1IKRB]
 
 ---
 
 ## Tujuan
 Tuliskan tujuan praktikum minggu ini.  
-Contoh:  
-> Mahasiswa mampu menjelaskan fungsi utama sistem operasi dan peran kernel serta system call.
+
+1.Menggunakan perintah ls, pwd, cd, cat untuk navigasi file dan direktori.
+2.Menggunakan chmod dan chown untuk manajemen hak akses file.
+3.Menjelaskan hasil output dari perintah Linux dasar.
+4.Menyusun laporan praktikum dengan struktur yang benar.
+5.Mengunggah dokumentasi hasil ke Git Repository tepat waktu.
 
 ---
 
@@ -60,12 +64,22 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 ---
 
 ## Quiz
-1. [Pertanyaan 1]  
+1.Apa fungsi dari perintah chmod? 
+2.Apa arti dari kode permission rwxr-xr--?
+3.Jelaskan perbedaan antara chown dan chmod.
    **Jawaban:**  
-2. [Pertanyaan 2]  
-   **Jawaban:**  
-3. [Pertanyaan 3]  
-   **Jawaban:**  
+
+1.Fungsi dari perintah chmod adalah untuk mengubah atau mengatur izin akses (permission) suatu file atau direktori dalam sistem operasi Linux atau Unix. Izin akses ini menentukan siapa saja yang dapat membaca (read), menulis (write), atau mengeksekusi (execute) file atau direktori tersebut. Melalui chmod, pengguna dapat menetapkan hak akses berbeda untuk pemilik file (owner), grup pengguna (group), dan pengguna lain (others) agar file atau direktori dapat diatur keamanannya secara tepat.
+
+2.Kode permission rwxr-xr-- menggambarkan hak akses atas sebuah file atau direktori dengan rincian sebagai berikut:
+rwx: pemilik (owner) memiliki hak baca (read), tulis (write), dan eksekusi (execute)
+r-x: grup pengguna (group) memiliki hak baca (read) dan eksekusi (execute), tetapi tidak memiliki hak tulis
+r--: pengguna lain (others) hanya memiliki hak baca (read) tanpa hak tulis dan eksekusi. 
+
+3.Perbedaan antara perintah chown dan chmod adalah sebagai berikut:
+chmod digunakan untuk mengubah hak akses (permission) pada file atau direktori, yaitu menentukan apa yang dapat dilakukan pengguna terhadap file tersebut, seperti membaca, menulis, atau mengeksekusi. 
+Sedangkan chown digunakan untuk mengubah kepemilikan file atau direktori, yaitu menentukan siapa pemilik file tersebut dan grup yang memiliki file tersebut. Dengan chown, dapat diubah pengguna atau grup yang memiliki file.
+
 
 ---
 
