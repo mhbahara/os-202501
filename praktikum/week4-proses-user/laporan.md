@@ -113,8 +113,20 @@ Tuliskan tujuan praktikum minggu ini.
 ---
 
 ## Hasil Eksekusi
-Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+**Eksperimen 1**
+![Screenshot hasil](<screenshots/Eksperimen 1 Bab 4.png>)
+
+**Eksperimen 2**
+![Screenshot hasil](<screenshots/Eksperimen 2 bab 4.png>)
+
+**Eksperimen 3**
+![Screenshot hasil](<screenshots/Eksperimen 3 Bab 4.png>)
+
+**Eksperimen 4**
+![Screenshot hasil](<screenshots/Eksperimen 4 bab 4.png>)
+
+
+
 
 ---
 
