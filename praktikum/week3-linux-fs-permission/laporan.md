@@ -1,6 +1,6 @@
 
 # Laporan Praktikum Minggu [X]
-Topik: Linux fs Permission
+Topik: Manajemen File dan Permission di Linux
 
 ---
 
@@ -108,7 +108,7 @@ ls -l percobaan.txt
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+![alt text](<screenshots/week3 sistem operasi.png>)
 
 ---
 
@@ -146,11 +146,17 @@ ls -a|.  ..  X11-unix  snap-private-tmp  systemd-private-...|Didalam /tmp terdap
 | :--- | :---|:---|:---|:---|:---|
 Sebelum chmod|rw-r-r--|Baca & tulis|Baca|Baca|File bisa dilihat semua pengguna |
 Sesudah chmod 600|rw-------|Baca&tulis|Tidak ada|Tidak ada|File hanya bisa diakses pemilik|
+4.Catat hasilnya
+
+    sudo chown root percobaan.txt
+    ls -l percobaan.txt
+Hasil dari perintah tersebut mengubah kepemilikan file menjadi milik pengguna yaitu novia safitri menjadi root ,sehingga yang awalnya  -rw-r--r-- 1 safitrinovia safitrinovia 32 Oct 24 20:34 percobaan.txt berubah menjadi -rw------- 1 root NOVIA SAFITRI 32 Oct 24 20:34 percobaan.txt .    
 ---
 
 ## Kesimpulan
 
-Praktikum ini menunjukan cara kerja manajemen file dan hak akses di Linux,serta pentingnya memahami perintah dasar dan pengaturan izin file untuk menjaga keamanan dan keteraturan ssitem.
+Praktikum ini menunjukan cara kerja manajemen file dan hak akses di Linux,serta pentingnya memahami perintah dasar dan pengaturan izin file untuk menjaga keamanan dan keteraturan sitem.Manajemen file dan izin pada sistem operasi Linux sangat penting untuk mengatur akses dan keamanan file serta direktori.Praktikum ini menunjukan bagaimana perintah dasar seperti chmod,chown dan ls digunakan untuk melihat,mengubah hak akses file dan kepemilikan.Izin mengatur menggunakan format simbolik (r,w,x)dan numerik(seperti754) mengendalikan siapa yang dapat membaca,menulis,dan mengeksekusi file tersebut.Dengan mengatur izin dengan benar,data menjadi lebih aman dari akses yang tidak diinginkan.
+
 ## Tugas
  1.Dokumentasikan hasil seluruh perintah pada tabel observasi 
 | No | Perintah | Fungsi|Hasil/output|Keterangan|
