@@ -1,5 +1,5 @@
 
-# Laporan Praktikum Minggu [X]
+# Laporan Praktikum Minggu 3
 Topik: Manajemen File dan Permission di Linux
 
 ---
@@ -150,6 +150,7 @@ Sesudah chmod 600|rw-------|Baca&tulis|Tidak ada|Tidak ada|File hanya bisa diaks
 
     sudo chown root percobaan.txt
     ls -l percobaan.txt
+
 Hasil dari perintah tersebut mengubah kepemilikan file menjadi milik pengguna yaitu novia safitri menjadi root ,sehingga yang awalnya  -rw-r--r-- 1 safitrinovia safitrinovia 32 Oct 24 20:34 percobaan.txt berubah menjadi -rw------- 1 root NOVIA SAFITRI 32 Oct 24 20:34 percobaan.txt .    
 ---
 
