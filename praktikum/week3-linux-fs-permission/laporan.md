@@ -89,8 +89,8 @@ Sertakan screenshot hasil percobaan atau diagram:
 ---
 
 ## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
-manajemen berkas di Linux adalah cara mengatur file dan folder supaya mudah digunakan, aman, dan sesuai kebutuhan pengguna dengan mengatur siapa yang boleh melihat, mengubah, dan menjalankan file tersebut menggunakan perintah-perintah yang tersedia di sistem Linux.
+
+Manajemen berkas di Linux adalah cara mengatur file dan folder supaya mudah digunakan, aman, dan sesuai kebutuhan pengguna dengan mengatur siapa yang boleh melihat, mengubah, dan menjalankan file tersebut menggunakan perintah-perintah yang tersedia di sistem Linux.
 Fungsi dari perintah chmod adalah untuk mengubah hak akses (permission) pada file atau direktori, 
 sedangkan chown digunakan untuk mengubah kepemilikan file atau direktori. 
 
