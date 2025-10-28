@@ -43,6 +43,7 @@ Tuliskan ringkasan teori (3–5 poin) yang mendasari percobaan.
 
 1.langkah-langkah yang digunakan
   -menggunakan Linux
+  
 2.perintah yang dijalankan 
 pwd
 ls -l
@@ -50,11 +51,13 @@ cd /tmp
 ls -a
 cat /etc/passwd | head -n 5
 Jelaskan isi file dan struktur barisnya (user, UID, GID, home, shell).
+
 3.File dan kode yang dibuat 
 echo "Hello <NAME><NIM>" > percobaan.txt
 ls -l percobaan.txt
 chmod 600 percobaan.txt
 ls -l percobaan.txt
+
 4.Commit message yang digunakan
 git add .
 git commit -m "Minggu 3 - Linux File System & Permission"
