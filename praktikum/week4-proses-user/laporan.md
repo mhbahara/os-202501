@@ -126,10 +126,8 @@ Menampilkan informasi identitas pengguna lengkap, meliputi User ID, Group ID, 
 ### 3. groups
 Menampilkan nama-nama grup tempat user saat ini tergabung.
 ### 4. PID proses sleep
-- 1275 
-- 1735 
-- 1969 
-- 1983
+- 851
+- 859
 ### 5. pstree -p | head -20
 Proses utama (induk) dalam sistem Linux adalah `systemd(1)`.
 Semua proses lain (seperti `cron`, `dbus-daemon`, `rsyslogd`, dan `bash`) merupakan turunan atau anak dari `systemd`.
@@ -152,9 +150,9 @@ Semua proses lain (seperti `cron`, `dbus-daemon`, `rsyslogd`, dan `bash`) merupa
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
 
-![alt text](../week4-proses-user/screenshots/Screenshot%202025-10-22%20165817.png)
-![alt text](../week4-proses-user/screenshots/Screenshot%202025-10-22%20165853.png)
-![alt text](../week4-proses-user/screenshots/Screenshot%202025-10-22%20165912.png)
+![alt text](../week4-proses-user/screenshots/Screenshot%202025-10-28%20132936.png)
+![alt text](../week4-proses-user/screenshots/Screenshot%202025-10-28%20133729.png)
+![alt text](../week4-proses-user/screenshots/Screenshot%202025-10-28%20133745.png)
 
 ---
 
@@ -235,32 +233,26 @@ Fungsi: Menampilkan struktur proses dalam bentuk pohon (tree), sehingga terlihat
   **Jawaban :** 
 
 ```bash
-  systemd(1)
- ├── agetty(199)
- ├── agetty(205)
- ├── cron(182)
- │    └── dbus-daemon(183)
- ├── init
- │    └── systemd(Ub)(2)
- │         ├── SessionLeader(1651)
- │         │    └── Relay(1652)
- │         │         └── bash(1653)
- │         │              └── su(1675)
- │         │                   └── bash(1679)
- │         │                        └── sleep(1735)
- │         └── SessionLeader(1865)
- │              └── Relay(1872)
- │                   └── bash(1872)
- │                        └── su(1903)
- │                             └── bash(1907)
- │                                  ├── head(2038)
- │                                  ├── pstree(2037)
- │                                  └── sleep(1969)
- ├── rsyslogd(207)
- ├── systemd-journald(55)
- ├── systemd-logind(193)
- ├── systemd-resolved(154)
- └── systemd-timesyncd(167)
+systemd(1)-+-agetty(197)
+           |-agetty(203)
+           |-cron(182)
+           |-dbus-daemon(183)
+           |-init-systemd(Ub(2)-+-SessionLeader(342)---Relay(344)(343)---bash(344)---su(531)---bash(551)---su(703)---bash(716)---su+
+           |                    |-init(6)---{init}(7)
+           |                    |-login(345)---bash(410)
+           |                    `-{init-systemd(Ub}(8)
+           |-rsyslogd(201)-+-{rsyslogd}(220)
+           |               |-{rsyslogd}(221)
+           |               `-{rsyslogd}(222)
+           |-systemd(391)---(sd-pam)(392)
+           |-systemd(536)---(sd-pam)(537)
+           |-systemd-journal(55)
+           |-systemd-logind(193)
+           |-systemd-resolve(120)
+           |-systemd-timesyn(154)---{systemd-timesyn}(177)
+           |-systemd-udevd(101)
+           |-unattended-upgr(215)---{unattended-upgr}(268)
+           `-wsl-pro-service(195)-+-{wsl-pro-service}(232)
 ```
 
 ### 3. Jelaskan hubungan antara user management dan keamanan sistem Linux.
