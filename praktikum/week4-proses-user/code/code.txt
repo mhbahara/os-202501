@@ -1,0 +1,114 @@
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ whoami
+rizky172007
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ id
+uid=1000(rizky172007) gid=1000(rizky172007) groups=1000(rizky172007),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),100(users)
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ groups
+rizky172007 adm cdrom sudo dip plugdev users
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ sudo adduser praktikan
+[sudo] password for rizky172007: 
+info: Adding user `praktikan' ...
+info: Selecting UID/GID from range 1000 to 59999 ...
+info: Adding new group `praktikan' (1001) ...
+info: Adding new user `praktikan' (1001) with group `praktikan (1001)' ...
+info: Creating home directory `/home/praktikan' ...
+info: Copying files from `/etc/skel' ...
+New password: 
+Retype new password: 
+passwd: password updated successfully
+Changing the user information for praktikan
+Enter the new value, or press ENTER for the default
+        Full Name []: Rizky Iqbal Hisyam
+        Room Number []: 
+        Work Phone []: 082128681738
+        Home Phone []: 
+        Other []: 
+Is the information correct? [Y/n] Y
+info: Adding new user `praktikan' to supplemental / extra groups `users' ...
+info: Adding user `praktikan' to group `users' ...
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ sudo passwd praktikan
+New password: 
+Retype new password: 
+passwd: password updated successfully
+
+
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ ps aux | head -10
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.3  21804 12356 ?        Ss   16:25   0:01 /sbin/init
+root           2  0.0  0.0   3072  1920 ?        Sl   16:25   0:00 /init
+root           8  0.0  0.0   3072  1792 ?        Sl   16:25   0:00 plan9 --control-socket 7 --log-level 4 --server-fd 8 --pipe-fd 10 --log-truncate
+root          44  0.0  0.4  50432 15616 ?        S<s  16:25   0:00 /usr/lib/systemd/systemd-journald
+root          94  0.0  0.1  25132  6016 ?        Ss   16:25   0:00 /usr/lib/systemd/systemd-udevd
+systemd+     109  0.0  0.3  21456 12288 ?        Ss   16:25   0:00 /usr/lib/systemd/systemd-resolved
+systemd+     116  0.0  0.1  91024  7424 ?        Ssl  16:25   0:00 /usr/lib/systemd/systemd-timesyncd
+root         159  0.0  0.0   4236  2432 ?        Ss   16:25   0:00 /usr/sbin/cron -f -P
+message+     160  0.0  0.1   9536  4864 ?        Ss   16:25   0:00 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ top -n 1
+top - 17:21:58 up 56 min,  1 user,  load average: 0.06, 0.09, 0.08
+Tasks:  40 total,   1 running,  39 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  1.1 sy,  0.0 ni, 97.8 id,  1.1 wa,  0.0 hi,  0.0 si,  0.0 st 
+MiB Mem :   3780.2 total,   2336.6 free,   1314.1 used,    204.1 buff/cache     
+MiB Swap:   1024.0 total,   1024.0 free,      0.0 used.   2466.1 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                              
+      1 root      20   0   21804  12356   9412 S   0.0   0.3   0:01.23 systemd                                                              
+      2 root      20   0    3072   1920   1792 S   0.0   0.0   0:00.01 init-systemd(Ub                                                      
+      8 root      20   0    3072   1792   1792 S   0.0   0.0   0:00.00 init                                                                 
+     44 root      19  -1   50432  15616  14592 S   0.0   0.4   0:00.51 systemd-journal                                                      
+     94 root      20   0   25132   6016   4864 S   0.0   0.2   0:00.29 systemd-udevd                                                        
+    109 systemd+  20   0   21456  12288  10240 S   0.0   0.3   0:00.15 systemd-resolve                                                      
+    116 systemd+  20   0   91024   7424   6656 S   0.0   0.2   0:00.17 systemd-timesyn                                                      
+    159 root      20   0    4236   2432   2304 S   0.0   0.1   0:00.02 cron                                                                 
+    160 message+  20   0    9536   4864   4480 S   0.0   0.1   0:00.13 dbus-daemon                                                          
+    176 root      20   0   17968   8448   7552 S   0.0   0.2   0:00.17 systemd-logind                                                       
+    184 root      20   0 1756096  12672  10496 S   0.0   0.3   0:00.32 wsl-pro-service                                                      
+    193 syslog    20   0  222508   5504   4352 S   0.0   0.1   0:00.19 rsyslogd                                                             
+    198 root      20   0    3160   1920   1792 S   0.0   0.0   0:00.00 agetty                                                               
+    201 root      20   0    3116   1792   1664 S   0.0   0.0   0:00.00 agetty                                                               
+    207 root      20   0  107028  22400  13184 S   0.0   0.6   0:00.18 unattended-upgr                                                      
+    287 root      20   0    6688   4096   3584 S   0.0   0.1   0:00.01 login                                                                
+    344 rizky17+  20   0   20316  11008   9088 S   0.0   0.3   0:00.10 systemd                                                              
+    345 rizky17+  20   0   21148   3512   1792 S   0.0   0.1   0:00.00 (sd-pam)                                                             
+    368 rizky17+  20   0    6072   4864   3456 S   0.0   0.1   0:00.03 bash                                                                 
+    418 root      20   0    3076   1028    896 S   0.0   0.0   0:00.00 SessionLeader                                                        
+    419 root      20   0    3092   1160   1024 S   0.0   0.0   0:00.00 Relay(420)                                                           
+    420 rizky17+  20   0    2800   1536   1536 S   0.0   0.0   0:00.00 sh                                                                   
+    421 rizky17+  20   0    2800   1664   1664 S   0.0   0.0   0:00.00 sh                                                                   
+    427 rizky17+  20   0    2800   1664   1664 S   0.0   0.0   0:00.00 sh                                                                   
+    431 rizky17+  20   0   11.3g 143380  51200 S   0.0   3.7   0:13.01 node                                                                 
+    473 root      20   0    3088   1028    896 S   0.0   0.0   0:00.00 SessionLeader                                                        
+    474 root      20   0    3088   1164   1024 S   0.0   0.0   0:00.37 Relay(475)                                                           
+    475 rizky17+  20   0 1020076  61096  42624 S   0.0   1.6   0:01.50 node                                                                 
+    482 root      20   0    3088   1028    896 S   0.0   0.0   0:00.00 SessionLeader 
+
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ sleep 1000 &
+[1] 2731
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ ps aux | grep sleep
+rizky17+    2731  0.0  0.0   3124  1664 pts/6    S    17:53   0:00 sleep 1000
+rizky17+    2808  0.0  0.0   3124  1664 pts/0    S+   17:53   0:00 sleep 1
+rizky17+    2811  0.0  0.0   4088  1920 pts/6    S+   17:53   0:00 grep --color=auto sleep
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ kill 2731
+[1]+  Terminated              sleep 1000
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ ps aux | grep sleep
+rizky17+    3298  0.0  0.0   4088  1920 pts/6    S+   17:55   0:00 grep --color=auto sleep
+
+rizky172007@LAPTOP-1DC8T04R:~/os-202501-250202926$ pstree -p | head -20
+systemd(1)-+-agetty(193)
+           |-agetty(199)
+           |-cron(165)
+           |-dbus-daemon(166)
+           |-init-systemd(Ub(2)-+-SessionLeader(396)---Relay(398)(397)---sh(398)---sh(399)---sh(405)---node(409)-+-node(439)-+-bash+
+           |                    |                                                                                |           |-{nod+
+           |                    |                                                                                |           |-{nod+
+           |                    |                                                                                |           |-{nod+
+           |                    |                                                                                |           |-{nod+
+           |                    |                                                                                |           |-{nod+
+           |                    |                                                                                |           |-{nod+
+           |                    |                                                                                |           |-{nod+
+           |                    |                                                                                |           |-{nod+
+           |                    |                                                                                |           |-{nod+
+           |                    |                                                                                |           |-{nod+
+           |                    |                                                                                |           `-{nod+
+           |                    |                                                                                |-node(468)-+-{nod+
+           |                    |                                                                                |           |-{nod+
+           |                    |                                                                                |           |-{nod+
+           |                    |                                                                                |           |-{nod+
