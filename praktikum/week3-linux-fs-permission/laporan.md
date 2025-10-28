@@ -28,6 +28,10 @@ Tuliskan tujuan praktikum minggu ini.
 
 ## Dasar Teori
 Tuliskan ringkasan teori (3–5 poin) yang mendasari percobaan.
+ •Manajemen file dan permission di Linux berfungsi untuk mengatur penyimpanan data, Memudahkan akses , menjaga keamanan dan kontrol akses terhadap file serta direktori.
+ •Pengelolaan file dilakukan menggunakan perintah dasar seperti ls, cp, mv, rm, mkdir, dan cat untuk menampilkan, menyalin, memindahkan, menghapus, serta membuat file atau direktori.
+ •Setiap file memiliki tiga jenis izin — read (r), write (w), dan execute (x) — yang berlaku bagi tiga kategori pengguna: owner (user), group, dan others.
+ •Hak akses dapat diubah dengan chmod (mengatur izin), sedangkan kepemilikan file dapat diubah dengan chown (pemilik) dan chgrp (grup).
 
 ---
 
@@ -36,6 +40,25 @@ Tuliskan ringkasan teori (3–5 poin) yang mendasari percobaan.
 2. Perintah yang dijalankan.  
 3. File dan kode yang dibuat.  
 4. Commit message yang digunakan.
+
+1.langkah-langkah yang digunakan
+  -menggunakan Linux
+2.perintah yang dijalankan 
+pwd
+ls -l
+cd /tmp
+ls -a
+cat /etc/passwd | head -n 5
+Jelaskan isi file dan struktur barisnya (user, UID, GID, home, shell).
+3.File dan kode yang dibuat 
+echo "Hello <NAME><NIM>" > percobaan.txt
+ls -l percobaan.txt
+chmod 600 percobaan.txt
+ls -l percobaan.txt
+4.Commit message yang digunakan
+git add .
+git commit -m "Minggu 3 - Linux File System & Permission"
+git push origin main
 
 ---
 
@@ -64,6 +87,9 @@ Sertakan screenshot hasil percobaan atau diagram:
 
 ## Kesimpulan
 Tuliskan 2–3 poin kesimpulan dari praktikum ini.
+manajemen berkas di Linux adalah cara mengatur file dan folder supaya mudah digunakan, aman, dan sesuai kebutuhan pengguna dengan mengatur siapa yang boleh melihat, mengubah, dan menjalankan file tersebut menggunakan perintah-perintah yang tersedia di sistem Linux.
+Fungsi dari perintah chmod adalah untuk mengubah hak akses (permission) pada file atau direktori, 
+sedangkan chown digunakan untuk mengubah kepemilikan file atau direktori. 
 
 ---
 
@@ -91,6 +117,8 @@ Sedangkan chown digunakan untuk mengubah kepemilikan file atau direktori, yaitu 
 Tuliskan secara singkat:
 - Apa bagian yang paling menantang minggu ini?  
 - Bagaimana cara Anda mengatasinya?  
+
+
 
 ---
 
