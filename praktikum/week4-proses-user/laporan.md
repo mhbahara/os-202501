@@ -285,8 +285,10 @@ Tuliskan jawaban di bagian **Quiz** pada laporan:
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
-- Bagaimana cara Anda mengatasinya?  
+- Apa bagian yang paling menantang minggu ini?
+   - Bagian paling menantang adalah memahami hubungan antara proses, PID, dan perintah manajemen proses seperti ps, kill, dan systemd.
+- Bagaimana cara Anda mengatasinya?
+   - cara mengatasinya adalah dengan membaca ulang materi tentang manajemen proses, mencoba langsung perintah di terminal, dan mencatat hasilnya satu per satu agar lebih mudah memahami.
 
 ---
 
