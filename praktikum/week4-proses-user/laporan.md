@@ -261,16 +261,100 @@ systemd(1)─┬─agetty(230)
 ---
 ## D. Tugas & Quiz
 ### Tugas
-1. Dokumentasikan hasil semua perintah dan jelaskan fungsi tiap perintah.  
-2. Gambarkan hierarki proses dalam bentuk diagram pohon (`pstree`) di laporan.  
-3. Jelaskan hubungan antara user management dan keamanan sistem Linux.  
+1. Dokumentasikan hasil semua perintah dan jelaskan fungsi tiap perintah.
+**Eksperimen 1 – Identitas User**
+   Jalankan perintah berikut:
+   ```bash
+   whoami
+   id
+   groups
+   ```
+ - `whoami`
+     - Perintah `whoami` digunakan untuk menampilkan nama pengguna (username) yang sedang aktif atau login di sistem Linux.Fungsi mengetahui identitas user yang sedang menjalankan terminal.
+ - `id`
+     - Perintah `id` digunakan untuk menampilkan identitas pengguna dan grup yang sedang aktif di sistem Linux. 
+ - `groups`
+    - Perintah `groups` digunakan untuk menampilkan daftar grup tempat user saat ini tergabung.
+
+ **Eksperimen 2 – Monitoring Proses**
+  ```bash
+   ps aux | head -10
+   top -n 1
+   ```
+- `ps aux | head -10`
+   - Perintah ini menampilkan daftar proses yang sedang berjalan di sistem Linux. Perintah ini menampilkan daftar proses yang sedang berjalan di sistem Linux. digunakan untuk melihat semua proses aktif beserta pengguna, ID, dan sumber daya yang digunakan (CPU dan memori).Kolom-kolom seperti USER, PID, %CPU, %MEM, dan COMMAND membantu kita memantau dan mengelola proses yang berjalan di sistem Linux.
+- `top -n 1`
+   -Perintah top digunakan untuk memantau proses yang sedang berjalan secara real-time di sistem Linux — mirip seperti “Task Manager” di Windows.
+  
+**Eksperimen 3 – Kontrol Proses**
+   ```bash
+    sleep 1000 &
+    ps aux | grep sleep
+  ```
+ ```bash
+  kill <PID>
+ ```
+- `sleep 1000 &`
+    - `sleep 1000`  memerintahkan sistem untuk *tidur* atau berhenti sejenak selama 1000 detik.
+    -  `&` menandakan bahwa proses dijalankan di background, sehingga terminal tetap bisa digunakan untuk perintah lain
+- `ps aux | grep sleep`
+    - `ps aux`  menampilkan daftar lengkap semua proses yang sedang aktif.
+    - `|`  pipe, digunakan untuk meneruskan output dari `ps aux` ke perintah berikutnya.
+    - `grep sleep`  mencari teks *sleep* di hasil keluaran tersebut.
+- `kill 494`
+    - `kill` mengirim sinyal ke proses. Secara default mengirim sinyal `SIGTERM` untuk meminta proses berhenti dengan aman.
+    - `494` nomor PID dari proses target yang ingin dihentikan.
+
+     
+2. Gambarkan hierarki proses dalam bentuk diagram pohon (`pstree`) di laporan.
+   
+ ```bash  
+systemd(1)─┬─agetty(230)
+            ├─cron(200)
+            ├─dbus-daemon(201)
+            ├─rsyslogd(227)
+            ├─snapd(216)
+            └─init-systemd(ub(2))─┬─SessionLeader(973)─┬─Relay(978)─┬─bash(978)─┬─head(1293)
+                                                         ├─pstree(1292)
+                                                         ├─sleep(1280)
+                                                         └─sleep(1288)
+  ```
+
+3. Jelaskan hubungan antara user management dan keamanan sistem Linux.
+  - User management dan keamanan sistem Linux saling berkaitan erat. Dengan pengaturan user, group, dan permission yang baik, administrator dapat mengontrol akses, melindungi data penting, mencegah kesalahan pengguna, dan memperkuat keamanan sistem secara keseluruhan.
+   
 4. Upload laporan ke repositori Git tepat waktu.
 
 ### Quiz
 Tuliskan jawaban di bagian **Quiz** pada laporan:
-1. Apa fungsi dari proses `init` atau `systemd` dalam sistem Linux?  
-2. Apa perbedaan antara `kill` dan `killall`?  
+1. Apa fungsi dari proses `init` atau `systemd` dalam sistem Linux?
+   - *Inisialisasi Sistem*
+       - Memulai Proses Awal: Sebagai proses pertama, ia bertanggung jawab untuk menginisialisasi sistem setelah kernel selesai memuat.
+       - Mengatur Lingkungan Awal: Ini termasuk mengatur hostname, mengonfigurasi perangkat jaringan loopback, dan mengatur sistem file API penting seperti /sys, /proc, dan /dev.
+       - Mengatur Jam Sistem: Memastikan jam sistem diatur dengan benar, terutama jika tidak ada RTC (Real-Time Clock) yang berfungsi baik.
+   
+    - *Manajemen Layanan*
+       - Memulai, Menghentikan, dan Mengelola Layanan.
+       - Menyelesaikan Ketergantungan (Dependencies).
+       - Pemantauan dan Restart Otomatis.
+   
+    - *Pengelolaan Proses*
+       - Pengelompokan Kontrol (Cgroups): systemd menempatkan proses yang berbeda ke dalam Linux control groups (cgroups) individu, yang memungkinkan pelacakan, manajemen, dan alokasi sumber daya secara efektif.
+
+    - *Shutdown dan Reboot*
+       - Mengelola Transisi Status Sistem: Ketika Anda meminta sistem untuk shutdown atau reboot, systemd-lah yang mengelola transisi ini.
+   
+2. Apa perbedaan antara `kill` dan `killall`?
+  - `kill`
+     - Perintah ini memerlukan *PID (Process ID)* sebagai argumen. PID adalah nomor unik yang diberikan oleh kernel kepada setiap proses yang sedang berjalan.
+         - contoh: `kill -9 1234 5678` (Mengirim sinyal SIGKILL ke proses dengan PID 1234 dan 5678).
+
+  - `killall`
+    - Perintah ini memerlukan *nama perintah (executable name)* sebagai argumen.
+         - Contoh: `killall chrome` (Mengirim sinyal default `SIGTERM` ke SEMUA proses yang bernama `chrome`).
+   
 3. Mengapa user `root` memiliki hak istimewa di sistem Linux?
+   - Pengguna root memiliki hak istimewa di sistem Linux karena perannya sebagai *pengendali utama sistem*, yang diperlukan untuk menjalankan fungsi *administratif dan pemeliharaan* yang penting.
 
 ---
 
