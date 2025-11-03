@@ -192,9 +192,9 @@ Sistem Linux bersifat multi-user dan multi-proses, artinya banyak pengguna dan p
                  |-cron(181)
                  |-dbus-daemon(182)
                  |-init-systemd (Ub(2)-+-SessionLeader (330)---Relay (336) (332)---bash(336)-+-head (566)         
-                 |                     |                                                      |-pstree (565)       
+                 |                     |                                                     |-pstree (565)       
                  |                     |                                                                                                                            `--
-                 |                     |                                                       `-sleep(562)          
+                 |                     |                                                     `-sleep(562)          
                  |                     |
                  |                     |
                  |                     |-init(8)---{init}(9)
