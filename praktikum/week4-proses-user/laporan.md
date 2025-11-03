@@ -187,6 +187,30 @@ Sistem Linux bersifat multi-user dan multi-proses, artinya banyak pengguna dan p
 
 2.Gambarkan hierarki proses dalam bentuk diagram pohon (pstree) di laporan.
 
+    Systemd ( 1)-+-agetty(195)
+                 |-agetty(216)
+                 |-cron(181)
+                 |-dbus-daemon(182)
+                 |-init-systemd (Ub(2)-+-SessionLeader (330)---Relay (336) (332)---bash(336)-+-head (566)         
+                 |                     |                                                      |-pstree (565)       
+                 |                     |                                                                                                                            `--
+                 |                     |                                                       `-sleep(562)          
+                 |                     |
+                 |                     |
+                 |                     |-init(8)---{init}(9)
+                 |                     |-login(339)---bash(430)
+                 |                     `-{init-systemd(Ub}(10)
+                 |-rsyslogd(209)-+-{rsyslogd}(227)
+                 |-{rsyslogd}(228)
+                 `-{rsyslogd}(229)
+                 |-snapd(188)-+-{snapd}(256)
+                              |-{snapd}(260)
+                              |-{snapd} (261)
+                              |-{snapd} (262)
+                              |-{snapd} (264)
+                              |-{snapd} (283)
+                              |-{snapd} (284)
+
 3.Jelaskan hubungan antara user management dan keamanan sistem Linux.
 
 Manajemen user di Linux adalah kunci utama untuk menjaga keamanan sistem. Dengan mengelola siapa yang boleh mengakses sistem, memberikan hak akses sesuai kebutuhan, membatasi hak istimewa, mengatur password dengan ketat, serta mengawasi aktivitas pengguna, maka risiko akses tidak sah dan penyalahgunaan dapat diminimalkan. Proses ini perlu terus dipantau dan diperbarui agar keamanan sistem tetap terjaga secara efektif dan berkelanjutan.
