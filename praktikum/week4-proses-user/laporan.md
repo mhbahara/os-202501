@@ -1,5 +1,5 @@
 
-# Laporan Praktikum Minggu [X]
+# Laporan Praktikum Minggu [4]
 Topik: ["Manajemen Proses dan User di Linux"]
 
 ---
@@ -157,7 +157,12 @@ Manajemen proses dan user di Linux kuat untuk skalabilitas dan keamanan, namun r
 ## Refleksi Diri
 Tuliskan secara singkat:
 - Apa bagian yang paling menantang minggu ini?  
-- Bagaimana cara Anda mengatasinya?  
+- Bagaimana cara Anda mengatasinya?
+
+-keterbatasan laptop 
+
+-berusaha dengan mengerjakanya di ruang lab
+
 
 ---
 
