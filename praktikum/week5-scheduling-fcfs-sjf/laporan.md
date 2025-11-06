@@ -183,7 +183,49 @@ Hasil Eksperiman FCFS dan SJF
 ---
 
 ### Tugas
-1. Hitung *waiting time* dan *turnaround time* dari minimal 2 skenario FCFS dan SJF.  
+1. Hitung *waiting time* dan *turnaround time* dari minimal 2 skenario FCFS dan SJF.
+
+  - FCFS Yang Pertama
+    
+|     Proses    | Burst Time | Arrival Time | Start | Waiting Time | Turnaround Time | Finish |
+| :-----------: | :--------: | :----------: | :---: | :----------: | :-------------: | :----: |
+|       P1      |      5     |       0      |   0   |       0      |        5        |    5   |
+|       P2      |      7     |       1      |   5   |       4      |        11       |   12   |
+|       P3      |      3     |       2      |   12  |      10      |        13       |   15   |
+|       P4      |      4     |       3      |   15  |      12      |        16       |   19   |
+| **Rata-rata** |            |              |       |    **6,5**   |    **11,25**    |        |
+
+  - SJF Yang Pertama
+   
+|     Proses    | Burst Time | Arrival Time | Start | Waiting Time | Turnaround Time | Finish |
+| :-----------: | :--------: | :----------: | :---: | :----------: | :-------------: | :----: |
+|       P1      |      5     |       0      |   0   |       0      |        5        |    5   |
+|       P2      |      3     |       2      |   5   |       3      |        6        |   12   |
+|       P3      |      4     |       3      |   8   |       5      |        9        |   15   |
+|       P4      |      7     |       1      |   12  |      11      |        18       |   19   |
+| **Rata-rata** |            |              |       |    **4,75**  |     **9,5**     |        |
+
+  - FCFS Yang Kedua
+
+|     Proses    | Burst Time | Arrival Time | Start |  Waiting | Turnaround | Finish |
+| :-----------: | :--------: | :----------: | :---: | :------: | :--------: | :----: |
+|       P1      |      6     |       0      |   0   |     0    |      6     |    6   |
+|       P2      |      8     |       1      |   6   |     5    |     13     |   14   |
+|       P3      |      7     |       2      |   14  |    12    |     19     |   21   |
+|       P4      |      3     |       3      |   21  |    18    |     21     |   24   |
+| **Rata-rata** |            |              |       | **8.75** |  **14.75** |        |
+
+   - SJF Yang Kedua
+
+|     Proses    | Burst Time | Arrival Time | Start |  Waiting | Turnaround | Finish |
+| :-----------: | :--------: | :----------: | :---: | :------: | :--------: | :----: |
+|       P1      |      6     |       0      |   0   |     0    |      6     |    6   |
+|       P2      |      3     |       3      |   6   |     3    |      6     |    9   |
+|       P3      |      7     |       2      |   9   |     7    |     14     |   16   |
+|       P4      |      8     |       1      |  16   |    15    |     23     |   24   |
+| **Rata-rata** |            |              |       | **6.25** |  **12.25** |        |
+
+
 2. Sajikan hasil perhitungan dalam tabel perbandingan (FCFS vs SJF).
  - FCFS
      
@@ -206,7 +248,7 @@ Hasil Eksperiman FCFS dan SJF
 | **Rata-rata** |            |              |       | **6.25** |  **12.25** |        |
 
 
-4. Analisis kelebihan dan kelemahan tiap algoritma.
+3. Analisis kelebihan dan kelemahan tiap algoritma.
  - FCFS (First Comme First Served)
     - Kelebihan
          - Sangat sederhana dan mudah diimplementasikan
@@ -231,7 +273,7 @@ Hasil Eksperiman FCFS dan SJF
          - Kompleksitas lebih tinggi - Perlu sorting dan prediksi
 
  
-5. Simpan seluruh hasil dan analisis ke `laporan.md`.
+4. Simpan seluruh hasil dan analisis ke `laporan.md`.
 
 --- 
 
@@ -261,9 +303,11 @@ Hal ini karena proses dengan burst time pendek dieksekusi terlebih dahulu, sehin
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
+- Apa bagian yang paling menantang minggu ini?
+    - Bagian yang paling menantang di minggu ini adalah menganalisis FCFS dan SJF
 - Bagaimana cara Anda mengatasinya?  
-
+    - Cara mengatasinya adalah dengan membaca dan mencoba eksperimen lagi dan terus mencobanya agar mudah untuk dipahami
+      
 ---
 
 **Credit:**  
