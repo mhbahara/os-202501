@@ -167,8 +167,6 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 
 3. Setiap algoritma punya kelebihan masing-masing, jadi pemilihannya tergantung kebutuhan sistem.
 
-
-
 ---
 
 ## Quiz
