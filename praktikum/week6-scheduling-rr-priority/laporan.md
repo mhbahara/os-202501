@@ -125,10 +125,29 @@ Setelah menyelesaikan tugas ini, mahasiswa mampu:
 
 ## G. Quiz
 Tuliskan jawaban di bagian **Quiz** pada laporan:
-1. Apa perbedaan utama antara Round Robin dan Priority Scheduling?  
+1. Apa perbedaan utama antara Round Robin dan Priority Scheduling?
+- Perbedaan utamanya dari segi kriteria penjadwalannya antara lain :
+    - _Round Robin (RR)_ kriteria penjadwalannya itu Berdasarkan waktu selesai, setiap proses akan mendapatkan jatah waktu CPU yang sama Sementara,
+    - _Priority Scheduling_ dari segi kriteria penjadwalannya itu Berdasarkan tingkat kepentingan (proses penting yang didahulukan) jadi, proses dengan prioritas *tertinggi* akan dilayani terlebih dahulu.
+
 2. Apa pengaruh besar/kecilnya *time quantum* terhadap performa sistem?  
-3. Mengapa algoritma Priority dapat menyebabkan *starvation*?  
-  
+ - Pengaruh *time quantum* besar:
+     - Dampak Positif :
+        - Lebih sedikit waktu yang terbuang untuk peralihan proses.
+        - Proses panjang dapat diselesaikan lebih efisien.
+     - Dampak Negatif :
+        - Waktu respon untuk proses interaktif memburuk.
+        - Kehilangan manfaat utama *Round Robin (RR)*
+ - Pengaruh *time quantum* kecil:
+     - Dampak Positif :
+        - Pembagian waktu CPU sangat merata.
+        - *Waiting time* untuk proses pendek.
+     - Dampak Negatif :
+        - CPU banyak membuang waktu untuk switching.
+
+3. Mengapa algoritma Priority dapat menyebabkan *starvation*?
+ - *Starvation* terjadi disebabkan karena sistem terlalu fokus pada yang paling penting sampai melupakan yang biasa-biasa saja.
+   
 ---
 
 ## H. Output yang Diharapkan
