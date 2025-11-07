@@ -29,8 +29,12 @@ Setelah menyelesaikan tugas ini, mahasiswa mampu:
 ---
 
 ## C. Dasar Teori
-Tuliskan ringkasan teori (3–5 poin) yang mendasari percobaan.
-
+1. _Round Robin (RR)_ adalah algoritma penjadwalan tindakan yang membagi waktu CPU ke setiap proses secara bergiliran menggunakan satuan waktu yang tetap.
+2. _Time Quantum (q)_ adalah Durasi maksimum proses menggunakan CPU sebelum di ambil alih.
+3. _Turnaround Time (TT)_ adalah Waktu kedatangan hingga penyelesaian proses.
+4. _Waiting Time (WT)_ adalah Total waktu proses menunggu di antrian siap.
+5. _Priority Scheduling_ adalah algoritma yang mengalokasikan CPU ke proses dengan prioritas tertinggi.
+   
 ---
 
 ## Langkah Praktikum
@@ -98,7 +102,7 @@ Tuliskan ringkasan teori (3–5 poin) yang mendasari percobaan.
 ---
 
 ## E. Hasil Eksekusi
-Sertakan screenshot hasil percobaan atau diagram:
+
 ![Screenshot hasil](screenshots/example.png)
 
 ---
