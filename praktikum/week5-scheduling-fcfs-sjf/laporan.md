@@ -49,20 +49,11 @@ Tujuan dari praktikum minggu ke-6 ini adalah untuk memahami dan menganalisis mek
 ---
 
 ## Kode / Perintah
-
+```bash
 Waiting Time (WT) = waktu mulai eksekusi - Arrival Time
 Turnaround Time (TAT) = WT + Burst Time
 
-| P1 | P2 | P3 | P4 |
-0    6    14   21   24
-
-praktikum/week5-scheduling-fcfs-sjf/screenshots/
-
-git add .
-git commit -m "Minggu 5 - CPU Scheduling FCFS & SJF"
-git push origin main
-
-
+```
 ---
 
 ## Hasil Eksekusi
