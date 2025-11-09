@@ -50,7 +50,8 @@ git push origin main
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+![Screenshot hasil](screenshots/week.5.1.png)
+![Screenshot hasil](screenshots/week.5.2.png)
 
 ---
 
