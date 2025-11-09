@@ -12,14 +12,31 @@ Topik: Penjadwalan CPU – FCFS dan SJF
 ---
 
 ## Tujuan
-Tuliskan tujuan praktikum minggu ini.  
-Contoh:  
-> Mahasiswa mampu menjelaskan fungsi utama sistem operasi dan peran kernel serta system call.
+Tujuan dari praktikum minggu ke-6 ini adalah untuk memahami dan menganalisis mekanisme kerja algoritma penjadwalan CPU, khususnya Round Robin (RR) dan Priority Scheduling. Melalui praktikum ini, saya bertujuan untuk:
+1.	Mempelajari prinsip dasar kedua algoritma, yaitu bagaimana CPU memberikan giliran eksekusi kepada setiap proses berdasarkan time quantum (pada RR) dan tingkat prioritas (pada Priority Scheduling).
+
+2.	Menghitung nilai Waiting Time dan Turnaround Time setiap proses secara manual menggunakan data proses yang telah diberikan, serta memahami hubungan antara kedua parameter tersebut terhadap efisiensi sistem.
+
+3.	Menyusun simulasi eksekusi dalam bentuk Gantt Chart, untuk memvisualisasikan urutan dan waktu eksekusi setiap proses secara kronologis.
+
+4.	Menganalisis pengaruh perubahan nilai time quantum terhadap performa algoritma Round Robin, terutama terhadap keadilan (fairness) dan efisiensi penggunaan CPU.
+
+5.	Membandingkan hasil antara algoritma Round Robin dan Priority Scheduling, baik dari segi waktu tunggu rata-rata, waktu penyelesaian rata-rata, maupun kelebihan dan kekurangannya dalam konteks keadilan dan efisiensi eksekusi.
+
+6.	Menarik kesimpulan mengenai karakteristik masing-masing algoritma, serta memahami kondisi atau jenis sistem yang paling cocok untuk menerapkan setiap algoritma tersebut.
 
 ---
 
 ## Dasar Teori
-Tuliskan ringkasan teori (3–5 poin) yang mendasari percobaan.
+1.Penjadwalan CPU (CPU Scheduling) merupakan mekanisme yang digunakan sistem operasi untuk menentukan urutan eksekusi proses yang ada di antrian siap (ready queue). Tujuannya adalah untuk memanfaatkan CPU seefisien mungkin, mengurangi waktu tunggu rata-rata, serta meningkatkan kinerja dan respons sistem.
+
+2.Algoritma Round Robin (RR) adalah salah satu metode penjadwalan preemptive yang memberikan giliran waktu eksekusi secara bergantian kepada setiap proses berdasarkan satuan waktu tertentu yang disebut time quantum. Setiap proses mendapat jatah waktu yang sama, sehingga algoritma ini dianggap adil untuk sistem multitasking, terutama pada sistem interaktif.
+
+3.Algoritma Priority Scheduling bekerja dengan cara memilih proses berdasarkan tingkat prioritas yang telah ditentukan. Proses dengan nilai prioritas tertinggi (biasanya angka paling kecil) akan dijalankan terlebih dahulu. Algoritma ini lebih efisien untuk menangani proses penting, tetapi berisiko menyebabkan starvation pada proses dengan prioritas rendah.
+
+4.Waiting Time (WT) dan Turnaround Time (TAT) merupakan dua parameter penting untuk mengevaluasi performa algoritma penjadwalan. Waiting Time menunjukkan lamanya proses menunggu di antrian sebelum dieksekusi, sedangkan Turnaround Time menunjukkan total waktu sejak proses tiba hingga selesai dijalankan.
+
+5.Pemilihan algoritma penjadwalan yang tepat sangat bergantung pada karakteristik sistem dan jenis beban kerja. Algoritma Round Robin lebih cocok untuk sistem interaktif yang membutuhkan keadilan waktu, sedangkan Priority Scheduling lebih sesuai untuk sistem yang menuntut efisiensi dan kontrol terhadap proses penting.
 
 ---
 
@@ -32,8 +49,8 @@ Tuliskan ringkasan teori (3–5 poin) yang mendasari percobaan.
 ---
 
 ## Kode / Perintah
-Waiting Time (WT) = waktu mulai eksekusi - Arrival Time
 
+Waiting Time (WT) = waktu mulai eksekusi - Arrival Time
 Turnaround Time (TAT) = WT + Burst Time
 
 | P1 | P2 | P3 | P4 |
@@ -56,14 +73,16 @@ Sertakan screenshot hasil percobaan atau diagram:
 ---
 
 ## Analisis
-- Jelaskan makna hasil percobaan.  
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
+
+Pada algoritma Round Robin, setiap proses mendapatkan jatah waktu eksekusi yang sama sesuai dengan nilai time quantum yang ditentukan. Hal ini membuat algoritma ini dianggap adil (fair) karena tidak ada proses yang dimonopoli oleh satu proses tertentu. Dari hasil percobaan, terlihat bahwa semakin kecil nilai time quantum, maka proses akan sering mengalami context switching, sehingga waktu eksekusi total menjadi lebih lama. Sebaliknya, jika time quantum terlalu besar, maka keadilan eksekusi menurun dan algoritma ini akan cenderung menyerupai FCFS (First Come First Served). Oleh karena itu, pemilihan nilai time quantum yang tepat sangat berpengaruh terhadap efisiensi dan kinerja sistem.
+
+Sedangkan pada algoritma Priority Scheduling, penjadwalan dilakukan berdasarkan tingkat prioritas yang telah ditentukan. Proses dengan prioritas tertinggi akan dieksekusi lebih dahulu, tanpa memperhatikan waktu kedatangan atau lama burst time. Dari hasil percobaan, terlihat bahwa algoritma ini mampu menyelesaikan proses-proses penting dengan lebih cepat, namun dapat menyebabkan proses dengan prioritas rendah menunggu terlalu lama (starvation). Hal ini menunjukkan bahwa algoritma ini lebih menekankan pada efisiensi untuk proses kritis, bukan pada keadilan waktu antar proses.
 
 ---
 
 ## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
+
+algoritma Round Robin lebih cocok digunakan pada sistem interaktif yang membutuhkan respons cepat dan adil bagi semua pengguna, seperti sistem operasi multitasking. Sedangkan Priority Scheduling lebih sesuai digunakan pada sistem yang membutuhkan pengaturan prioritas ketat, seperti sistem real-time atau sistem dengan proses yang memiliki tingkat kepentingan berbeda.
 
 ---
 
