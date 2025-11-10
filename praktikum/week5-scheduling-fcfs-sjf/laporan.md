@@ -105,21 +105,108 @@ Sertakan screenshot hasil percobaan atau diagram:
 ---
 
 ## Analisis
--Bandingkan hasil rata-rata WT dan TAT antara FCFS & SJF.
-Jelaskan kondisi kapan SJF lebih unggul dari FCFS dan sebaliknya.
+**Eksperimen 1 - FCFS (First Come First Served)**
+
+Proses berdasarkan urutan kedatangan (Arrival Time).Urutan eksekusi dari P1 -> P2 -> P3 -> P4 
+Proses| 	Burst Time|	Arivval Time| 	Start Time|	Finish Time|	Waiting Time|	Turnaround Time|
+|:---|:---|:---|:---|:---|:---|:---|
+P1|	6|	0|	0|	6|	0|	6|
+P2|	8|	1|	6|	14|	5|	13|
+P3|	7|	2|	14|	21|	12|	19|
+P4|	3|	3|	21|	24|	18|	21|
+Total|||||					35|	59|
+Average|||||					8,75|	14,75|
+
+**Eksperimen 2 - SJF (Shortest Job First)**
+
+Proses berdasarkan Burst Time terpendek (dengan memperhatikan waktu kedatangan).Urutan eksekusi dari P1-> P4 -> P3 -> P2
+
+Proses| 	arrival  time|	burst Time| 	Start Time|	Finish Time|	Waiting Time|	Turnaround Time|
+|:---|:---|:---|:---|:---|:---|:---|
+P1|	0|	6|	0|	6|	0|	6|
+P2|	3|	3|	6|	9|	3|	6|
+P3|	2|	7|	9|	16|	7|	14|
+P4|	1|	8|	16|	24|	15|	23|
+Total|||||					25|	49|
+Average|||||					6,25|	12,25|
+
+**Eksperimen 3 – Visualisasi Spreadsheet (Opsional)**
+
+1.Bandingkan hasil FCFS dan SJF pada tabel berikut:
+Algoritma|	Avg Waiting Time|	Avg Turnaround Time|	Kelebihan|	Kekurangan|
+|:---|:---|:---|:---|:---|
+FCFS|8,75	|14,75	|Sederhana dan mudah diterapkan|	Tidak efisien untuk proses panjang|
+SJF|6,25|	12,25|Optimal untuk job pendek|	Menyebabkan starvation pada job panjang|
+
+2.Kondisi kapan SJF lebih unggul dari FCFS dan sebaliknya?
+
+SJF(Shortest Job First) lebih unggul dari FCFS(First Come First Served) ketika durasi  proses diketahui sebelumnya dan terdapat perbedaan besar dalam waktu eksekusi proses.SJF mengutamakan proses dengan waktu pengerjaan paling cepat sehingga dapat menurunkan rata-rata waktu tunggu dan total penyelesaia proses menjadi lebih efisien untuk sistem yang berbeda-beda.Sementara FCFS(First Come First Served) lebih dari SJF(Shortest Job First) ketika sistem membutuhkan kemudahan dan keadilan dalam urutan proses ,FCFS melakukan proses sesuai urutan datang ,jadi yang dulu pasti akan dilayani dulu tanpa resiko ada yang tidak dilayani.
 
 
 
 ---
 
 ## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
+Algoritma FCFS melayani proses sesuai urutan kedatangan, sehingga implementasinya sederhana dan adil karena tidak memprioritasikan proses tertentu.Dan kekurangan dari algoritma tersebut ialah dapat menyebabkan waktu yang cukup lama  terutama ketika proses dengan waktu pengerjaan  panjang datang lebih dulu  ,sehingga proses lain harus nunggu lebih lama.
+
+Algoritma SJF proses dengan waktu eksekusi paling singkat didahulukan, yang membuat rata-rata waktu tunggu lebih kecil.Namun,walaupun SJF efektif untuk meningkatkan efisien CPU dan mengurangi waktu tunggu,algortima ini bisa tertunda dengan waktu yang lama jika ada proses pendek yang terus datang.
+
+Pemilihanan antara FCFS dan SJF disesuaikan sesuai dengan kebutuhan sistem dan karakteristik beban kerja agar kinerja sistem dapat maksimal.FCFS dipilih untuk sistem yang mengutamakan kepentingan dan keadilan sedangkan SJF dipilih untuk sistem yang menuntut optimasi waktu tunggu dan efisen. 
+
+
 ---
 #Tugas
+
 1.Hitung waiting time dan turnaround time dari minimal 2 skenario FCFS dan SJF.
-2.Sajikan hasil perhitungan dalam tabel perbandingan (FCFS vs SJF).
-3.Analisis kelebihan dan kelemahan tiap algoritma.
----
+
+**Skenario 1 - FCFS (First Come First Served)**
+
+|Proses|Burst Time|Arivval Time|Start Time|Finish Time|Waiting Time|Turnaround Time|
+|:---|:---|:---|:---|:---|:---|:---|
+P1|	5|	0|	0|	5|	0|	5|
+P2|	7|	1|	5|	12|	4|	11|
+P3|	6|	2|	12|	18|	10|	16|
+P4|	2|	3|	18|	20|	15|	17|
+Total||||					|29|	49|
+Average||||					|7,25|	12,25|
+
+**Skenario 1 - SFJ (Shortest Job First)**
+Proses| 	Arrival  time|	Burst Time| 	Start Time|	Finish Time|	Waiting Time|	Turnaround Time|
+|:---|:---|:---|:---|:---|:---|:---|
+P1|	0|	5|	0|	5|	0|	5|
+P2|	3|	2|	5|	7|	2|	4|
+P3|	2|	6|	7|	13|	5|	11|
+P4|	1|	7|	13|	20|	12|	19|
+Total|||||					19|	39|
+average|||||					4,75|	9,75|
+
+**Skenario 2 - FCFS (First Come First Served)**
+
+|Proses| Burst Time|	Arivval Time| Start Time|Finish Time|Waiting Time|Turnaround Time|
+|:---|:---|:---|:---|:---|:---|:---|
+P1|	8|	0|	0|	8|	0|	8|
+P2|	6|	1|	8|	14|	7|	13|
+P3|	4|	2|	14|	18|	12|	16|
+P4|	3|	3|	18|	21|	15|	12|
+Total|||||					34|	49|
+average|||||					8,5|	12,25|
+
+**Skenario 2 - SFJ (Shortest Job First)**
+Proses| 	arrival  time|	burst Time| 	Start Time|	Finish Time|	Waiting Time|	Turnaround Time|
+|:---|:---|:---|:---|:---|:---|:---|
+P1|	0|	8|	0|	8|	0|	8|
+P2|	3|	3|	8|	11|	5|	8|
+P3|	2|	4|	11|	15|	9|	13|
+P4|	1|	6|	15|	21|	14|	20|
+Total|||||					28|	49|
+average|||||					7|	12,25|
+
+
+2.Analisis kelebihan dan kelemahan tiap algoritma.
+Algoritma |Kelebihan |Kelemahan|
+|:---|:---|:---|
+FCFS(First Come First Served)|Sederhana dan mudah diterapkan,setiap proses mendapat giliran sesuai urutan kedatangan/adil secara urutan dan cocok digunakan untuk sistem batch yang tidak dibutuhkan waktu respon cepat|Dapat menimbulkan efek konvoi(convoy effect) ketika proses yang  membutuhkan waktu lama akan dieksekusi terlebih dahulu dan menyebabkan proses lain menunggu terlalu lama dan algortitma ini tidak cocok untuk sistem interaktif/real-time karena tidak memperhatikan prioritas tugas|
+SFJ (Shortest Job First)|Waktu tunggu rata-rata paling rendah jika proses dengan waktu eksekusi paling singkat diketahui dan akan dikerjakan terlebih dahulu,sehingga sistem menjadi lebih efisien,dapat meningkatkan throughput(jumlah proses selesai lebih cepat) karena proses kecil dikerjakan terlebih dahulu|Membutuhkan perkiraan waktu proes yang sulit didapat dan dapat menyebabkan travation yaitu proses dengan waktu eksekusi panjang tidak pernah dikerjakan karena selalu ada proses pendek yang datang dulu|
 ## Quiz
 1. Apa perbedaan utama antara FCFS dan SJF?
 
@@ -135,8 +222,10 @@ Jawaban:Kelemahan SJF (Shortest Job First) jika diterapkan pada sistem interakti
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
-- Bagaimana cara Anda mengatasinya?  
+- Apa bagian yang paling menantang minggu ini?
+   Saya merasa  bingung ketika menentukan  waktu mulai (Start Time) dan waktu selesai (Finish Time) disetiap proses,karena harus teliti dengan urutan kedatangan dan waktu eksekusi proses sebelumnya agar perhitungan benar dan sesuai.
+- Bagaimana cara Anda mengatasinya?
+  Saya mecari materi tambahan terkait FCFS dan SJF di internet untuk memperdalam pengetahuan terhadapan  penyelesain perhituungan waktu mulai (Start Time) dan waktu selesai (Finish Time).
 
 ---
 
