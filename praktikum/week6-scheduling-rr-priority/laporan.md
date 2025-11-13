@@ -101,19 +101,202 @@ Setelah menyelesaikan tugas ini, mahasiswa mampu:
 
 ---
 
-## E. Hasil Eksekusi
+## E. Hasil Eksekusi dan Analisis
 
-![Screenshot hasil](screenshots/example.png)
+![Hasil Eksekusi](<screenshots/Eksperimen 1 bab 6.png>)
+
+**Eksperimen 1 – Round Robin (RR)**
+   - Gunakan *time quantum (q)* = 3.  
+   - Hitung *waiting time* dan *turnaround time* untuk tiap proses.
+
+|    Proses   | Burst Time | Arrival Time | Finish | Waiting Time | Turnaround Time |
+| :---------: | :--------: | :----------: | :----: | :----------: | :-------------: |
+|      P1     |      5     |       0      |   14   |       9      |        14       |
+|      P2     |      3     |       1      |    6   |       2      |        5        |
+|      P3     |      8     |       2      |   22   |      12      |        20       |
+|      P4     |      6     |       3      |   20   |      11      |        17       |
+|  **Total**  |            |              |        |    **34**    |      **56**     |
+| **Average** |            |              |        |    **8,5**   |      **14**     |
+
+
+   - Turnaround Time = Finish Time - Arrival Time
+       - 14-0 = 14
+       - 6-1 = 5
+       - 22-2 = 20
+       - 20-3 = 17
+   - Waiting Time = Turnaround Time - Burst Time
+       - 14-5 = 9
+       - 5-3 = 2 
+       - 20-8 = 12
+       - 17-6 = 11
+         
+   -  Simulasikan eksekusi Gantt Chart Round Robin (RR).
+     
+ ```
+     | P1 | P2 | P3 | P4 | P1 | P3 | P4 | P3 |
+     0    3    6    9   12    14   17   20   22
+ ```
+
+   - Catat sisa *burst time* tiap putaran
+      - Putaran 1
+          - Proses: P1 (3 unitt) SISA BURST TIME:
+          - P1: 5 → 2  (-3)
+          - P2: 3 (belum tiba)
+          - P3: 8 (belum tiba)
+          - P4: 6 (belum tiba)
+      - Putaran 2
+          - Proses: P2 (3 unit) SISA BURST TIME:
+          - P1: 2
+          - P2: 3 → 0  (-3)  (SELESAI)
+          - P3: 8
+          - P4: 6
+      - Putaran 3
+          - Proses: P3 (3 unit) SISA BURST TIME:
+          - P1: 2
+          - P2: SELESAI
+          - P3: 8 → 5  (-3)
+          - P4: 6
+      - Putaran 4
+          - Proses: P4 (3 unit) SISA BURST TIME:
+          - P1: 2
+          - P2: SELESAI
+          - P3: 5
+          - P4: 6 → 3  (-3)
+      - Putaran 5
+          - Proses: P1 (2 unit) SISA BURST TIME:
+          - P1: 2 → 0  (-2)  (SELESAI)
+          - P2: SELESAI
+          - P3: 5
+          - P4: 3
+      - Putaran 6
+          - Proses: P3 (3 unit) SISA BURST TIME:
+          - P1: SELESAI
+          - P2: SELESAI
+          - P3: 5 → 2  (-3)
+          - P4: 3
+      - Putaran 7
+          - Proses: P4 (3 unit) SISA BURST TIME:
+          - P1: SELESAI
+          - P2: SELESAI
+          - P3: 2
+          - P4: 3 → 0  (-3)  (SELESAI)
+      - Putaran 8
+          - Proses: P3 (2 unit) SISA BURST TIME:
+          - P1: SELESAI
+          - P2: SELESAI
+          - P3: 2 → 0  (-2)  (SELESAI)
+          - P4: SELESAI
+            
+---
+
+
+**Eksperimen 2 – Priority Scheduling (Non-Preemptive)**
+
+|    Proses   | Burst Time | Arrival Time | Priority | Start | Finish | Waiting Time | Turnaround Time |
+| :---------: | :--------: | :----------: | :------: | :---: | :----: | :----------: | :-------------: |
+|      P1     |      5     |       0      |     2    |   0   |    5   |       0      |        5        |
+|      P2     |      3     |       1      |     1    |   5   |    8   |       4      |        7        |
+|      P3     |      6     |       3      |     3    |   8   |   14   |       5      |        11       |
+|      P4     |      8     |       2      |     4    |   14  |   22   |      12      |        20       |
+|  **Total**  |            |              |          |       |        |    **21**    |      **43**     |
+| **Average** |            |              |          |       |        |   **5,25**   |    **10,75**    |
+
+
+   - Urutkan proses berdasarkan nilai prioritas (angka kecil = prioritas tinggi).
+       - P2 → P1 → P3 → P4 (Karena Angka kecil = Prioritas TINGGI ; Angka besar = Prioritas RENDAH).
+
+
+   - Lakukan perhitungan manual untuk:
+     ```
+     WT[i] = waktu mulai eksekusi - Arrival[i]
+     TAT[i] = WT[i] + Burst[i]
+     ```
+   - Waitinng Time :
+       - P1 : 0 - 0 = 0
+       - P2 : 5 - 1 = 4
+       - P3 : 8 - 3 = 5
+       - P4 : 14 - 2 = 12
+   - Turnaround Timme :
+       - P1 : 0 + 5 = 5
+       - P2 : 4 + 3 = 7
+       - P3 : 5 + 6 = 11
+       - P4 : 12 + 8 = 20
+         
+   -  Buat tabel perbandingan hasil RR dan Priority. Perbandingan Hasil Round Robin dan Priority Scheduling (Quantum = 3)
+
+| **Proses** | **RR Waiting Time** | **RR Turnaround Time** | **Priority Waiting Time** | **Priority Turnaround Time** |
+| :--------: | :-----------------: | :--------------------: | :-----------------------: | :--------------------------: |
+|   **P1**   |          9          |           14           |             0             |               5              |
+|   **P2**   |          2          |            5           |             4             |               7              |
+|   **P3**   |          12         |           20           |             5             |              11              |
+|   **P4**   |          11         |           17           |             12            |              20              |
+
+|           **Metode**          | **Total Waiting Time** | **Rata-rata Waiting Time** | **Total Turnaround Time** | **Rata-rata Turnaround Time** |
+| :---------------------------: | :--------------------: | :------------------------: | :-----------------------: | :---------------------------: |
+|        **Round Robin**        |           34           |            8,50            |             56            |             14,00             |
+| **Priority (non-preemptive)** |           21           |            5,25            |             43            |             10,75             |
+
 
 ---
 
-## Analisis 
+**Eksperimen 3 – Analisis Variasi Time Quantum (Opsional)**
+
+![Hasil Eksekusi](<screenshots/Eksperimen 2 bab 6.png>)
+
+
+   - Ubah *quantum* menjadi 2 dan 5.
+     
+     - Round Robin (RR) – Time Quantum (q = 2)
+         
+|    Proses   | Burst Time | Arrival Time | Finish (P1) | Finish (P2) | Finish (P3) | Finish (P4) | Waiting Time | Turnaround Time |
+| :---------: | :--------: | :----------: | :---------: | :---------: | :---------: | :---------: | :----------: | :-------------: |
+|      P1     |      5     |       0      |      2      |      10     |      16     |  (Selesai)  |      11      |        16       |
+|      P2     |      3     |       1      |      4      |      11     |  (Selesai)  |  (Selesai)  |       7      |        10       |
+|      P3     |      8     |       2      |      6      |      13     |      18     |      22     |      12      |        20       |
+|      P4     |      6     |       3      |      8      |      15     |      20     |  (Selesai)  |      11      |        17       |
+|  **Total**  |            |              |             |             |             |             |    **41**    |      **63**     |
+| **Average** |            |              |             |             |             |             |   **10,25**  |    **15,75**    |
+
+  
+   - Round Robin (RR) – Time Quantum (q = 5)
+
+|    Proses   | Burst Time | Arrival Time | Finish (P1) | Finish (P2) | Finish (P3) | Finish (P4) | Waiting Time | Turnaround Time |
+| :---------: | :--------: | :----------: | :---------: | :---------: | :---------: | :---------: | :----------: | :-------------: |
+|      P1     |      5     |       0      |      5      |  (Selesai)  |  (Selesai)  |  (Selesai)  |       0      |        5        |
+|      P2     |      3     |       1      |      8      |  (Selesai)  |  (Selesai)  |  (Selesai)  |       4      |        7        |
+|      P3     |      8     |       2      |      13     |      18     |      22     |  (Selesai)  |      11      |        19       |
+|      P4     |      6     |       3      |      18     |      22     |  (Selesai)  |  (Selesai)  |      13      |        19       |
+|  **Total**  |            |              |             |             |             |             |    **28**    |      **50**     |
+| **Average** |            |              |             |             |             |             |     **7**    |     **12,5**    |
+
+
+
+   - Amati perubahan nilai rata-rata *waiting time* dan *turnaround time*.
+       - Tabel Perbandingan 
+
+| Time Quantum (q) | Rata-rata Waiting Time | Rata-rata Turnaround Time | Keterangan                                            |
+| :--------------: | :--------------------: | :-----------------------: | :---------------------------------------------------- |
+|         2        |          10,25         |           15,75           | Quantum terlalu kecil → banyak *context switching*    |
+|         3        |           8,5          |             14            | Lebih seimbang antara keadilan dan efisiensi          |
+|         5        |            7           |            12,5           | Quantum besar → mirip FCFS, lebih sedikit *switching* |
+
+
+
+   - Buat tabel perbandingan efek *quantum*.
+
+| Time Quantum (q) | Rata-rata Waiting Time | Rata-rata Turnaround Time |     Jumlah Context Switching    | Efisiensi CPU | Karakteristik Umum                                                        |
+| :--------------: | :--------------------: | :-----------------------: | :-----------------------------: | :-----------: | :------------------------------------------------------------------------ |
+|       **2**      |          10,25         |           15,75           | Tinggi (sering berganti proses) |     Rendah    | Adil untuk semua proses, tetapi banyak waktu terbuang untuk *switching*   |
+|       **3**      |           8,5          |             14            |              Sedang             |     Sedang    | Keseimbangan antara keadilan dan efisiensi, hasil paling seimbang         |
+|       **5**      |            7           |            12,5           | Rendah (jarang berganti proses) |     Tinggi    | Mirip **FCFS**, proses cepat selesai tapi kurang adil untuk proses pendek |
+
 
 ---
 
-## Kesimpulan
 
----
+
+
+
 
 ## F. Tugas
 1. Hitung *waiting time* dan *turnaround time* untuk algoritma RR dan Priority.  
