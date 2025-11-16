@@ -55,11 +55,11 @@ Turnaround time adalah total waktu dari sejak proses tiba hingga proses tersebut
 ---
 
 ## Kode / Perintah
-Tuliskan potongan kode atau perintah utama:
+
 ```bash
-uname -a
-lsmod | head
-dmesg | head
+Waiting Time (WT) = waktu mulai eksekusi - Arrival Time
+Turnaround Time (TAT) = WT + Burst Time
+
 ```
 
 ---
