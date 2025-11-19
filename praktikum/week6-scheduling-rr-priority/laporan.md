@@ -122,7 +122,7 @@ P2|	1|	3|	1|	5|5+3=8|5-1=4|4+3=7|
 P4|	3|	6|	3	|8|8+6=14|8-3=5|5+6=11|
 P3|	2|	8|	4|	14|14+8=22|14-2=12|12+8=20|
 
-
+![alt textl](<screenshots/Screenshot 2025-11-17 212239.png>)
 
 **Eksperimen 3 - Round Robin (RR) Quantum 2**
 Proses| 	Burst Time|	Aririval Time|	Finish Time P1|	Finish Time P2|	Finish Time P3|	Finish Time P4|	TAT (FT - AT)|	WT (TAT - BT)|
@@ -159,6 +159,10 @@ Priority	|5,25|	10,75|	Efisien untuk proses penting dan bisa digunakan preemptiv
 
 ## Analisis
 
+Berdasarkan hasil eksperimen,Priority Scheduling (Non-Preemptive), proses dijalankan berdasarkan urutan prioritas, di mana angka kecil menandakan prioritas tertinggi,proses P1 akan dieksekusi lebih dahulu, dan selanjutnya proses lain menunggu hingga proses dengan prioritas lebih tinggi selesai.Dengan sistem ini, proses dengan prioritas tinggi mendapatkan waktu tunggu lebih singkat dan turnaround time lebih kecil, sementara proses prioritas rendah harus menunggu seluruh proses prioritas di atasnya selesai terlebih dahulu, sehingga waktu tunggu bisa semakin lama. Jika ada dua proses dengan prioritas sama, biasanya diurutkan berdasarkan waktu kedatangan (arrival time). 
+
+Rata-rata waiting time dan turnaround time lebih kecil pada Priority Scheduling karena proses prioritas tinggi langsung diproses tanpa harus menunggu giliran. Sedangkan, algoritma Round Robin memaksa proses menunggu jatah waktunya sesuai urutan, sehingga waktu rata-rata jadi lebih lama. Jika quantum yang digunakan kecil (2), proses makin sering dipotong sehingga waiting time dan turnaround time-nya bertambah. Namun, dengan quantum lebih besar (5), proses bisa menyelesaikan tugas lebih banyak sebelum diganti, sehingga rata-rata waktu tunggu dan selesai turun cukup signifikan.
+
 ---
 
 ## Kesimpulan
@@ -173,17 +177,20 @@ Priority Scheduling mengeksekusi proses berdasarkan tingkat prioritas yang diber
 1.Hitung waiting time dan turnaround time untuk algoritma RR dan Priority.
 
 * Round Robin(RR)
-Proses| 	Burst Time|	Aririval Time|	Finish Time P1|	Finish Time P2|	Finish Time P3|	     WT	|     TAT|
+
+|Proses| 	Burst Time|	Aririval Time|	Finish Time P1|	Finish Time P2|	Finish Time P3|	     WT	|     TAT|
 |:---|:---|:---|:---|:---|:---|:---|:---|
 P1	|5	|0	|3|	14|	selesai|	9	|14|
 P2|	3|	1|	6	|selesai|	selesai|	2|	5|
 P3|	8	|2	|9	|17	|22|	12|	20|
 P4|	6|	3|	12	|20|	selesai|	11|	17|
-Total	||||||					|34|	56|
+Total	||||||					34|	56|
 Average	||||||					8,5|	14|
 
 * Priority Scheduling
+ 
  | Proses| 	Arrival Time| 	Burst Time| 	Priority	|Start|	Finish Time|	     WT	|     TAT|
+|:---|:---|:---|:---|:---|:---|:---|:---|
 P1|	0|	5|	2|	0	|5	|0|	5|
 P2|	1|	3|	1|	5	|8	|4|	7|
 P4|	3|	6|	3	|8	|14	|5	|11|
@@ -233,8 +240,11 @@ Jawaban:Algoritma Priority dapat menyebabkan starvation karena proses dengan pri
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
-- Bagaimana cara Anda mengatasinya?  
+- Apa bagian yang paling menantang minggu ini?
+
+  Menurut saya hal yang menantang minggu ini dalam praktikum Penjadwalan CPU – Round Robin (RR) dan Priority Scheduling adalah ketika menghitung menggunakan  Round Robin dan cara kerja time quantum, menentukan waktu quantum yang tepat.
+- Bagaimana cara Anda mengatasinya?
+  Cara saya mengatasinya saya mencari referensi diinternat mengenai menghitung menghitung menggunakan  Round Robin dan cara kerja time quantum, menentukan waktu quantum yang tepat dan menanyakan teman yang sudah lebih paham.
 
 ---
 
