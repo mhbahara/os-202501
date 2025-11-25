@@ -13,14 +13,22 @@ Topik : Sinkronisasi Proses dan Masalah Deadlock
 
 ---
 
-## Tujuan
-Setelah menyelesaikan tugas ini, mahasiswa mampu:
+## Pendahuluan
+Setelah menyelesaikan tugas ini, mahasiswa mampu :
 1. Mengidentifikasi empat kondisi penyebab deadlock (mutual exclusion, hold and wait, no preemption, circular wait).  
 2. Menjelaskan mekanisme sinkronisasi menggunakan semaphore atau monitor.  
 3. Menganalisis dan memberikan solusi untuk kasus deadlock.  
 4. Berkolaborasi dalam tim untuk menyusun laporan analisis.  
 5. Menyajikan hasil studi kasus secara sistematis.  
 
+---
+
+## Metode
+Metode yang digunakan adalah simulasi berbasis studi kasus *Dining Philosophers* dengan langkah-langkah sebagai berikut:
+1.  *Eksperimen 1 (Versi Deadlock):* Implementasi skenario dasar di mana setiap Philosopher (proses) mengambil garpu kiri, kemudian garpu kanan. Simulasi dijalankan untuk mengamati dan mengidentifikasi kondisi deadlock.
+2.  *Eksperimen 2 (Versi Fixed):* Memodifikasi skenario dengan menambahkan mekanisme *sinkronisasi* menggunakan *semaphore* untuk membatasi jumlah Philosopher yang dapat berada di "ruang makan" (Critical Section) secara bersamaan. Solusi yang dipilih adalah *membatasi maksimal $N-1$ Philosopher* (4 dari 5) yang dapat mengambil garpu.
+3.  *Eksperimen 3 (Analisis):* Menganalisis bagaimana solusi semaphore pada Eksperimen 2 berhasil mencegah deadlock dengan memutus salah satu dari empat kondisi penyebabnya.
+  
 ---
 
 ## Dasar Teori
@@ -170,42 +178,58 @@ Tuliskan potongan kode atau perintah utama:
 
 ---
 
-## Hasil Eksekusi
-Sertakan screenshot hasil percobaan atau diagram:
+## Hasil
+
+### Hasil Eksperimen
+| Eksperimen | Skenario | Hasil Kunci | Catatan |
+| :--- | :--- | :--- | :--- |
+| *Eksperimen 1* | Tanpa Sinkronisasi | Terjadi *Deadlock* | Semua Philosopher mengambil garpu kiri, lalu menunggu garpu kanan. Terjadi Circular Wait dan semua proses macet. |
+| *Eksperimen 2* | Dengan Semaphore (N-1) | *Deadlock Terhindari* | Proses makan-dan-berpikir berjalan lancar. Tidak ada proses yang terblokir secara permanen. |
+
+---
+
 ### Eksperimen 1
 
 ![alt text](/praktikum/week7-concurrency-deadlock/screenshots/WhatsApp%20Image%202025-11-25%20at%2011.42.09.jpeg)
 
-Deadlock terjadi ketika setiap philosopher mengambil garpu kiri ( lock berhasil ) lalu menunggu garpu kanan yang sedang dipegang tetangga. Kondisi empat syarat deadlock terpenuhi : mutual exclusion ( garpu eksklusif ), hold and wait ( pegang 1 garpu sambil menunggu 1 lagi ), no preemption ( tidak bisa dipaksa melepaskan garpu ), circular wait ( lingkaran tunggu antara philosophers ).
 ### Eksperimen 2
 
-![alt text](/praktikum/week7-concurrency-deadlock/screenshots/WhatsApp%20Image%202025-11-25%20at%2011.47.27.jpeg)
-1. Analisis `Semaphore` (Membatasi Akses Ruang Makan) Pencegahan Kondisi : Mencegah `Circular Wait`.
-2. Bukti : Dengan membatasi hanya `N-1` filosof yang dapat mencoba mengambil garpu pada saat yang sama, Anda memastikan bahwa setidaknya satu filosof akan selalu dapat mengambil garpu kedua.
+![alt text](/praktikum/week7-concurrency-deadlock/screenshots/WhatsApp%20Image%202025-11-25%20at%2011.47.27.jpeg) 
+
+---
+
+## Analisis
+### Eksperimen 1
+Deadlock terjadi ketika setiap philosopher mengambil garpu kiri (lock berhasil) lalu menunggu garpu kanan yang sedang dipegang tetangga. Kondisi empat syarat deadlock terpenuhi: mutual exclusion (garpu eksklusif), hold-and-wait (pegang 1 garpu sambil menunggu 1 lagi), no preemption (tidak bisa dipaksa melepaskan garpu), circular wait (lingkaran tunggu antara philosophers).
+
+### Eksperimen 2
+1. Analisis Semaphore (Membatasi Akses Ruang Makan)Pencegahan Kondisi: Mencegah Circular Wait.
+2. Bukti: Dengan membatasi hanya N-1 filosof yang dapat mencoba mengambil garpu pada saat yang sama, Anda memastikan bahwa setidaknya satu filosof akan selalu dapat mengambil garpu kedua.
    * Jika N=5, dan 4 filosof (P0, P1, P2, P3) berhasil masuk ruang makan dan masing-masing mengambil garpu kiri mereka (F0, F1, F2, F3), maka garpu F4 dan F5 (atau F0) masih tersedia.
    * Salah satu dari 4 filosof ini, misalnya P3, akan mencoba mengambil F4. 
    * Jika P3 berhasil, ia dapat makan dan melepaskan F3 dan F4.
    * Begitu P3 keluar dan melepaskan semaphore, filosof P4 dapat masuk.
-   * Karena selalu ada jatah garpu yang tersisa, siklus tunggu yang melingkar ( Circular Wait ) tidak dapat terbentuk secara permanen.
-### Eksperimen 3
+   * Karena selalu ada jatah garpu yang tersisa, siklus tunggu yang melingkar (Circular Wait) tidak dapat terbentuk secara permanen.
 
+### Eksperimen 3
 | Kondisi Deadlock | Terjadi di Versi Deadlock | Solusi di Versi Fixed |
 |---------|------|-----------|
-| 1. Mutual Exclusion | Ya. Satu garpu ( Lock ) hanya dapat dipegang oleh satu filosof ( proses ). | Dipertahankan. Tidak bisa dipecahkan karena sifat fisik garpu. Solusi fokus pada kondisi lain. |
-| 2. Hold and Wait | Ya. Filosof memegang garpu kiri sambil menunggu garpu kanan. | Diredam. Solusi N-1 memastikan penantian ini tidak berujung pada siklus tak terbatas. ( Pada strategi lain, filosof mungkin diharuskan mengambil keduanya sekaligus ). |
-| 3. No Preemption | Ya. Garpu tidak dapat direbut paksa dari filosof yang memegangnya ( hanya dilepas secara sukarela ). | Dipertahankan. Tidak ada mekanisme pelepasan paksa yang digunakan dalam solusi ini. |
-| 4. Circular Wait | Ya. Filosof menunggu garpu tetangga, membentuk rantai melingkar. | Dipecahkan. Gunakan Semaphore ( N-1 ) untuk membatasi jumlah filosof di meja, mencegah rantai melingkar terbentuk. ( Ini adalah cara memecah urutan pengambilan sumber daya secara kolektif ). |  
+| 1. Mutual Exclusion | Ya. Satu garpu (Lock) hanya dapat dipegang oleh satu filosof (proses). | Dipertahankan. Tidak bisa dipecahkan karena sifat fisik garpu. Solusi fokus pada kondisi lain. |
+| 2. Hold and Wait | Ya. Filosof memegang garpu kiri sambil menunggu garpu kanan. | Diredam. Solusi N-1 memastikan penantian ini tidak berujung pada siklus tak terbatas. (Pada strategi lain, filosof mungkin diharuskan mengambil keduanya sekaligus). |
+| 3. No Preemption | Ya. Garpu tidak dapat direbut paksa dari filosof yang memegangnya (hanya dilepas secara sukarela). | Dipertahankan. Tidak ada mekanisme pelepasan paksa yang digunakan dalam solusi ini. |
+| 4. Circular Wait | Ya. Filosof menunggu garpu tetangga, membentuk rantai melingkar. | Dipecahkan. Gunakan Semaphore (N-1) untuk membatasi jumlah filosof di meja, mencegah rantai melingkar terbentuk. (Ini adalah cara memecah urutan pengambilan sumber daya secara kolektif). |
 
 ---
 
 ## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 1. Praktikum ini berhasil mendemonstrasikan empat kondisi penyebab deadlock dalam masalah Dining Philosophers, yaitu mutual exclusion, hold and wait, no preemption, dan circular wait, serta bagaimana kondisi tersebut dapat diidentifikasi dan dianalisis melalui simulasi.
 2. Penggunaan semaphore sebagai mekanisme sinkronisasi terbukti efektif untuk mencegah deadlock, khususnya dengan membatasi jumlah filosof yang dapat mengakses sumber daya secara bersamaan, sehingga memutus siklus tunggu melingkar.
 3. Kolaborasi tim dalam analisis, implementasi, dan dokumentasi memperkuat pemahaman konsep sinkronisasi proses, serta menekankan pentingnya solusi pencegahan deadlock dalam desain sistem operasi untuk menghindari stagnasi proses.
+
 ---
 
-## Quiz
+## Diskusi
+### Quiz
 1. Sebutkan empat kondisi utama penyebab deadlock.  
    *Jawaban :* 
 - Mutual Exclusion : Yaitu barang hanya bisa dipakai satu proses saja
