@@ -9,7 +9,7 @@ Topik: Sinkronisasi Proses dan Masalah Deadlock
 Kelas 1IKRA
 
 - Rizky Iqbal Hisyam (250202926) : Dokumentasi
-- Lintang Galih Prayogi (250202946) : Implementasi (ketua)
+- Lintang Galih Prayogi (250202946) : Implementasi (Ketua)
 - Nanang Apriyanto (250202957) : Analisis
 
 ---
