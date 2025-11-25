@@ -25,6 +25,80 @@ Setelah menyelesaikan tugas ini, mahasiswa mampu:
 
 ## Dasar Teori
 Tuliskan ringkasan teori (3–5 poin) yang mendasari percobaan.
+1. Deadlock
+
+Deadlock adalah kondisi ketika beberapa proses saling menunggu satu sama lain sehingga tidak ada satu pun yang bisa melanjutkan.
+Deadlock terjadi jika empat kondisi berikut muncul secara bersamaan:
+1. Mutual Exclusion
+Resource hanya bisa dipakai satu proses pada satu waktu.
+2. Hold and Wait
+Proses sudah memegang satu resource dan menunggu resource lain.
+3. No Preemption
+Resource tidak bisa direbut paksa dari proses yang sedang menggunakannya.
+4. Circular Wait
+Terdapat proses yang saling menunggu secara melingkar.
+
+Jika salah satu dari kondisi ini dihilangkan, deadlock tidak terjadi.
+
+2. Critical Section
+
+Critical section adalah bagian kode di mana proses mengakses data bersama (shared data).
+Jika dua proses masuk critical section bersamaan, data bisa rusak atau hasil perhitungan jadi salah.
+Karena itu, diperlukan mekanisme untuk memastikan bahwa hanya satu proses yang boleh masuk critical section pada waktu tertentu.
+
+3. Sinkronisasi Proses
+
+Sinkronisasi adalah cara untuk mengatur proses atau thread agar tidak saling bertabrakan ketika mengakses resource yang sama.
+Tujuan sinkronisasi:
+
+* mencegah race condition,
+* menjaga konsistensi data,
+* mengatur urutan eksekusi,
+* menghindari deadlock dan starvation.
+
+Tanpa sinkronisasi, program paralel dapat menghasilkan output yang salah atau macet.
+
+4. Semaphore
+
+Semaphore adalah mekanisme sinkronisasi berbasis counter yang digunakan untuk mengatur akses ke resource.
+Terdiri dari dua operasi utama :
+
+wait() → mengurangi nilai semaphore dan bisa membuat proses menunggu,
+signal() → menambah nilai semaphore dan membangunkan proses lain.
+
+Semaphore sering digunakan untuk:
+
+* mengatur mutual exclusion,
+* membatasi jumlah proses yang boleh masuk ke suatu area,
+* mengatur giliran proses.
+
+5. Monitor
+
+Monitor adalah mekanisme sinkronisasi tingkat tinggi yang lebih aman daripada semaphore.
+Ciri-cirinya:
+
+* hanya satu proses yang bisa masuk ke dalam monitor pada satu waktu,
+* punya prosedur/fungsi yang aman untuk mengakses data bersama,
+* punya condition variable (wait / notify) untuk mengatur antrian proses.
+
+Monitor mempermudah sinkronisasi karena aturan mutual exclusion sudah otomatis.
+
+6. Masalah "Dining Philosophers"
+
+Dining Philosophers adalah masalah klasik dalam sistem operasi yang menggambarkan lima philosopher yang duduk melingkar, masing-masing membutuhkan dua garpu untuk makan. Garpu diletakkan di antara setiap dua philosopher.
+
+Masalah ini menggambarkan:
+* bagaimana proses saling berbagi resource,
+* bagaimana deadlock bisa terjadi,
+* bagaimana sinkronisasi dilakukan supaya semua proses tetap berjalan.
+
+Pada versi sederhana, deadlock dapat terjadi ketika semua philosopher mengambil satu garpu dan menunggu garpu berikutnya.
+
+Solusi umum untuk menghilangkan deadlock :
+
+* membatasi jumlah philosopher yang boleh mengambil garpu,
+* mengubah urutan pengambilan garpu (misalnya ganjil/ genap),
+* menambahkan “waiter” (monitor) yang mengatur giliran philosopher makan.
 
 ---
 
