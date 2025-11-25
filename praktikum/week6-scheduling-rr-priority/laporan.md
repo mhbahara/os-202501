@@ -127,9 +127,9 @@ Tuliskan potongan kode atau perintah utama:
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
 
-![alt text](../week6-scheduling-rr-priority/screenshots/Screenshot%202025-11-06%20152345.png)
+![alt text](../week6-scheduling-rr-priority/screenshots/Ekperimen%201%20dan%202.png)
 
-![alt text](../week6-scheduling-rr-priority/screenshots/Screenshot%202025-11-06%20152439.png)
+![alt text](../week6-scheduling-rr-priority/screenshots/Perbandingan.png)
 
 ---
 
