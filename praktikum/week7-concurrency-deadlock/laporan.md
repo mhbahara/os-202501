@@ -83,10 +83,10 @@ Setelah menyelesaikan tugas ini, mahasiswa mampu:
 2. Screenshots pada file praktikum screenshots masing-masing anggota.
 3. Screenshoots hasil :
 - Versi Deadlock 
-
+![Screenshot hasil](<screenshots/cd7_kelompok_DEADLOCK.png>)
 
 - Versi Fixed (Semaphore)
-
+![Screenshot hasil](<screenshots/cd7_kelompok_FIXED.png>)
 ---
 
 ## H. Analisis
