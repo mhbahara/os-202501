@@ -6,10 +6,13 @@ Topik: Sinkronisasi Proses dan Masalah Deadlock
 
 ---
 
-## Identitas
-- **Nama**  :NOVIA SAFITRI
-- **NIM**   : 250202923
-- **Kelas** :1IKRA
+## Identitas Kelompok
+ **Nama**:
+ 1. NOVIA SAFITRI(250202923)
+ 2. Sukmani Intan Jumala (250202983)
+ 3. Ismatul Khoeriyah (250202912)
+**Kelas**: 1IKRA
+ 
 
 ---
 
@@ -28,9 +31,13 @@ Topik: Sinkronisasi Proses dan Masalah Deadlock
 ---
 
 ## Dasar Teori
-Sinkronisasi adalah cara untuk mengatur sebagian proses yang berjalan bersamaan agar tidak terjadi bentrokan saat mengakses data yang sama.Tujuan supaya data tetap konsisten proses berjalan dengan teratur tanpa saling menganggu.Metode seperti semaphore dan mutex membantu untuk memastikan hanya satu proses yang masuk ke bagian sistem pada satu waktu,sehingga data tetap aman dan hasil kerja tidak berantakan.
+Sinkronisasi adalah cara untuk mengatur sebagian proses yang berjalan bersamaan agar tidak terjadi bentrokan saat mengakses data yang sama.Tujuan supaya data tetap konsisten proses berjalan dengan teratur tanpa saling menganggu.Metode seperti semaphore dan mutex membantu untuk memastikan hanya satu proses yang masuk ke bagian sistem pada satu waktu,sehingga data tetap aman dan hasil kerja tidak berantakan.Masalah deadlock terjadi saat sebagian proses saling menunggu kapasitas yang dipegang proses lain,sehingga menyebabkan tidak ada yang maju atau selesai.Deadlock muncul karena proses saling menahan kapasitas,tidak bisa dipaksa melepasnya dan saling menunggu secara melingkar.Deadlock biasanya muncul jika 4 kondisi ini terpenuhi:
+- Mutual Exclusion: satu sumber daya hanya bisa dipakai oleh satu proses.
+- Hold and Wait: proses menahan satu sumber daya sambil menunggu yang lain.
+- No Preemption: sumber daya tidak bisa diambil paksa dari proses lain.
+- Circular Wait: terbentuk lingkaran menunggu, sehingga semua proses berhenti.
 
-Masalah deadlock terjadi saat sebagian proses saling menunggu kapasitas yang dipegang proses lain,sehingga menyebabkan tidak ada yang maju atau selesai.Deadlock muncul karena proses saling menahan kapasitas,tidak bisa dipaksa melepasnya dan saling menunggu secara melingkar.
+Pencegahan Deadlock dapat dilakukan dengan semaphore, monitor, atau mengatur urutan pengambilan sumber daya agar proses tidak saling menunggu dalam lingkaran (circular wait). Dengan mekanisme tersebut, proses dapat berjalan lancar dan risiko deadlock dapat diminimalkan.
 
 ---
 
@@ -116,15 +123,106 @@ while true:
 ---
 
 ## Hasil Eksekusi
-Sertakan screenshot hasil percobaan atau diagram:
+**Eksperimen 1 – Simulasi Dining Philosophers (Deadlock Version)**
 ![Screenshot hasil](screenshots/example.png)
 
----
+- Output
 
-## Analisis
-- Jelaskan makna hasil percobaan.  
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
+      F0 mulai berpikir
+      F1 mulai berpikir
+      F2 mulai berpikir
+      F3 mulai berpikir
+      F4 mulai berpikir
+      F0 mencoba mengambil garpu kiri
+      F0 mengambil garpu kiri
+      F1 mencoba mengambil garpu kiri
+      F1 mengambil garpu kiri
+      F2 mencoba mengambil garpu kiri
+      F2 mengambil garpu kiri
+      F3 mencoba mengambil garpu kiri
+      F4 mencoba mengambil garpu kiri
+      F4 mengambil garpu kiri
+      F3 mengambil garpu kiri
+      F0 mencoba mengambil garpu kanan
+      F1 mencoba mengambil garpu kanan
+      F2 mencoba mengambil garpu kanan
+      F4 mencoba mengambil garpu kanan
+      F3 mencoba mengambil garpu kanan
+
+- Identifikasi kapan dan mengapa deadlock terjadi.
+  
+**Eksperimen 2 – Versi Fixed (Menggunakan Semaphore / Monitor)**
+![Screenshot hasil](screenshots/example.png)
+- output
+
+      Filosof 0 siap...
+      Filosof 1 siap...
+      Filosof 2 siap...
+      Filosof 3 siap...
+      Filosof 4 siap...
+      Filosof 4 mulai berpikir...
+      Filosof 1 mulai berpikir...
+      Filosof 2 mulai berpikir...
+      Filosof 3 mulai berpikir...
+      Filosof 0 mulai berpikir...
+      Filosof 4 mencoba mengambil garpu kiri
+      Filosof 4 mencoba mengambil garpu kanan
+      Filosof 4 mulai makan...
+      Filosof 3 mencoba mengambil garpu kiri
+      Filosof 3 mencoba mengambil garpu kanan
+      Filosof 0 mencoba mengambil garpu kiri
+      Filosof 1 mencoba mengambil garpu kiri
+      Filosof 1 mencoba mengambil garpu kanan
+      Filosof 1 mulai makan...
+      Filosof 4 selesai makan
+      Filosof 2 mencoba mengambil garpu kiri
+      Filosof 3 mulai makan...
+      Filosof 0 mencoba mengambil garpu kanan
+      Filosof 0 mulai makan...
+      Filosof 2 mencoba mengambil garpu kanan
+      Filosof 1 selesai makan
+      Filosof 3 selesai makan
+      Filosof 2 mulai makan...
+      Filosof 0 selesai makan
+      Filosof 2 selesai makan
+
+- Analisis hasil modifikasi dan buktikan bahwa deadlock telah dihindari.
+  Dari hasil modifikasi menggunakan semaphore footman = Semaphore(4) secara efektif untuk mencegah terjadinya deadlock di masalah Dining Philosophers karena dibatasi hanya empat  filsuf yang dapat mencoba mengambil garpu pada saat bersamaan.Membatasi untuk memastikan bahwa selalu ada minimal satu filsuf yang tidak memegang garpu sama sekali, sehingga dua garpu di dekatnya tetap bebas dan memungkinkan satu filsuf lain mendapatkan  kedua garpu secara lengkap untuk makan. Dengan kondisi circular wait adalah penyebab  utama deadlock—tidak dapat terbentuk karena jumlah filsuf yang menunggu tidak pernah mencapai lima,sehingga rantai tunggu tertutup tidak terjadi.Saat satu filsuf selesai makan, ia melepaskan kedua garpu dan me-release semaphore, membuka kesempatan bagi filsuf yang menunggu untuk melanjutkan proses, menjamin bahwa sistem tetap memiliki progres, tidak ada thread yang macet permanen, dan program terus berjalan tanpa mengalami deadlock.
+
+- buktikan bahwa deadlock telah dihindari;
+**footman = threading.Semaphore(4)**
+  - Maxsimal 4 filsuf yang boleh masuk proses ambil garpu
+  - 1 filsuf menunggu diluar
+
+ Jika hanya 4 filsuf yang aktif mengambil garpu: 
+- maksimal 4 garpu yang bisa dikunci dan tidak mungkin semua 5 garpu sedang dipegang sekaligus
+
+Deadlock hanya terjadi jika ada circular wait, yaitu:
+     
+     F0 menunggu F1
+     F1 menunggu F2, …, 
+     F4 menunggu F0
+Tetapi circular wait butuh 5 peserta.
+Di sini hanya 4 yang boleh masuk.
+
+- setelah makan
+
+      left.release()
+      right.release()
+      footman.release()
+
+garpu kembali bebas,kapasitas semaphore bertambah,filsuf ke-5 boleh masuk tetapi sistem tetap bergerak
+
+
+
+**Eksperimen 3 – Analisis Deadlock**
+|Kondisi Deadlock|	Terjadi di Versi Deadlock|	Solusi di Versi Fixed|
+|:---|:---|:---|
+Mutual Exclusion|	Ya-setiap garpu hanya bisa dipegang satu filsuf pada satu waktu|	Gunakan semaphore untuk kontrol akses|
+Hold and Wait|	Ya-filsuf memegang garpu kiri sambil menunggu garpu kanan	|Hindari proses menahan lebih dari satu sumber daya|
+No Preemption|	Ya-garpu tidak bisa diambil paksa dari filsuf lain	|Tidak ada mekanisme pelepasan paksa|
+Circular Wait|	Ya-F0 menunggu garpu F1, F1 menunggu F2, ..., F4 menunggu F0	|Ubah urutan pengambilan sumber daya|
+
 
 ---
 
@@ -164,7 +262,9 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
+- Apa bagian yang paling menantang minggu ini?
+
+ Bagian yang paling paling menantang pada minggu ke 7
 - Bagaimana cara Anda mengatasinya?  
 
 ---
