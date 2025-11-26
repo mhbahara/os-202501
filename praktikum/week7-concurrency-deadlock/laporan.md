@@ -220,16 +220,29 @@ Maka, setidaknya 1 filosof pasti akan makan, lalu melepas garpu sehingga sistem 
 | **4. Circular Wait** (siklus tunggu melingkar)                       | Semua filosof dapat mengambil garpu kiri dan menunggu garpu kanan | Tidak terjadi, karena semaphore menahan 1 filosof agar tidak mengambil garpu, sehingga siklus tunggu terputus                     |
 
 - Deadlock tidak terjadi karena teratasinya salah satu masalah yang menjadi salah satu syarat dari keempat syarat yang harus terpenuhi, yaitu **circular wait**. Saat deadlock terjadi, semua filosof mengambil dapat mengambil garpu kiri dan menunggu garpu kanan. Sedangkan, sistem dengan *semaphore* menahan 1 filosof agar tidak mengambil garpu.
- 
+
+ 5. Eksperimen 4 - Dokumentasi
+- praktikum/week7-concurrency-deadlock/screenshots/cd7_kelompok_DEADLOCK.png
+- praktikum/week7-concurrency-deadlock/screenshots/cd7_kelompok_FIXED.png
+  
 ---
 
-## I. Kesimpulan
+## I. Diskusi 
+Penulis yang beranggotakan empat orang dengan pembagian dua orang dalam analisis, satu orang dalam implementasi, dan satu orang dalam dokumentasi. Penulis telah mendapat beberapa poin-poin utama, di antaranya:
+1. Definisi konkruensi deadlock yang tertulis di bagian pendahuluan.
+2. Menggunakan mekanisme *semaphore* untuk penanganan masalah deadlock.
+3. Penggunaan bahasa pemrograman Python untuk menjalankan (running) kode atau bahasa pseudocode.
+4. Pembagian tugas untuk mengerjakan bagian implementasi, analisis, dan dokumentasi.
+
+---
+
+## J. Kesimpulan
 1. Deadlock hanya akan terjadi apabila keempat syaratnya terpenuhi, jika satu dari keempat syarat sudah diatasi, maka deadlock bisa dihindari.
 2. *Semaphore* dapat digunakan untuk mengatasi deadlock dengan cara kerja menahan salah satu filosof untuk tidak mengambil garpu. Dengan kata lain, *semaphore* digunakan dengan cara mengurangi jumlah atau N - x, N adalah jumlah filosof sebelum dikurangi dan x adalah bilangan variabel yang menjadi pengurang.
 
 ---
 
-## J. Quiz
+## K. Quiz
 1. Sebutkan empat kondisi utama penyebab deadlock.
    - *Mutual exclusion* (saling mengunci / eksklusif), *hold and wait* (menahan dan menunggu), *no preemption* (tidak bisa dipaksa lepas), *circular wait* (menunggu secara melingkar).  
 2. Mengapa sinkronisasi diperlukan dalam sistem operasi?
@@ -248,7 +261,7 @@ Maka, setidaknya 1 filosof pasti akan makan, lalu melepas garpu sehingga sistem 
 
 ---
 
-## K. Refleksi Diri
+## L. Refleksi Diri
 Tuliskan secara singkat:
 - Apa bagian yang paling menantang minggu ini?
   -  Yang paling menantang bagi saya adalah memahami bagaimana deadlock benar-benar terjadi dalam kode dan mengapa solusi tertentu berhasil sementara yang lain tidak.
