@@ -241,8 +241,9 @@ Circular Wait|	Ya-F0 menunggu garpu F1, F1 menunggu F2, ..., F4 menunggu F0	|Fil
 
 ## Kesimpulan
 
-- Pada eksperimen pertama terjadi keadaan deadlock karena semua filsuf dapat mengambil garpu kiri pada saat yang sama sehingga tidak ada yang bisa mengambil garpu kanan, menyebabkan seluruh proses berhenti saling menunggu tanpa akhir
-- Dan pada eksperimen kedua penggunaan semaphore footman dengan nilai 4 membatasi jumlah filsuf yang boleh mencoba mengambil garpu sekaligus,sehingga selalu ada minimal satu garpu yang tetap bebas,situasi ini memastikan setidaknya satu filsuf dapat menyelesaikan makan, melepaskan kedua garpunya, dan memungkinkan filsuf lain melanjutkan proses. Dengan pembatasan ini kondisi saling menunggu melingkar (circular wait) yang menjadi penyebab deadlock berhasil dicegah sehingga sistem berjalan tanpa kebuntuan.
+- Dari seluruh percobaan yang sudah dijalankan, bisa terlihat jelas bahwa versi pertama dari Dining Philosophers memang sangat mudah masuk ke kondisi deadlock. Begitu semua filsuf berhasil mengambil garpu kiri dan sama-sama menunggu garpu kanan, tidak ada satu pun proses yang bisa lanjut. Mereka saling menunggu dalam lingkaran, jadi program berhenti total.
+- Dan setelah versi fixed diterapkan dengan menambahkan semaphore footman = Semaphore(4), alurnya berubah lebih teratur. Pembatasan ini membuat tidak semua filsuf bisa mencoba mengambil garpu secara bersamaan, sehingga situasi saling tunggu melingkar tidak sempat terbentuk. Ketika ada filsuf yang selesai makan dan melepas garpu, filsuf lain langsung punya kesempatan masuk, sehingga proses tetap bergerak
+- Dari analisis empat kondisi deadlock, terlihat bahwa masalah utamanya ada pada circular wait, dan mekanisme waiter sukses memutus rantai tersebut. Hasil akhirnya, versi fixed terbukti mampu menghindari deadlock dan membuat program berjalan normal tanpa ada thread yang macet
 
 ---
 
