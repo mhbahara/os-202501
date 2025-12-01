@@ -253,40 +253,110 @@ git push origin main
 ---
 
 ## Kode / Perintah
-Tuliskan potongan kode atau perintah utama:
-```bash
-uname -a
-lsmod | head
-dmesg | head
+
+```while true:
+  think()
+  pick_left_fork()
+  pick_right_fork()
+  eat()
+  put_left_fork()
+  put_right_fork()
 ```
 
 ---
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+![Screenshot hasil](<Screenshot 2025-11-28 211909-1.png>)
 
 ---
 
 ## Analisis
-- Jelaskan makna hasil percobaan.  
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
+**EKSPERIMEN 1**
+
+Analisis versi deadlock
+
+Dalam simulasi Dining Philosophers ini, deadlock terjadi ketika seluruh filsuf secara bersamaan mengambil garpu yang berada di sebelah kiri mereka, sehingga seluruh garpu 1 sampai 5 sudah dalam keadaan terpakai. Ketika para filsuf melanjutkan untuk mencoba mengambil garpu di sebelah kanan, tidak ada satu pun garpu yang tersedia karena masing-masing sudah dipegang oleh filsuf berikutnya. Kondisi tersebut menyebabkan setiap filsuf memegang satu garpu sambil menunggu garpu lainnya, namun tidak ada yang dapat melanjutkan atau melepaskan garpu yang mereka pegang. Situasi ini membentuk sebuah lingkaran saling menunggu, di mana P1 menunggu P2, P2 menunggu P3, P3 menunggu P4, P4 menunggu P5, dan P5 kembali menunggu P1. Karena tidak terdapat mekanisme yang memungkinkan pelepasan garpu secara paksa maupun aturan yang dapat memutus rantai penantian tersebut, seluruh proses berhenti dan tidak ada filsuf yang dapat mulai makan. Dengan demikian, deadlock muncul tepat pada saat semua filsuf mencoba mengambil garpu kanan, dan pada titik inilah seluruh syarat deadlock terpenuhi sehingga sistem benar-benar macet.
+
+**EKSPERIMEN 2**
+
+Versi fixed
+
+Pada versi FIXED dari permasalahan Dining Philosophers, solusi sinkronisasi diterapkan menggunakan mekanisme semaphore/monitor sehingga situasi deadlock dapat dihindari sepenuhnya. Dalam versi ini, setiap filsuf tidak lagi mengambil garpu secara bersamaan tanpa aturan; melainkan mereka harus memperoleh izin terlebih dahulu sebelum mengambil garpu. Mekanisme kontrol ini memastikan bahwa tidak semua filsuf dapat mencoba mengambil dua garpu pada saat yang sama. Misalnya, sistem dapat membatasi maksimum empat filsuf yang diperbolehkan duduk untuk makan secara bersamaan, atau memaksa setiap filsuf untuk mengambil garpu dengan urutan yang sudah ditentukan (misalnya selalu mengambil garpu dengan nomor lebih kecil terlebih dahulu). Dengan pembatasan tersebut, tidak akan terbentuk situasi saling menunggu melingkar, karena pola pengambilan garpu menjadi lebih teratur dan tidak memungkinkan kelima filsuf menahan satu garpu sambil menunggu garpu lainnya secara bersamaan. Ketika seorang filsuf selesai makan, ia akan melepaskan kedua garpu yang digunakan sehingga filsuf lain dapat melanjutkan proses makan secara bergiliran. Melalui pengaturan ini, seluruh filsuf dapat makan sampai selesai tanpa terjadi kebuntuan, dan sistem tetap berjalan secara aman serta terkoordinasi. Versi FIXED ini menunjukkan bahwa dengan pengaturan akses sumber daya yang tepat, permasalahan deadlock dapat sepenuhnya dicegah.
+
+
+**EKSPERIMEN 3**
+
+Pada versi pertama simulasi Dining Philosophers, terjadi deadlock karena terpenuhinya keempat kondisi deadlock secara bersamaan. Mutual Exclusion terjadi karena setiap garpu hanya dapat dipegang oleh satu filsuf pada satu waktu. Hold and Wait muncul ketika setiap filsuf sudah memegang garpu kiri sambil menunggu garpu kanan yang sedang dipegang filsuf lain. No Preemption terjadi karena garpu yang sudah dipegang tidak bisa diambil paksa oleh filsuf lain; mereka hanya bisa melepaskan garpu setelah selesai makan. Sedangkan Circular Wait terbentuk ketika P1 menunggu P2, P2 menunggu P3, P3 menunggu P4, P4 menunggu P5, dan P5 menunggu P1, sehingga membentuk lingkaran menunggu yang sempurna.
+Pada versi FIXED, kondisi-kondisi tersebut dipecahkan melalui mekanisme sinkronisasi dan pengaturan urutan pengambilan garpu. Mutual Exclusion tetap ada, tetapi dikontrol dengan semaphore atau monitor sehingga akses garpu menjadi teratur. Hold and Wait dihindari dengan memastikan filsuf hanya mengambil kedua garpu ketika keduanya tersedia, sehingga tidak ada yang menahan satu garpu sambil menunggu yang lain. No Preemption diatasi dengan melepaskan garpu setelah selesai makan sehingga proses lain dapat menggunakannya, dan Circular Wait dihilangkan dengan menentukan urutan pengambilan garpu atau membatasi jumlah filsuf yang boleh makan bersamaan, sehingga tidak terbentuk lingkaran saling menunggu. Dengan pengaturan ini, semua filsuf dapat makan secara bergiliran tanpa terjadi deadlock.
+
+| Kondisi Deadlock | Terjadi di Versi Deadlock                                 | Solusi di Versi Fixed                                                                       |
+| ---------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Mutual Exclusion | Ya, satu garpu hanya dapat dipegang satu filsuf           | Tetap ada, tetapi diatur menggunakan semaphore/monitor agar akses terkontrol                |
+| Hold and Wait    | Ya, filsuf memegang satu garpu sambil menunggu garpu lain | Filsuf hanya mengambil kedua garpu jika keduanya tersedia                                   |
+| No Preemption    | Ya, garpu tidak bisa diambil paksa dari filsuf lain       | Garpu dilepas setelah selesai makan sehingga dapat digunakan proses lain                    |
+| Circular Wait    | Ya, membentuk lingkaran menunggu antara semua filsuf      | Dihindari dengan urutan pengambilan garpu atau membatasi jumlah filsuf yang makan bersamaan |
+
+
+
 
 ---
 
 ## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
+Kesimpulan Sinkronisasi Proses
+
+Sinkronisasi proses diperlukan agar beberapa proses yang berjalan bersamaan tidak saling mengganggu, terutama saat mengakses data atau sumber daya yang sama. Tujuannya adalah menjaga agar data tetap konsisten, mencegah konflik, dan memastikan setiap proses berjalan dengan urutan yang benar. Tanpa sinkronisasi, program bisa menghasilkan data yang salah atau perilaku yang tidak terduga.
+
+Kesimpulan Masalah Deadlock
+
+Deadlock adalah kondisi ketika dua atau lebih proses saling menunggu sumber daya yang tidak pernah dilepaskan sehingga semuanya berhenti dan tidak ada yang bisa lanjut. Deadlock terjadi karena perebutan sumber daya dan kondisi saling menunggu yang tidak terselesaikan. Untuk mencegahnya, sistem harus mengatur penggunaan sumber daya dengan baik, seperti menghindari saling tunggu atau memberi batasan kapan proses boleh meminta sumber daya.
 
 ---
 
 ## Quiz
-1. [Pertanyaan 1]  
-   **Jawaban:**  
-2. [Pertanyaan 2]  
-   **Jawaban:**  
-3. [Pertanyaan 3]  
-   **Jawaban:**  
+1. Sebutkan empat kondisi utama penyebab deadlock.
+2. Mengapa sinkronisasi diperlukan dalam sistem operasi?
+3. Jelaskan perbedaan antara semaphore dan monitor.1. Empat kondisi utama penyebab deadlock (Coffman Conditions)
+
+  **Jawaban**
+
+1.  Deadlock hanya bisa terjadi jika keempat kondisi berikut terpenuhi secara bersamaan:
+
+- Mutual Exclusion (Eksklusi Saling Mengunci)
+Sumber daya tidak dapat digunakan oleh lebih dari satu proses pada waktu yang sama.
+
+- Hold and Wait (Menahan dan Menunggu)
+Proses sudah memegang satu resource, lalu menunggu resource lain yang sedang dipegang proses lain.
+
+- No Preemption (Tidak Ada Perebutan)
+Resource tidak bisa diambil paksa oleh sistem; hanya bisa dilepaskan secara sukarela oleh proses.
+
+- Circular Wait (Menunggu Secara Melingkar)
+Terjadi rantai proses A menunggu resource yang dipegang B, B menunggu resource yang dipegang C, dan seterusnya hingga kembali ke A.
+
+
+2. Mencegah Race Condition
+Ketika beberapa proses/threads mengakses data bersama secara bersamaan, hasil bisa salah jika tidak disinkronkan.
+
+- Mengatur akses ke resource bersama (shared resources)
+Supaya tidak terjadi konflik data, contoh: dua proses menulis file yang sama.
+
+- Menjamin Konsistensi Data
+Sinkronisasi memastikan urutan eksekusi yang benar sehingga data tidak rusak.
+
+- Koordinasi antar proses/thread
+Beberapa proses perlu menunggu proses lain menyelesaikan tugas tertentu.
+
+3. 
+| **Aspek**                | **Semaphore**                                         | **Monitor**                                                                                      |
+| ------------------------ | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **Konsep**               | Variabel integer khusus untuk mengatur akses resource | Struktur abstraksi tingkat tinggi yang berisi variabel, prosedur, dan mekanisme penguncian       |
+| **Cara Kerja**           | Menggunakan operasi `wait()` (P) dan `signal()` (V)   | Menggunakan mekanisme lock otomatis dan *condition variable*                                     |
+| **Level Abstraksi**      | Lebih rendah (low-level)                              | Lebih tinggi (high-level)                                                                        |
+| **Kesalahan Penggunaan** | Mudah salah (misal lupa signal)                       | Lebih aman karena penguncian otomatis                                                            |
+| **Kompleksitas**         | Lebih kompleks dan rawan deadlock                     | Lebih sederhana untuk programmer                                                                 |
+| **Contoh Pemakaian**     | Sinkronisasi dasar, mutual exclusion sederhana        | Sinkronisasi yang lebih terstruktur di bahasa seperti Java, C#, dan Python (via locks/condition) |
+
 
 ---
 
