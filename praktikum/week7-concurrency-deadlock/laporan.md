@@ -267,7 +267,10 @@ git push origin main
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](<Screenshot 2025-11-28 211909-1.png>)
+![Screenshot hasil](./screenshots/Deadlock.png)
+![Screenshot hasil](./screenshots/Fixed.1.png)
+![Screenshot hasil](./screenshots/Fixed.2.png)
+
 
 ---
 
