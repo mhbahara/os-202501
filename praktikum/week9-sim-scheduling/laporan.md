@@ -33,7 +33,7 @@ Pada praktikum ini, penjadwalan CPU disimulasikan melalui sebuah program dengan 
 ```
 praktikum/week9-sim-scheduling/
 ├─ code/
-│  ├─ scheduling_simulation.*
+│  ├─ scheduling_simulation.py
 │  └─ dataset.csv
 ├─ screenshots/
 │  └─ hasil_simulasi.png
