@@ -133,7 +133,7 @@ Penjelasan:
 ## Refleksi Diri
 Tuliskan secara singkat:
 - Apa bagian yang paling menantang minggu ini?  
-tugas telat di up jadi deadline menyempiy
+tugas telat di up jadi deadline menyempit
 - Bagaimana cara Anda mengatasinya?  
 tidak ada
 
