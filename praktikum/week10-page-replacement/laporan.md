@@ -179,7 +179,7 @@ Tuliskan secara singkat:
 - Apa bagian yang paling menantang minggu ini?  
 jarang bertemu pembelajaran tatap muka
 - Bagaimana cara Anda mengatasinya?
-tetap mengerjakan  
+tetap mengerjakan  dan tetap semangat
 
 ---
 
