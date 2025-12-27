@@ -1,0 +1,387 @@
+Eksperimen 1 – Analisis System Call : 
+
+root@DESKTOP-R1GLO2B:~# strace ls
+execve("/usr/bin/ls", ["ls"], 0x7ffdf785a1a0 /* 28 vars */) = 0
+brk(NULL)                               = 0x63f59647f000
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x72d604b77000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=26567, ...}) = 0
+mmap(NULL, 26567, PROT_READ, MAP_PRIVATE, 3, 0) = 0x72d604b70000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=174472, ...}) = 0
+mmap(NULL, 181960, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x72d604b43000
+mmap(0x72d604b49000, 118784, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x6000) = 0x72d604b49000
+mmap(0x72d604b66000, 24576, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x23000) = 0x72d604b66000
+mmap(0x72d604b6c000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x29000) = 0x72d604b6c000
+mmap(0x72d604b6e000, 5832, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x72d604b6e000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+fstat(3, {st_mode=S_IFREG|0755, st_size=2125328, ...}) = 0Eksperimen 1 – Analisis System Call Jalankan perintah berikut:
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+mmap(NULL, 2170256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x72d604800000
+mmap(0x72d604828000, 1605632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x72d604828000
+mmap(0x72d6049b0000, 323584, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1b0000) = 0x72d6049b0000
+mmap(0x72d6049ff000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1fe000) = 0x72d6049ff000
+mmap(0x72d604a05000, 52624, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x72d604a05000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=625344, ...}) = 0
+mmap(NULL, 627472, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x72d604aa9000
+mmap(0x72d604aab000, 450560, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x72d604aab000
+mmap(0x72d604b19000, 163840, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x70000) = 0x72d604b19000
+mmap(0x72d604b41000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x97000) = 0x72d604b41000
+close(3)                                = 0
+mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x72d604aa6000
+arch_prctl(ARCH_SET_FS, 0x72d604aa6800) = 0
+set_tid_address(0x72d604aa6ad0)         = 2606
+set_robust_list(0x72d604aa6ae0, 24)     = 0
+rseq(0x72d604aa7120, 0x20, 0, 0x53053053) = 0
+mprotect(0x72d6049ff000, 16384, PROT_READ) = 0
+mprotect(0x72d604b41000, 4096, PROT_READ) = 0
+mprotect(0x72d604b6c000, 4096, PROT_READ) = 0
+mprotect(0x63f565634000, 8192, PROT_READ) = 0
+mprotect(0x72d604baf000, 8192, PROT_READ) = 0
+prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+munmap(0x72d604b70000, 26567)           = 0
+statfs("/sys/fs/selinux", {f_type=SYSFS_MAGIC, f_bsize=4096, f_blocks=0, f_bfree=0, f_bavail=0, f_files=0, f_ffree=0, f_fsid={val=[0x2946c3fe, 0xd2276f1d]}, f_namelen=255, f_frsize=4096, f_flags=ST_VALID|ST_NOSUID|ST_NODEV|ST_NOEXEC|ST_NOATIME}) = 0
+statfs("/selinux", 0x7fffc6b4fbf0)      = -1 ENOENT (No such file or directory)
+getrandom("\x36\xc4\x5e\x9a\x85\x95\xd7\x3b", 8, GRND_NONBLOCK) = 8
+brk(NULL)                               = 0x63f59647f000
+brk(0x63f5964a0000)                     = 0x63f5964a0000
+openat(AT_FDCWD, "/proc/filesystems", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0444, st_size=0, ...}) = 0
+read(3, "nodev\tsysfs\nnodev\ttmpfs\nnodev\tbd"..., 1024) = 442
+close(3)                                = 0
+openat(AT_FDCWD, "/proc/mounts", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0444, st_size=0, ...}) = 0
+read(3, "none /usr/lib/modules/6.6.87.2-m"..., 1024) = 1024
+read(3, "\ndevpts /dev/pts devpts rw,nosui"..., 1024) = 1024
+read(3, "hugetlbfs /dev/hugepages hugetlb"..., 1024) = 553
+read(3, "", 1024)                       = 0
+close(3)                                = 0
+access("/etc/selinux/config", F_OK)     = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/lib/locale/locale-archive", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale/locale.alias", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=2996, ...}) = 0
+read(3, "# Locale name alias data base.\n#"..., 4096) = 2996
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/locale/C.UTF-8/LC_IDENTIFICATION", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/lib/locale/C.utf8/LC_IDENTIFICATION", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=258, ...}) = 0
+mmap(NULL, 258, PROT_READ, MAP_PRIVATE, 3, 0) = 0x72d604b76000
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=27028, ...}) = 0
+mmap(NULL, 27028, PROT_READ, MAP_SHARED, 3, 0) = 0x72d604a9f000
+close(3)                                = 0
+futex(0x72d604a0472c, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+openat(AT_FDCWD, "/usr/lib/locale/C.UTF-8/LC_MEASUREMENT", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/lib/locale/C.utf8/LC_MEASUREMENT", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=23, ...}) = 0
+mmap(NULL, 23, PROT_READ, MAP_PRIVATE, 3, 0) = 0x72d604b75000
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/locale/C.UTF-8/LC_TELEPHONE", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/lib/locale/C.utf8/LC_TELEPHONE", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=47, ...}) = 0
+mmap(NULL, 47, PROT_READ, MAP_PRIVATE, 3, 0) = 0x72d604b74000
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/locale/C.UTF-8/LC_ADDRESS", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/lib/locale/C.utf8/LC_ADDRESS", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=127, ...}) = 0
+mmap(NULL, 127, PROT_READ, MAP_PRIVATE, 3, 0) = 0x72d604b73000
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/locale/C.UTF-8/LC_NAME", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/lib/locale/C.utf8/LC_NAME", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=62, ...}) = 0
+mmap(NULL, 62, PROT_READ, MAP_PRIVATE, 3, 0) = 0x72d604b72000
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/locale/C.UTF-8/LC_PAPER", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/lib/locale/C.utf8/LC_PAPER", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=34, ...}) = 0
+mmap(NULL, 34, PROT_READ, MAP_PRIVATE, 3, 0) = 0x72d604b71000
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/locale/C.UTF-8/LC_MESSAGES", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/lib/locale/C.utf8/LC_MESSAGES", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFDIR|0755, st_size=4096, ...}) = 0
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/locale/C.utf8/LC_MESSAGES/SYS_LC_MESSAGES", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=48, ...}) = 0
+mmap(NULL, 48, PROT_READ, MAP_PRIVATE, 3, 0) = 0x72d604b70000
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/locale/C.UTF-8/LC_MONETARY", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/lib/locale/C.utf8/LC_MONETARY", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=270, ...}) = 0
+mmap(NULL, 270, PROT_READ, MAP_PRIVATE, 3, 0) = 0x72d604a9e000
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/locale/C.UTF-8/LC_COLLATE", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/lib/locale/C.utf8/LC_COLLATE", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=1406, ...}) = 0
+mmap(NULL, 1406, PROT_READ, MAP_PRIVATE, 3, 0) = 0x72d604a9d000
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/locale/C.UTF-8/LC_TIME", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/lib/locale/C.utf8/LC_TIME", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=3360, ...}) = 0
+mmap(NULL, 3360, PROT_READ, MAP_PRIVATE, 3, 0) = 0x72d604a9c000
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/locale/C.UTF-8/LC_NUMERIC", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/lib/locale/C.utf8/LC_NUMERIC", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=50, ...}) = 0
+mmap(NULL, 50, PROT_READ, MAP_PRIVATE, 3, 0) = 0x72d604a9b000
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/locale/C.UTF-8/LC_CTYPE", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/lib/locale/C.utf8/LC_CTYPE", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=360460, ...}) = 0
+mmap(NULL, 360460, PROT_READ, MAP_PRIVATE, 3, 0) = 0x72d604a42000
+close(3)                                = 0
+ioctl(1, TCGETS, {c_iflag=ICRNL|IXON, c_oflag=NL0|CR0|TAB0|BS0|VT0|FF0|OPOST|ONLCR, c_cflag=B38400|CS8|CREAD, c_lflag=ISIG|ICANON|ECHO|ECHOE|ECHOK|IEXTEN|ECHOCTL|ECHOKE, ...}) = 0
+ioctl(1, TIOCGWINSZ, {ws_row=41, ws_col=156, ws_xpixel=0, ws_ypixel=0}) = 0
+openat(AT_FDCWD, ".", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 3
+fstat(3, {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+getdents64(3, 0x63f5964888a0 /* 9 entries */, 32768) = 272
+getdents64(3, 0x63f5964888a0 /* 0 entries */, 32768) = 0
+close(3)                                = 0
+close(1)                                = 0
+close(2)                                = 0
+exit_group(0)                           = ?
++++ exited with 0 +++
+
+Jawaban :
+
+1. execve("/usr/bin/ls", ["ls"], 0x7ffdf785a1a0 /* 28 vars */) = 0
+
+Fungsi: Menjalankan program ls dengan path /usr/bin/ls.
+Penjelasan: execve menggantikan proses saat ini dengan program baru (ls). Argumen kedua adalah daftar argumen, argumen ketiga adalah environment variables.
+
+2. brk(NULL) = 0x63f59647f000
+
+Fungsi: Mengecek posisi break (batas atas area heap).
+Penjelasan: Meminta alamat memori terakhir yang dialokasikan di heap. brk digunakan untuk manajemen heap.
+
+3. mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x72d604b77000
+
+Fungsi: Memetakan 8192 byte (8KB) memori baru yang anonim (tidak terkait file).
+Penjelasan: Memesan area memori untuk keperluan internal proses (misal stack, heap, buffer).
+
+4. access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+
+Fungsi: Mengecek apakah file /etc/ld.so.preload dapat dibaca.
+Penjelasan: File ini digunakan untuk preload shared libraries. Hasil ENOENT berarti file tidak ditemukan, jadi tidak ada library tambahan yang di-preload.
+
+5. openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+
+Fungsi: Membuka file cache loader dynamic linker /etc/ld.so.cache untuk baca.
+Penjelasan: File ini berisi cache lokasi shared libraries agar proses loading lebih cepat.
+
+6. fstat(3, {st_mode=S_IFREG|0644, st_size=26567, ...}) = 0
+
+Fungsi: Mendapatkan informasi file descriptor 3 (file /etc/ld.so.cache).
+Penjelasan: Mengecek jenis file, ukuran, permission, dll.
+
+7. mmap(NULL, 26567, PROT_READ, MAP_PRIVATE, 3, 0) = 0x72d604b70000
+
+Fungsi: Memetakan isi file /etc/ld.so.cache ke memori.
+Penjelasan: Agar isi file dapat diakses langsung di memori, lebih efisien dari membaca file berulang.
+
+8. close(3) = 0
+
+Fungsi: Menutup file descriptor 3.
+Penjelasan: Setelah mmap, file descriptor bisa ditutup karena data sudah di memori.
+
+9. openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3
+
+Fungsi: Membuka shared library libselinux.so.1.
+Penjelasan: Library ini terkait keamanan SELinux, dipakai oleh ls jika sistem memakai SELinux.
+
+10. read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+
+Fungsi: Membaca 832 byte pertama dari file library (format ELF header).
+Penjelasan: Header ELF berisi informasi tentang executable atau shared library.
+
+
+
+Eksperimen 2 – Menelusuri System Call File I/O
+
+root@DESKTOP-R1GLO2B:~# strace -e trace=open,read,write,close cat /etc/passwd
+close(3)                                = 0
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
+close(3)                                = 0
+read(3, "# Locale name alias data base.\n#"..., 4096) = 2996
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+close(3)                                = 0
+close(3)                                = 0
+close(3)                                = 0
+close(3)                                = 0
+close(3)                                = 0
+close(3)                                = 0
+close(3)                                = 0
+close(3)                                = 0
+close(3)                                = 0
+close(3)                                = 0
+close(3)                                = 0
+close(3)                                = 0
+close(3)                                = 0
+close(3)                                = 0
+read(3, "root:x:0:0:root:/root:/bin/bash\n"..., 131072) = 1380
+write(1, "root:x:0:0:root:/root:/bin/bash\n"..., 1380root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+_apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+systemd-timesync:x:996:996:systemd Time Synchronization:/:/usr/sbin/nologin
+dhcpcd:x:100:65534:DHCP Client Daemon,,,:/usr/lib/dhcpcd:/bin/false
+messagebus:x:101:101::/nonexistent:/usr/sbin/nologin
+syslog:x:102:102::/nonexistent:/usr/sbin/nologin
+systemd-resolve:x:991:991:systemd Resolver:/:/usr/sbin/nologin
+uuidd:x:103:103::/run/uuidd:/usr/sbin/nologin
+landscape:x:104:105::/var/lib/landscape:/usr/sbin/nologin
+polkitd:x:990:990:User for polkitd:/:/usr/sbin/nologin
+) = 1380
+read(3, "", 131072)                     = 0
+close(3)                                = 0
+close(1)                                = 0
+close(2)                                = 0
++++ exited with 0 +++
+
+Jawaban :
+
+1. Membuka File
+
+Meski di output ini tidak muncul eksplisit system call open(), biasanya urutan lengkap ketika sebuah file dibuka oleh program adalah:
+Proses memanggil system call open() atau openat() untuk membuka file /etc/passwd.
+Kernel mencari inode dari file tersebut di filesystem.
+Kernel membuat file descriptor (FD) baru, misalnya nomor 3, yang mereferensikan file tersebut di dalam proses.
+Kernel menginisialisasi struktur data internal untuk mengelola akses file.
+Dalam output ini, FD 3 digunakan secara berulang kali untuk operasi baca dan tutup, yang berarti FD 3 ini merepresentasikan file /etc/passwd.
+
+2. Membaca File
+
+Setelah file berhasil dibuka, proses membaca data dari file tersebut terjadi dengan system call read(), contohnya:
+read(3, "root:x:0:0:root:/root:/bin/bash\n"..., 131072) = 1380
+Kernel menerima permintaan read pada FD 3 dengan buffer dan ukuran maksimal 131072 byte.
+Kernel mencari data yang diminta di cache filesystem terlebih dahulu.
+Jika data ada di cache, kernel langsung mengirimkannya ke buffer pengguna.
+Jika tidak, kernel membaca data dari disk ke cache, lalu menyalinnya ke buffer pengguna.
+Kernel mengembalikan jumlah byte yang berhasil dibaca (misal 1380 bytes).
+read() berulang hingga akhir file tercapai (muncul read(...)=0 sebagai tanda EOF).
+
+3. Menulis ke Output
+
+Data yang sudah dibaca kemudian ditulis ke file descriptor 1 (stdout) dengan write():
+write(1, "root:x:0:0:root:/root:/bin/bash\n"..., 1380)
+Kernel menerima data dari buffer pengguna untuk ditulis ke FD 1.
+Kernel memproses data tersebut dan mengirimkannya ke device output, misalnya terminal.
+
+4. Menutup File
+
+Setelah selesai membaca dan menulis, file descriptor harus ditutup agar resource dilepaskan, contohnya:
+close(3) = 0
+Kernel menutup FD 3 yang merujuk ke file /etc/passwd.
+Kernel mengurangi referensi ke inode file.
+Jika tidak ada FD lain yang membuka file ini, kernel dapat membersihkan cache atau resource terkait file.
+File descriptor tidak lagi valid untuk proses tersebut.
+Ringkasan Alur oleh Kernel:
+Open: Proses memanggil open() → kernel membuka file, mengembalikan FD.
+Read: Proses memanggil read() berulang kali → kernel mengirim data file ke buffer pengguna.
+Write: Proses memanggil write() untuk output → kernel mengirim data ke device.
+Close: Proses memanggil close() → kernel melepaskan FD dan resource.
+
+
+
+Eksperimen 3 – Mode User vs Kernel
+
+root@DESKTOP-R1GLO2B:~# dmesg | tail -n 10
+[ 3431.716885] systemd-journald[55]: Time jumped backwards, rotating.
+[ 3474.171045] WSL (247) ERROR: CheckConnection: getaddrinfo() failed: -5
+[ 3536.970557] systemd-journald[55]: Time jumped backwards, rotating.
+[ 3924.456915] systemd-journald[55]: Time jumped backwards, rotating.
+[ 4483.074489] systemd-journald[55]: Time jumped backwards, rotating.
+[ 5037.582850] systemd-journald[55]: Time jumped backwards, rotating.
+[ 5261.126564] systemd-journald[55]: Time jumped backwards, rotating.
+[ 5370.606919] WSL (247) ERROR: CheckConnection: getaddrinfo() failed: -5
+[ 5587.058647] mini_init (232): drop_caches: 1
+[ 5591.302300] systemd-journald[55]: Time jumped backwards, rotating.
+
+Jawaban :
+
+1. Sumber dan konteks output
+
+Log Kernel (dmesg) :
+Output ini berasal langsung dari kernel Linux, lapisan inti sistem operasi.
+Berisi pesan-pesan yang berkaitan dengan aktivitas kernel, seperti inisialisasi hardware, driver, manajemen memori, manajemen proses, dan error sistem tingkat rendah.
+Bersifat sangat teknis, sering kali berhubungan dengan debugging sistem atau masalah hardware.
+Dihasilkan oleh kernel dan subsistemnya (misal: driver, modul kernel, sistem logging).
+
+Output Program Biasa :
+Dihasilkan oleh aplikasi user-space, seperti editor teks, browser, atau perintah shell biasa.
+Biasanya adalah hasil eksekusi program yang ingin dilihat pengguna, berupa teks biasa, grafik, atau data yang sudah diproses.
+Output ini adalah apa yang program ingin tampilkan ke pengguna.
+
+2. Cara output disimpan dan diakses
+
+Log Kernel :
+Disimpan dalam kernel ring buffer — buffer khusus yang diatur oleh kernel.
+Bisa diakses dengan perintah dmesg atau melalui file seperti /proc/kmsg.
+Terbatas ukurannya, dan lama-kelamaan data lama akan ter-overwrite.
+Tidak secara langsung tampil di layar kecuali dipanggil atau diarahkan.
+
+Output Program Biasa :
+Biasanya langsung muncul di terminal (stdout), atau disimpan di file jika diarahkan.
+Bisa berupa teks, gambar, atau data lain, tergantung aplikasi.
+Lebih fleksibel dan dapat dikendalikan oleh program dan pengguna.
+
+3. Isi dan tujuan informasi
+
+Log Kernel :
+Menyediakan informasi tentang keadaan internal sistem operasi.
+Digunakan untuk debugging masalah sistem, memantau hardware, atau menelusuri kesalahan kernel.
+
+Contohnya: pesan tentang driver, pesan error hardware, peringatan kernel, aktivitas subsystem.
+
+Output Program Biasa :
+Menyediakan hasil kerja program yang diminta oleh pengguna.
+Fokus pada penyajian data yang mudah dimengerti oleh manusia (atau aplikasi lain).
+
+Contohnya: daftar file, hasil perhitungan, tampilan halaman web.
+
+4. Karakteristik output yang kamu lihat
+
+Output dmesg :
+Baris diawali dengan timestamp relatif (misal: [ 3431.716885]).
+Mengandung nama proses kernel (systemd-journald, mini_init, WSL) dan pesan teknis.
+Menunjukkan event terkait waktu sistem, error jaringan, operasi kernel.
+
+Output program biasa (misal ls atau cat) :
+Biasanya cuma daftar file, isi teks, atau hasil operasi langsung tanpa metadata teknis seperti timestamp kernel.
+
+Contoh: daftar user di /etc/passwd, teks yang bisa dibaca langsung.
+
+Kesimpulan :
+
+Aspek   	        Log Kernel (dmesg)      	        Output Program Biasa
+Sumber	                Kernel dan driver hardware	        Aplikasi/user-space program
+Jenis informasi 	Debugging, error, status kernel  	Hasil eksekusi program
+Format   	        Timestamp + pesan teknis	        Data teks/grafik langsung
+Cara akses	        Ring buffer kernel, dmesg command	Langsung ke terminal atau file
+Tujuan utama	        Memantau & debugging sistem      	Memberikan hasil ke pengguna
