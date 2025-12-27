@@ -1,5 +1,5 @@
 # Laporan Praktikum Minggu 10
-Topik: [Tuliskan judul topik, misalnya "Arsitektur Sistem Operasi dan Kernel"]
+Topik: Manajemen Memori – Page Replacement (FIFO & LRU)
 
 ---
 
