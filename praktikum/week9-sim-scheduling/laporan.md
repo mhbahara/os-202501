@@ -62,18 +62,26 @@ Topik: Simulasi Algoritma Penjadwalan CPU
 ---
 
 ## Kode / Perintah
-Tuliskan potongan kode atau perintah utama:
 ```bash
-uname -a
-lsmod | head
-dmesg | head
+| Proses | Arrival Time | Burst Time |
+   |:--:|:--:|:--:|
+   | P1 | 0 | 6 |
+   | P2 | 1 | 8 |
+   | P3 | 2 | 7 |
+   | P4 | 3 | 3 |
+
+
+dan menjalankan kode python scheduling_simulation.py
 ```
+
 
 ---
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+![Screenshot hasil](screenshots/Week9.1.png)
+![Screenshot hasil](screenshots/Week9.2.png)
+![Screenshot hasil](screenshots/Week9.3.png)
 
 ---
 
