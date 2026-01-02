@@ -147,7 +147,7 @@ print("+" + "-"*12 + "+" + "-"*14 + "+" + "-"*14 + "+")
 
 ## Hasil Eksekusi
 
-![Screenshot hasil](screenshots/example.png)
+![Screenshot hasil](<screenshots/Eksperimen_Simulsi FIFO dan LRU_Week_10.png>)
 
 ---
 
