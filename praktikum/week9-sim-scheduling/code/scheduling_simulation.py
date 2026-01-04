@@ -1,39 +1,45 @@
 import csv
 
-# baca data dari CSV
 processes = []
-with open("dataset.csv", "r") as file:
+
+with open("dataset.csv", newline="") as file:
     reader = csv.reader(file)
-    next(reader)  # lewati header
+    next(reader)  # ⬅️ LEWATI HEADER
 
-    for name, arrival, burst in reader:
-        processes.append([name, int(arrival), int(burst)])
+    for row in reader:
+        pid = row[0]
+        arrival = int(row[1])
+        burst = int(row[2])
+        processes.append([pid, arrival, burst])
 
-# urutkan berdasarkan arrival time (FCFS)
+# FCFS → urut berdasarkan arrival time
 processes.sort(key=lambda x: x[1])
 
 time = 0
 total_wait = 0
-total_turn = 0
+total_tat = 0
 
-print("\nHasil Simulasi FCFS")
 print("Proses | Arrival | Burst | Waiting | Turnaround")
-print("-" * 45)
+print("---------------------------------------------")
 
 for p in processes:
-    if time < p[1]:
-        time = p[1]
+    pid, arrival, burst = p
 
-    waiting = time - p[1]
-    turnaround = waiting + p[2]
+    if time < arrival:
+        time = arrival
 
-    time += p[2]
+    waiting = time - arrival
+    turnaround = waiting + burst
+
+    time += burst
 
     total_wait += waiting
-    total_turn += turnaround
+    total_tat += turnaround
 
-    print(f"{p[0]:6} | {p[1]:7} | {p[2]:5} | {waiting:7} | {turnaround:10}")
+    print(f"{pid:^6} | {arrival:^7} | {burst:^5} | {waiting:^7} | {turnaround:^10}")
 
-print("-" * 45)
-print("Rata-rata Waiting Time   :", total_wait / len(processes))
-print("Rata-rata Turnaround Time:", total_turn / len(processes))
+n = len(processes)
+print("---------------------------------------------")
+print(f"Rata-rata Waiting Time   : {total_wait / n:.2f}")
+print(f"Rata-rata Turnaround Time: {total_tat / n:.2f}")
+
