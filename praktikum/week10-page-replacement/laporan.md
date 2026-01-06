@@ -6,7 +6,7 @@ Topik: Manajemen Memori – Page Replacement (FIFO & LRU)
 
 ## Identitas
 - **Nama**  : Mohammad Ftikh Mahsun
-- **NIM**   : 250202952
+- **NIM**   :  250202952  
 - **Kelas** : 1IKRB
 
 ---
@@ -38,26 +38,34 @@ Topik: Manajemen Memori – Page Replacement (FIFO & LRU)
 ---
 
 ## Langkah Praktikum
-1. Langkah-langkah yang dilakukan.  
-2. Perintah yang dijalankan.  
-3. File dan kode yang dibuat.  
-4. Commit message yang digunakan.
+1.Menyiapkan file dan dataset reference string yang akan digunakan.
+
+2.Menentukan jumlah frame memori untuk simulasi page replacement.
+
+3.Mengimplementasikan algoritma FIFO dalam program simulasi.
+
+4.Menjalankan simulasi FIFO dan mencatat page fault yang terjadi simulasi.
+
+5.Menjalankan simulasi FIFO dan mencatat page f
+
+6.Menjalankan simulasi LRU menggunakan dataset yang sama.
+
+7.Membandingkan hasil FIFO dan LRU serta menyusun laporan praktikum.
 
 ---
 
 ## Kode / Perintah
 Tuliskan potongan kode atau perintah utama:
 ```bash
-uname -a
-lsmod | head
- potongan ko
-mes
+python page_replacement.py
 ```
 ---
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+![Screenshot hasil](screenshots/Week10.1.png)
+![Screenshot hasil](screenshots/Week10.2.png)
+![Screenshot hasil](screenshots/Week10.3.png)
 
 ---
 
