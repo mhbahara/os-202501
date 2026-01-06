@@ -1,0 +1,7 @@
+sebelum diubah :
+CPU = 2
+RAM = 4000 mb
+
+setelah diubah :
+CPU = 1
+RAM = 2048 mb
