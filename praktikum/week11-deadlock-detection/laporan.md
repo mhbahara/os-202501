@@ -100,7 +100,7 @@ print("Status Sistem : DEADLOCK TERDETEKSI")
 ---
 
 ## Hasil Eksekusi
-![Screenshot hasil](<screenshots/example.png>)
+![Screenshot hasil](<screenshots/Eksperimen_SImulasi_deadlock_Week_11.png>)
 
 ---
 
