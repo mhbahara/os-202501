@@ -61,38 +61,60 @@ Praktikum ini menekankan pemahaman hubungan antara **host OS**, **guest OS**, da
 
 ## Hasil Eksekusi
 1. **Instalasi Virtual Machine**
-   - Instal VirtualBox atau VMware pada komputer host.  
-![Screenshot hasil](<screenshots/>)
+   - Instal VirtualBox atau VMware pada komputer host.
+
+![Screenshot hasil](<screenshots/instalasi_vm.png(1).png>)
 
 
+![Screenshot hasil](<screenshots/instalasi_vm.png (2).png>)
 
+   - Pengecekan fitur virtualisasi (VT-x / AMD-V) tanpa ke BIOS.
 
+![Screenshot hasil](<screenshots/Pastikan fitur virtualisasi.png>)
 
+2. **Pembuatan OS Guest**
+   - Buat VM baru dan pilih OS guest
 
+![Screenshot hasil](<screenshots/os_guest_running.png.png>)
 
+3. **Instalasi Sistem Operasi**
+   - Jalankan proses instalasi OS guest sampai selesai.
+   - Pastikan OS guest dapat login dan berjalan normal.
 
+![Screenshot hasil](<screenshots/Instalasi Sistem Operasi (1).png>)
 
+![Screenshot hasil](<screenshots/Instalasi Sistem Operasi (2).png>)
 
+![Screenshot hasil](<screenshots/Instalasi Sistem Operasi (3).png>)
 
+4. **Konfigurasi Resource**
+   - Ubah konfigurasi CPU dan RAM.
 
-![Screenshot hasil](<screenshots/example.png>)
-![Screenshot hasil](<screenshots/example.png>)
-![Screenshot hasil](<screenshots/example.png>)
-![Screenshot hasil](<screenshots/example.png>)
+![Screenshot hasil](<screenshots/konfigurasi_resource.png>)
+
+   - Amati perbedaan performa sebelum dan sesudah perubahan resource.
+
+![Screenshot hasil](<screenshots/perbedaan performa sebelum dan sesudah.png>)
+
 
 ---
 ## Analisis Proteksi OS
-- Jelaskan bagaimana VM menyediakan isolasi antara host dan guest.  
+- Jelaskan bagaimana VM menyediakan isolasi antara host dan guest.
+    - Virtual Machine (VM) menyediakan isolasi antara host dan guest dengan cara memisahkan sumber daya, eksekusi, dan akses sistem melalui lapisan virtualisasi:
+    - 1. Memisahkan sumber daya (resources)
+         - VM tidak menggunakan hardware secara langsung.
+         - CPU, memori, disk, dan jaringan dibagi dan dialokasikan oleh hypervisor.
+         - Guest hanya “melihat” sumber daya virtual (vCPU, RAM virtual, disk virtual).
+    - 2. Memisahkan eksekusi (execution)
+         - Kode dan instruksi dari guest OS tidak dieksekusi langsung di hardware.
+    - 3. lapisan virtualisasi (hypervisor)
+         - Lapisan virtualisasi bertindak sebagai perantara dan pengawas
+         - Menjamin keamanan dan stabilitas host
 - Kaitkan dengan konsep *sandboxing* dan *hardening* OS.
-
-
-
-## Tugas & Quiz
-### Tugas
-1. Instal dan jalankan OS guest menggunakan VM.  
-2. Konfigurasikan resource VM sesuai instruksi.  
-3. Dokumentasikan proses instalasi dan konfigurasi.  
-4. Tulis laporan praktikum pada `laporan.md`.
+    - Konsep hardering:
+        - VM membantu Hardening dengan cara memisahkan yang penting dari yang tidak penting.
+    - Konsep sandboxing:
+        - Jika Guest OS hancur terkena virus, virus tersebut tetap terperangkap di dalam VM dan tidak bisa keluar ke Host OS (sistem utama).
 
 ---
 
