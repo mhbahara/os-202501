@@ -103,7 +103,7 @@ Dataset yang digunakan dalam eksperimen ini adalah:
    - _LRU (Least Recently Used)_.
 
 ---
-## 2.4 Program
+### 2.4 Program
 ```bash
 reference_string = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2]
 frames = 3
