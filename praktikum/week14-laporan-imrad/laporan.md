@@ -217,9 +217,9 @@ print("+" + "-"*12 + "+" + "-"*14 + "+" + "-"*14 + "+")
 
 ## 3. Hasil (Results)
 
-![Screenshot](screenshots/example.png)
+![Screenshot](<screenshots/Eksperimen_Simulsi FIFO dan LRU_Week_10 (2).png>)
 
-### 3.1 Tabel/grafik hasil uji
+### 3.1 Tabel hasil uji
 
 - PROSES FIFO (First-In First-Out)
   
@@ -274,13 +274,13 @@ Berdasarkan hasil simulasi penggantian halaman menggunakan 13 reference string d
 
 ## 4. Pembahasan  (Discussion)
 ### 4.1 Interpretasi hasil
-> Hasil simulasi menunjukkan bahwa algoritma LRU menghasilkan jumlah page fault yang lebih sedikit dibandingkan FIFO. Hal ini mengindikasikan bahwa LRU memiliki kinerja yang lebih efisien karena mempertimbangkan riwayat akses halaman sehingga lebih sesuai dengan prinsip locality of reference dan mendekati algoritma optimal . Sebaliknya, FIFO mengganti halaman berdasarkan urutan kedatangan tanpa mempertimbangkan pola penggunaan, sehingga berpotensi menghasilkan page fault lebih tinggi dan pada kondisi tertentu dapat mengalami Belady’s Anomaly, sehingga performanya tidak selalu optimal Hasil ini sejalan dengan teori literatur dan sumber pendukung lain yang menyatakan bahwa LRU umumnya memberikan performa yang lebih baik dibandingkan FIFO (Silberschatz et al., 2018).
+> Hasil simulasi menunjukkan bahwa algoritma LRU menghasilkan jumlah page fault yang lebih sedikit dibandingkan FIFO. Hal ini mengindikasikan bahwa LRU memiliki kinerja yang lebih efisien karena mempertimbangkan riwayat akses halaman sehingga lebih sesuai dengan prinsip locality of reference dan mendekati algoritma optimal . Sebaliknya, FIFO mengganti halaman berdasarkan urutan kedatangan tanpa mempertimbangkan pola penggunaan, sehingga berpotensi menghasilkan page fault lebih tinggi dan pada kondisi tertentu dapat mengalami Belady’s Anomaly, sehingga performanya tidak selalu optimal Hasil ini sejalan dengan teori literatur dan sumber pendukung lain yang menyatakan bahwa LRU umumnya memberikan performa yang lebih baik dibandingkan FIFO.
 
 ---
 
 ### 4.2 Keterbatasan
-1. Algoritma FIFO tidak mempertimbangkan pola maupun frekuensi akses halaman sehingga berpotensi menghasilkan jumlah page fault yang lebih tinggi dan pada kondisi tertentu dapat mengalami Belady’s Anomaly (Silberschatz et al., 2018).
-2. Algoritma LRU, meskipun lebih efisien, memiliki tingkat kompleksitas implementasi yang tinggi karena memerlukan pencatatan riwayat akses memori secara kontinu, sehingga berpotensi menambah overhead sistem (Silberschatz et al., 2018).
+1. Algoritma FIFO tidak mempertimbangkan pola maupun frekuensi akses halaman sehingga berpotensi menghasilkan jumlah page fault yang lebih tinggi dan pada kondisi tertentu dapat mengalami Belady’s Anomaly.
+2. Algoritma LRU, meskipun lebih efisien, memiliki tingkat kompleksitas implementasi yang tinggi karena memerlukan pencatatan riwayat akses memori secara kontinu, sehingga berpotensi menambah overhead sistem.
 
 ---
 ### 4.3 Perbandingan teori
