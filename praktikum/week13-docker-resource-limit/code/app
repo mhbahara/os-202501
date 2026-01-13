@@ -1,0 +1,31 @@
+import time
+import math
+
+buffer = {}
+counter = 0
+
+print("Program stress test resource berjalan...")
+print("Tekan Ctrl+C untuk menghentikan\n")
+
+try:
+    while True:
+        # Beban CPU: operasi matematika
+        nilai = 0
+        for i in range(1, 300_000):
+            nilai += math.sqrt(i)
+
+        # Beban memori: simpan list integer
+        buffer[counter] = [counter] * 1_000_000  # ±8 MB (tergantung sistem)
+
+        counter += 1
+        print(
+            f"Siklus {counter} | Nilai CPU: {int(nilai)} | "
+            f"Estimasi memori: {counter * 8} MB"
+        )
+
+        time.sleep(1)
+
+except MemoryError:
+    print("ERROR: Sistem kehabisan memori!")
+except KeyboardInterrupt:
+    print("\nProgram dihentikan secara manual.")
