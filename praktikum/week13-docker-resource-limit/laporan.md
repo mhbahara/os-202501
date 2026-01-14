@@ -1,33 +1,81 @@
 
-# Laporan Praktikum Minggu [X]
-Topik: [Tuliskan judul topik, misalnya "Arsitektur Sistem Operasi dan Kernel"]
+# Laporan Praktikum Minggu 13
+Topik: "Docker – Batasan Sumber Daya (CPU & Memori)"
 
 ---
 
 ## Identitas
-- **Nama**  : [Nama Mahasiswa]  
-- **NIM**   : [NIM Mahasiswa]  
-- **Kelas** : [Kelas]
-
+- **Nama**  : Novia Safitri 
+- **NIM**   : 250202923
+- **Kelas** :1IKRA
 ---
 
 ## Tujuan
-Tuliskan tujuan praktikum minggu ini.  
-Contoh:  
-> Mahasiswa mampu menjelaskan fungsi utama sistem operasi dan peran kernel serta system call.
+Setelah menyelesaikan tugas ini, siswa mampu:
+
+1. Menulis Dockerfile sederhana untuk sebuah aplikasi/skrip.
+
+2. Membangun image dan menjalankan container.
+
+3. Jangkauan wadah dengan kekuatan CPU dan memori .
+
+4. Mengamati dan menjelaskan perbedaan eksekusi kontainer dengan dan tanpa batas sumber daya.
+
+5. Menyusun laporan praktikum secara runtut dan sistematis.
 
 ---
 
 ## Dasar Teori
-Tuliskan ringkasan teori (3–5 poin) yang mendasari percobaan.
+Docker adalah teknologi yang digunakan untuk menjalankan aplikasi di dalam container. Container ini bersifat terisolasi, tetapi tetap berbagi sumber daya dengan sistem operasi utama. Pada Docker, penggunaan CPU dan memori bisa dibatasi agar satu aplikasi tidak memakai sumber daya terlalu besar. Batas CPU mengatur seberapa banyak proses menggunakan prosesor, sedangkan batas memori mengatur jumlah memori yang boleh dipakai supaya sistem tetap stabil dan aplikasi lain tidak terganggu.
 
 ---
 
 ## Langkah Praktikum
-1. Langkah-langkah yang dilakukan.  
-2. Perintah yang dijalankan.  
-3. File dan kode yang dibuat.  
-4. Commit message yang digunakan.
+1. Sesuaikan struktur folder seperti berikut:
+
+
+           praktikum/week13-docker-resource-limit/
+           ├─ code/
+           │  ├─ Dockerfile
+           │  └─ app.*
+           ├─ screenshots/
+           │  └─ hasil_limit.png
+           └─ laporan.md
+
+2. Siapkan Docker dan pastikan sudah berjalan: Verifikasi:
+
+           docker version
+           docker ps
+
+3. Buat program sederhana di folder code/(bahasa bebas) yang:
+
+    * Melakukan komputasi secara berulang (untuk mengamati batas CPU), dan/atau
+    * Mengalokasikan memori secara bertahap (untuk mengamati batas memori).
+
+4. Buat Dockerfile
+
+    * Tulis Dockerfile untuk menjalankan program uji.
+    *Buat gambar:
+ 
+                 docker build -t week13-resource-limit .
+
+5. Jalankan kontainer secara normal:
+
+                docker run --rm week13-resource-limit
+ 
+ Catat keluaran/hasil pengamatan.
+
+6. Jalankan container dengan batasan sumber daya (contoh):
+
+              docker run --rm --cpus="0.5" --memory="256m" week13-resource-limit
+
+Catat perubahan perilaku program (mis. lebih lambat, error saat memori tidak cukup, dll.).
+
+7. Berkomitmen & Berusaha
+
+            git add .
+            git commit -m "Minggu 13 - Docker Resource Limit"
+            git push origin main
 
 ---
 
@@ -60,12 +108,15 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 ---
 
 ## Quiz
-1. [Pertanyaan 1]  
-   **Jawaban:**  
-2. [Pertanyaan 2]  
-   **Jawaban:**  
-3. [Pertanyaan 3]  
-   **Jawaban:**  
+1. Mengapa container perlu dibatasi CPU dan memori?
+
+    **Jawaban:**  Container perlu dibatasi  CPU dan memori karena supaya  tidak memakan seluruh komponen komputer, yang bisa membuat sistem menjadi lambat atau bahkan crash. 
+3. Apa perbedaan VM dan container dalam konteks isolasi sumber daya?
+
+   **Jawaban:**  Virtual Machine (VM) bekerja dengan menjalankan sistem operasi lengkap sendiri, sehingga penggunaan CPU, memori, dan penyimpanan benar-benar terpisah dari sistem lain. Container berbeda karena hanya menjalankan aplikasi dan kebutuhannya saja dengan memanfaatkan kernel dari sistem host, sehingga lebih ringan dan cepat, tetapi isolasi sumber dayanya tidak sekuat VM.
+5. Apa dampak limit memori terhadap aplikasi yang boros memori?
+
+    **Jawaban:** Dampak limit memoeri terhadap aplikasi yang boros memori aplikasi tidak berjalan optimal atau bahkan berhenti.Ketika penggunaan memori mendekati atau melebihi batas yang ditentukan, aplikasi dapat mengalami kegagalan alokasi memori, performa menurun drastis, atau dihentikan secara paksa oleh sistem 
 
 ---
 
