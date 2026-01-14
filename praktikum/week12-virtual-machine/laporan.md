@@ -113,7 +113,13 @@ sudo lshw -short
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+![Screenshot hasil](screenshots/Week12.1.png)
+
+![Screenshot hasil](screenshots/Week12.2.png)
+
+![Screenshot hasil](screenshots/Week12.3.png)
+
+![Screenshot hasil](screenshots/Week12.4.png)
 
 ---
 
