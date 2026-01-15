@@ -1,3 +1,4 @@
+import page_replacement
 def show_header():
     print("=" * 40)
     print(" MINI SIMULASI SISTEM OPERASI ")
@@ -20,7 +21,7 @@ def run_cpu_scheduling():
 
 def run_page_replacement():
     print("\n--- Page Replacement ---")
-    print("Modul Page Replacement belum diimplementasikan.")
+    page_replacement.main()
     input("Tekan Enter untuk kembali ke menu utama...")
 
 
