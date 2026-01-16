@@ -1,0 +1,5 @@
+Proses,Allocation,Request
+Registrasi Pasien,Dokter Umum,Perawat
+Pemeriksaan,Perawat,Ruang Operasi
+Operasi,Ruang Operasi,Dokter Umum
+Perawatan Pasca Operasi,Dokter Umum,Ruang Operasi

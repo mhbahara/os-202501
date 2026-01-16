@@ -1,0 +1,39 @@
+1.  execve("/usr/bin/ls", ...)  
+  - Kategori: Process Control
+  - Fungsi: System call pertama yang melalui proses akan memuat dan menjalankan program execve ("/usr/bin/ls", ...) ke dalam memori.
+
+2. brk(HULL)
+  - Kategori: Memory Management.
+  - Fungsi: Digunakan untuk inisialisasi manajemen memori. Kernel menentukan alamat batas awal untuk data segment (heap) program.
+
+3. mmap(NULL, 8192, ...)
+  - Kategori: Memory Management.
+  - Fungsi: Memetakan memori virtual anonim (tidak terhubung ke file) ke ruang alamat proses, sering digunakan untuk buffer internal atau tumpukan (stack) awal.
+
+4. access("/etc/ld.so.preload", R_OK)
+  - Kategori: File Management.
+  - Fungsi: Memeriksa apakah file shared library preload (ld.so.preload) ada dan dapat dibaca.
+
+5. openat(AT_FDCWD, "/etc/ld.so.cache", ...)
+  - Kategori: File Management.
+  - Fungsi: Meminta kernel untuk membuka file cache pustaka dinamis. Kernel mengembalikan file descriptor (FD) positif (misalnya, 3).
+
+6. fstat(3, {...})
+  - Kategori: File Management.
+  - Fungsi: Mendapatkan informasi status (metadata) file dari file descriptor 3, seperti ukuran dan izin akses.
+
+7. mmap(NULL, 35463, ...)
+  - Kategori: Memory Management.
+  - Fungsi: Memetakan konten file cache yang baru dibuka ke memori proses agar dapat diakses kernel.
+
+8. close(3)
+  - Kategori: File Management.
+  - Fungsi: Menutup file descriptor 3 setelah cache selesai dibaca dan dipetakan ke memori.
+
+9. openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", ...)
+  - Kategori: File Management.
+  - Fungsi: Membuka shared library sistem lain yang diperlukan, dalam hal ini libselinux.so.1
+
+10. read(3, "\177ELF\2...", 832)
+  - Kategori: File Management.
+  - Fungsi: Membaca blok awal (header ELF) dari shared library yang baru dibuka untuk memverifikasi formatnya dan memuat bagian-bagian penting.

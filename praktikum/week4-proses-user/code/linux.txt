@@ -1,0 +1,73 @@
+gilanganandaputra12@cloudshell:~$ whoami
+gilanganandaputra12
+gilanganandaputra12@cloudshell:~$ id
+uid=1000(gilanganandaputra12) gid=1000(gilanganandaputra12) groups=1000(gilanganandaputra12),4(adm),27(sudo),996(docker)
+gilanganandaputra12@cloudshell:~$ groups
+gilanganandaputra12 adm sudo docker
+gilanganandaputra12@cloudshell:~$ sudo adduser praktikan
+info: Adding user `praktikan' ...
+info: Selecting UID/GID from range 1000 to 59999 ...
+info: Adding new group `praktikan' (1001) ...
+info: Adding new user `praktikan' (1001) with group `praktikan (1001)' ...
+warn: The home directory `/home/praktikan' already exists.  Not touching this directory.
+New password: 
+Retype new password: 
+passwd: password updated successfully
+gilanganandaputra12@cloudshell:~$ ps aux | head -10
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   4324  3464 ?        Ss   13:59   0:00 /bin/bash /google/scripts/onrun.sh sleep infinity
+syslog         9  0.0  0.0 222140  3756 ?        Ssl  13:59   0:00 /usr/sbin/rsyslogd
+root          25  0.0  0.3  40080 29048 ?        S    13:59   0:00 /usr/bin/python /usr/bin/supervisord -n -c /google/devshell/supervisord.conf --pidfile=/var/run/supervisor.pid --logfile=/var/log/supervisord.log
+root          26  0.0  0.0   6196  2672 ?        S    13:59   0:00 logger -t supervisord
+root          70  0.0  0.0  12020  4304 ?        S<s  13:59   0:00 sshd: /usr/sbin/sshd -p 22 -o AuthorizedKeysFile=/etc/ssh/keys/authorized_keys [listener] 0 of 10-60 startups
+root         210  0.0  0.9 2046680 74224 ?       Sl   13:59   0:00 /usr/bin/dockerd -p /var/run/docker.pid --mtu=1460 --registry-mirror=https://asia-mirror.gcr.io
+root         235  0.1  0.5 1729304 47020 ?       Ssl  13:59   0:01 containerd --config /var/run/docker/containerd/containerd.toml
+root         238  0.0  0.1 1233352 11724 ?       Sl   13:59   0:00 /google/devshell/editor/proxy/editor-proxy -static-content-dir=/google/devshell/editor/code-oss-for-cloud-shell/static-content -etag-file=/google/devshell/editor/proxy/code-oss-for-cloud-shell-etags.txt -editor-dir=/google/devshell/editor/code-oss-for-cloud-shell
+root         241  0.0  0.0  16320  6428 ?        S    13:59   0:00 sudo /google/devshell/tmux-agent
+gilanganandaputra12@cloudshell:~$ top -n 1
+top - 14:23:49 up 56 min,  0 user,  load average: 0.00, 0.03, 0.04
+Tasks:  44 total,   1 running,  43 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  4.5 us,  4.5 sy,  0.0 ni, 90.9 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st 
+MiB Mem :   7947.4 total,   4621.5 free,   1900.5 used,   1666.3 buff/cache     
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   6046.8 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                                                           
+      1 root      20   0    4324   3464   3184 S   0.0   0.0   0:00.05 bash                                                                                              
+      9 syslog    20   0  222140   3756   2396 S   0.0   0.0   0:00.02 rsyslogd                                                                                          
+     25 root      20   0   40080  29048  10868 S   0.0   0.4   0:00.73 python                                                                                            
+     26 root      20   0    6196   2672   2432 S   0.0   0.0   0:00.00 logger                                                                                            
+     70 root      10 -10   12020   4304   3188 S   0.0   0.1   0:00.01 sshd                                                                                               
+    210 root      20   0 2046680  74336  54160 S   0.0   0.9   0:00.53 dockerd                                                                                            
+    235 root      20   0 1729304  47076  34424 S   0.0   0.6   0:01.54 containerd                                                                                         
+    238 root      20   0 1233352  11724   7608 S   0.0   0.1   0:00.46 editor-proxy                                                                                       
+    241 root      20   0   16320   6428   5504 S   0.0   0.1   0:00.01 sudo                                                                                               
+    251 root      20   0 1226100   2696   1976 S   0.0   0.0   0:00.00 tmux-agent                                                                                         
+    261 root      10 -10   13992   9688   8308 S   0.0   0.1   0:00.03 sshd                                                                                               
+    264 root      10 -10   13992   9704   8328 S   0.0   0.1   0:00.03 sshd                                                                                               
+    266 root      20   0    9196   4096   3720 S   0.0   0.1   0:00.00 runuser                                                                                            
+    269 gilanga+  20   0    4324   3260   2996 S   0.0   0.0   0:00.00 sh                                                                                                 
+    284 gilanga+  20   0   11.3g 106244  50184 S   0.0   1.3   0:03.54 node                                                                                               
+    324 gilanga+  10 -10   14252   6548   4888 S   0.0   0.1   0:00.00 sshd                                                                                               
+    359 gilanga+  10 -10   14252   6408   4752 S   0.0   0.1   0:00.02 sshd                                                                                               
+    362 gilanga+  10 -10    7340   3680   3432 S   0.0   0.0   0:00.00 bash                                                                                               
+    366 gilanga+  10 -10    7604   4292   3680 S   0.0   0.1   0:00.00 bash                                                                                               
+    479 gilanga+  10 -10    7340   3716   3468 S   0.0   0.0   0:00.00 bash                                                                                               
+    481 gilanga+  10 -10    7340   3776   3516 S   0.0   0.0   0:00.00 start-shell.sh                                                                                     
+    482 gilanga+  10 -10    6880   3252   2952 S   0.0   0.0   0:00.00 tmux                                                                                               
+    489 gilanga+  10 -10    7588   3024   1996 S   0.0   0.0   0:00.03 tmux                                                                                               
+    490 gilanga+  10 -10    8800   5924   4056 S   0.0   0.1   0:00.08 bash                                                                                               
+    492 root      20   0    2696   1528   1432 S   0.0   0.0   0:00.00 sleep                                                                                              
+   1212 gilanga+  20   0   32.3g 636536  59540 S   0.0   7.8   0:30.33 node                                                                                               
+   1248 gilanga+  20   0 1014124  59712  44888 S   0.0   0.7   0:00.33 node                                                                                               
+   1255 gilanga+  20   0   21.1g 148220  55592 S   0.0   1.8   0:01.98 node                                                                                               
+gilanganandaputra12@cloudshell:~$ sleep 1000 &
+[1] 2133
+gilanganandaputra12@cloudshell:~$ ps aux | grep sleep
+root           1  0.0  0.0   4324  3464 ?        Ss   13:59   0:00 /bin/bash /google/scripts/onrun.sh sleep infinity
+root         492  0.0  0.0   2696  1528 ?        S    13:59   0:00 sleep infinity
+gilanga+    1368  0.0  0.0   5688  2104 pts/2    S<   14:14   0:00 sleep 1000
+gilanga+    2133  0.0  0.0   5688  2180 pts/6    S<   14:24   0:00 sleep 1000
+gilanga+    2139  0.0  0.0   6548  2392 pts/6    S<+  14:25   0:00 grep --color=auto sleep
+gilanganandaputra12@cloudshell:~$ kill 2133
+[1]+  Terminated              sleep 1000
+gilanganandaputra12@cloudshell:~$ 

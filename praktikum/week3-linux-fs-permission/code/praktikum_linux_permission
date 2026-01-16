@@ -1,0 +1,46 @@
+gilanganandaputra12@cloudshell:~$ pwd
+/home/gilanganandaputra12
+gilanganandaputra12@cloudshell:~$ ls -l
+total 4
+-rwxr-xr-x 1 gilanganandaputra12 gilanganandaputra12 913 Oct 24 04:59 README-cloudshell.txt
+gilanganandaputra12@cloudshell:~$ cd /tmp
+gilanganandaputra12@cloudshell:/tmp$ ls -a
+.
+..
+code-oss-vm-session-state.json
+gemini-ide-server-35453.json
+gemini-ide-server-512.json
+minikube_delete_a39e5ce036b58de0468e146ebdcaebf7725111f6_0.log
+node-compile-cache
+gilanganandaputra12@cloudshell:/tmp$ ls -a
+.
+..
+code-oss-vm-session-state.json
+gemini-ide-server-35453.json
+gemini-ide-server-512.json
+minikube_delete_a39e5ce036b58de0468e146ebdcaebf7725111f6_0.log
+node-compile-cache
+tmp
+tmp.adfnr5XcRW
+tmp.HKwN0KE3Wa
+tmp.S6BMU6Cj75
+tmux-1000
+vscode-git-f837376e4b.sock
+vscode-ipc-7dc0f0b4-2852-46fc-8634-1820de513346.sock
+vscode-skaffold-events-logs
+gilanganandaputra12@cloudshell:/tmp$ cat /etc/passwd | head -n 5
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+gilanganandaputra12@cloudshell:/tmp$ echo "Hello <Gilang Ananda Putra><250202939>" > percobaan.txt
+gilanganandaputra12@cloudshell:/tmp$ ls -l percobaan.txt
+-rw-rw-r-- 1 gilanganandaputra12 gilanganandaputra12 39 Oct 24 05:18 percobaan.txt
+gilanganandaputra12@cloudshell:/tmp$ sudo chmod 600 percobaan.txt
+gilanganandaputra12@cloudshell:/tmp$ ls -l percobaan.txt
+-rw------- 1 gilanganandaputra12 gilanganandaputra12 39 Oct 24 05:18 percobaan.txt
+gilanganandaputra12@cloudshell:/tmp$ sudo chown root percobaan.txt
+gilanganandaputra12@cloudshell:/tmp$ ls -l percobaan.txt
+-rw------- 1 root gilanganandaputra12 39 Oct 24 05:18 percobaan.txt
+gilanganandaputra12@cloudshell:/tmp$ 

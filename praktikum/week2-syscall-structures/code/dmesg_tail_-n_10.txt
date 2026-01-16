@@ -1,0 +1,10 @@
+[ 1921.207577] sd 0:0:2:0: [sdb] Mode Sense: 1f 00 00 08
+[ 1921.207981] sd 0:0:2:0: [sdb] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[ 1921.599060]  sdb: sdb1
+[ 1921.601986] sd 0:0:2:0: [sdb] Attached SCSI disk
+[ 1921.859972] EXT4-fs (sdb1): mounted filesystem b9f0e455-8c03-483b-a0d6-629a47561fb9 r/w with ordered data mode. Quota mode: none.
+[ 1923.235653] LoadPin: kernel-module pinning-excluded obj="/lib/modules/6.6.105+/kernel/net/ipv4/netfilter/iptable_nat.ko" pid=2119 cmdline="/sbin/modprobe -q -- iptable_nat"
+[ 1923.380378] LoadPin: kernel-module pinning-excluded obj="/lib/modules/6.6.105+/kernel/net/netlink/netlink_diag.ko" pid=2140 cmdline="/sbin/modprobe -q -- net-pf-16-proto-4-type-16"
+[ 1926.129705] LoadPin: kernel-module pinning-excluded obj="/lib/modules/6.6.105+/kernel/net/netfilter/ipset/ip_set.ko" pid=2420 cmdline="/sbin/modprobe -q -- ipt_set"
+[ 1926.153347] LoadPin: kernel-module pinning-excluded obj="/lib/modules/6.6.105+/kernel/net/netfilter/xt_set.ko" pid=2420 cmdline="/sbin/modprobe -q -- ipt_set"
+[ 1926.193060] LoadPin: kernel-module pinning-excluded obj="/lib/modules/6.6.105+/kernel/net/ipv6/netfilter/ip6table_nat.ko" pid=2426 cmdline="/sbin/modprobe -q -- ip6table_nat"

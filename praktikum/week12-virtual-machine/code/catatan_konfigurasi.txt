@@ -1,0 +1,78 @@
+================================================================
+CATATAN KONFIGURASI DAN EKSPERIMEN VIRTUAL MACHINE (MINGGU 12)
+================================================================
+Topik       : Virtualisasi (VirtualBox & Ubuntu)
+Host OS     : Windows
+Guest OS    : Ubuntu 22.04 LTS
+Hypervisor  : Oracle VirtualBox 7.2.4
+Tanggal     : [Isi Tanggal Hari Ini]
+================================================================
+
+----------------------------------------------------------------
+1. KONFIGURASI INSTALASI AWAL (OPTIMAL)
+----------------------------------------------------------------
+Spesifikasi saat pertama kali membuat VM dan instalasi OS:
+- Nama VM      : Ubuntu-VM
+- Base Memory  : 4096 MB (4 GB)
+- Processors   : 2 Core CPU
+- Storage      : 30 GB (VDI - Dynamically Allocated)
+- Video Memory : 16 MB (Default)
+- Network      : NAT
+
+Hasil Observasi Awal:
+- Proses booting (Systemd) berjalan cepat dan paralel.
+- Instalasi GUI Ubuntu berjalan lancar tanpa kendala.
+- Sistem sangat responsif saat pertama kali masuk desktop.
+
+----------------------------------------------------------------
+2. EKSPERIMEN DOWNGRADE (RESOURCE TERBATAS)
+----------------------------------------------------------------
+Setelah instalasi selesai, resource diturunkan untuk pengujian:
+- RAM dikurangi menjadi : 2048 MB (2 GB)
+- CPU dikurangi menjadi : 1 Core
+
+Beban Kerja (Workload):
+- Membuka browser Firefox.
+- Membuka 4 Tab YouTube Shorts secara bersamaan.
+
+Masalah yang Ditemukan (Gambar 8.png):
+- Performa: Sistem sangat lambat (Lag parah) dan sering freeze.
+- Stabilitas: Firefox mengalami crash (terutup paksa) beberapa kali.
+- Analisis Memori: 
+  > RAM fisik penuh (72.1%).
+  > Swap terpakai hingga 646.0 MB.
+- Analisis CPU: 
+  > Penggunaan CPU rendah (34.6%) karena sistem mengalami 'I/O Wait'.
+  > CPU menganggur menunggu antrean data dari Swap Hardisk yang lambat.
+
+----------------------------------------------------------------
+3. EKSPERIMEN RECOVERY (RESOURCE KEMBALI NORMAL)
+----------------------------------------------------------------
+Resource dikembalikan ke pengaturan awal (4GB RAM / 2 CPU).
+
+Hasil Observasi (Gambar 9.png):
+- Performa: Navigasi kembali lancar, video YouTube berjalan mulus.
+- Analisis Memori: 
+  > Swap hampir 0 (274.4 KB). Data sepenuhnya di RAM fisik.
+- Analisis CPU: 
+  > Penggunaan CPU tinggi (71.8% - 80.3%).
+  > Ini menunjukkan efisiensi pemrosesan data secara paralel di kedua core.
+
+----------------------------------------------------------------
+4. COMMAND LINE PENTING (TERMINAL)
+----------------------------------------------------------------
+Perintah pemantauan selama praktikum:
+$ free -h             # Melihat penggunaan memori nyata vs swap
+$ lscpu               # Memverifikasi jumlah core yang aktif
+$ top                 # Monitoring beban proses real-time
+
+----------------------------------------------------------------
+5. KESIMPULAN TEKNIS
+----------------------------------------------------------------
+- RAM 2GB tidak cukup untuk menjalankan Ubuntu Desktop modern dengan 
+  beban kerja multitasking (Browser).
+- Penggunaan CPU rendah pada spek minim adalah "False Positive" 
+  akibat bottleneck di media penyimpanan (Swap).
+- Konfigurasi 2 CPU / 4GB RAM adalah syarat minimum agar sistem stabil 
+  untuk penggunaan harian di VirtualBox.
+================================================================
