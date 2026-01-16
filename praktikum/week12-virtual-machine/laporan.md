@@ -89,13 +89,17 @@ Isolasi sistem adalah konsep dalam virtualisasi yang membuat setiap mesin virtua
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
 Dokumentasi Proses Instalasi Virtual Machine
+
 ![alt text](<screenshots/instalasiisasi.jpeg>)
+
 Dokumentasi Proses Konfigurasi Sumber Daya 
-![alt text](<konfigurasi sumber daya.jpeg>)
+![alt text](<screenshots/konfigurasi sumber daya.jpeg>)
+
 Sistem operasi tamu berjalan
-![alt text](<screenshots/instalasiisasi.jpeg>)
+![alt text](<screenshots/os guest running.jpeg>)
+
 Perbedaan kinerja sebelum dan sesudah perubahan sumber daya
-![alt text](<screenshots/instalasiisasi.jpeg>)
+![alt text](<screenshots/perbedaan_performa.jpeg>)
 
 ---
 
