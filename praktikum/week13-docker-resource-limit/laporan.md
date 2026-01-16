@@ -82,28 +82,94 @@ Catat perubahan perilaku program (mis. lebih lambat, error saat memori tidak cuk
 ## Kode / Perintah
 Tuliskan potongan kode atau perintah utama:
 ```bash
-uname -a
-lsmod | head
-dmesg | head
+docker build -t week13-resource-limit
+docker run --rm week13-resource-limit
+docker run --rm --cpus="0.5" --memory="256m" week13-resource-limit
+docker stats
+
+* Dockerfile
+FROM python:3.11-slim
+WORKDIR /app
+COPY app.py .
+CMD ["python", "-u", "app.py"]
+
+
+* App
+import time
+import math
+
+buffer = {}
+counter = 0
+
+print("Program stress test resource berjalan...")
+print("Tekan Ctrl+C untuk menghentikan\n")
+
+try:
+    while True:
+        # Beban CPU: operasi matematika
+        nilai = 0
+        for i in range(1, 300_000):
+            nilai += math.sqrt(i)
+
+        # Beban memori: simpan list integer
+        buffer[counter] = [counter] * 1_000_000  # ±8 MB (tergantung sistem)
+
+        counter += 1
+        print(
+            f"Siklus {counter} | Nilai CPU: {int(nilai)} | "
+            f"Estimasi memori: {counter * 8} MB"
+        
+
+        )
+        time.sleep(1)
+
+except MemoryError:
+    print("ERROR: Sistem kehabisan memori!")
+except KeyboardInterrupt:
+    print("\nProgram dihentikan secara manual.")
+
 ```
 
 ---
 
 ## Hasil Eksekusi
-Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+* Membangun citra 
+![alt text](<screenshots/bangun_citra.png>)
+
+
+* Pengujian tanpa limit
+![alt text](<screenshots/tanpa batas.png>)
+
+Hasil dari pengamatan :
+    
+   * Program bekerja sangat lancar dan responsi
+   * Iterasi bertambah dengan cepat secara konsisten tanpa jeda
+   * Tidak terjadi error selama berjalan
+   * Penggunaan memori naik terus menerus tanpa ada batas 
+   * Proggram akan berhenti ketika diberhentikan secara manual dengan ctrl+c
+   
+   Hal ini menunjukan bahwa container tanpa batas memori dapat mengeksploitasi seluruh resource host secara penuh dan tidak terkendali.   
+
+* Pengujian menggunakan  limit 
+![alt text](<screenshots/ada_batas.png>)
+
+* Hasil dari pengamatan :
+
+    * CPU dibatesin 0.5 core bikin iterasi lambat,program tetep aman tapi gak berjalan cepet seperti tanpa limit
+     * Penggunaan memori mencapai 64MB trigger OOM killer Linux yang mematikan proses otomati
+
+Hal ini menunjukan batasan CPU berpengaruh terhadap kecepatan eksekusi suatu program dan limit program dapat menyebabkan menghentikan proses jika sudah melampaui batas
 
 ---
 
-## Analisis
-- Jelaskan makna hasil percobaan.  
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
-
----
 
 ## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
+
+Praktikum ini membuktikan Docker efektif menjalankan aplikasi secara konsisten dalam kontainer terlindungi, bebas dari variasi konfigurasi sistem operasi host yang sering menyebabkan inkonsistensi penerapan.
+
+Pengujian menunjukkan CPU 0.5 core secara signifikan memperlambat laju iterasi program dibandingkan tanpa batas, sementara batas memori 64MB memicu mekanisme OOM killer Linux untuk menghentikan proses dengan pesan otomatis "Killed" saat batas tercapai.
+
+Penerapan batasan sumber daya pada Docker sangat penting untuk lingkungan produksi, memungkinkan kontrol yang tepat terhadap penggunaan sumber daya, menjaga stabilitas sistem secara keseluruhan, serta memastikan pembagian sumber daya yang adil antar beberapa container agar tidak ada satu aplikasi yang mendominasi host.
 
 ---
 
@@ -122,8 +188,10 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
-- Bagaimana cara Anda mengatasinya?  
+- Apa bagian yang paling menantang minggu ini?
+  Bagian yang paling menantang minggu ini saat menjalankan container tanpa batas 
+- Bagaimana cara Anda mengatasinya?
+  Cara mengatasinya menggunakan mencari di referensi website
 
 ---
 
