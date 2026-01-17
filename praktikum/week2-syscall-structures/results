@@ -1,0 +1,109 @@
+safitrinovia161@cloudshell:~$ strace ls
+execve("/usr/bin/ls", ["ls"], 0x7fff2ffec230 /* 62 vars */) = 0
+brk(NULL)                               = 0x5800d5b64000
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7ede93ebc000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=35463, ...}) = 0
+mmap(NULL, 35463, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7ede93eb3000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=174472, ...}) = 0
+mmap(NULL, 181960, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7ede93e86000
+mmap(0x7ede93e8c000, 118784, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x6000) = 0x7ede93e8c000
+mmap(0x7ede93ea9000, 24576, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x23000) = 0x7ede93ea9000
+mmap(0x7ede93eaf000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x29000) = 0x7ede93eaf000
+mmap(0x7ede93eb1000, 5832, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7ede93eb1000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+fstat(3, {st_mode=S_IFREG|0755, st_size=2125328, ...}) = 0
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+
+''''
+Analisis
+''''
+execve("/usr/bin/ls", ["ls"], 0x7fff2ffec230 /* 62 vars */) = 0
+Fungsi : Menjalankan program baru yaitu /usr/bin/ls
+Keterangan: execve () menggantikan proses shell saat ini dengan program ls,parameter pertama menunjukan path program,kedua adalah argumen dan ketiga adalah environment
+Hasil :  0x7fff2ffec230 /* 62 vars */) = 0 artinya pemanggilan berhasil dan proses ls mulai dieksekusi
+
+---
+brk(NULL)                               = 0x5800d5b64000
+System call : brk()
+Fungsi : Mengatur batas awal area hepp program 
+Keterangan : Pemanggilan brk() dengan NULL digunakan untuk mendapatkan posisi awal break 
+Hasil :  = 0x5800d5b64000 menujukan alamat memori saat ini yang menjadi batas heep proses
+
+---
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7ede93ebc000
+System call : mmap()
+Fungsi : Mengalokasikan area memori baru secara tanpa file
+Keterangan : Digunakan untuk menyediakan memori tambahan bagi proses ,misalnya untuk stack internal atau buffer dinamis
+Hasil : = 0x7ede93ebc000 alamat awal area memori yang berhasil dipetakan 
+---
+
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+System call: access()
+Fungsi : Mengecek apakah file /etc/ld.so.preload ada dan dapat dibaca 
+Keterangan : File ini berisi daftar pusaka yang dimuat sebelum pustaka standar ;jika tidak ada ,lanjut ke langkah berikutnya
+Hasil :  = -1 ENOENT file tersebut tidak ditemukan ,jadi proses dilanutkan tanpa preload library
+
+---
+
+openatc(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+System call: openat()
+Fungsi :Membuka file 
+Keterangan :
+AT_FDCWD : gunakan direktori kerja saat ini 
+"/etc/ld.so.cache" : file chace untuk pustaka dinamis
+ O_RDONLY|O_CLOEXEC) : buka hanya untuk baca dan tutup otomatis jika ada eksekusi baru
+Hasil : = 3 Mengembalikan file descriptor ,menandakan file berhasil dibuka 
+
+---
+fstat(3, {st_mode=S_IFREG|0644, st_size=35463, ...}) = 0
+Fungsi: Mengambil informasi status file yang dibuka melalui file descriptor (3)
+Keterangan : 
+st_mode=S_IFREG|064 : file biasa dengan izin baca/tulis 
+ st_size=35463 : ukuran file 35463
+Hasil: = 0 menandakan operasi sukses
+mmap(NULL, 35463, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7ede93eb3000 
+Fungsi : Memetakan isi file /etc/ld.so.cache ke memori 
+Keterangan : 
+PROT_READ : hanya dapat dibaca 
+MAP_PRIVATE: perubahan tidak akan disimpan ke file asli
+Hasil :   = 0x7ede93eb3000 file dipetakan ke memori alamat 
+---
+close(3)                                = 0
+Fungsi : Menutup file drescriptor 3 yang sebelumnya digunakan untuk file /etc/ld.so.cache
+Hasil : = 0 file berhasil ditutup
+---
+
+openat kedua kali
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3
+Fungsi : membuka pustaka (dinamis libselinuk) yang diperlukan oleh program
+Keterangan :
+AT_FDCWD : artinya file akan dibuka relatif terhadap direktori kerja saat ini (Current Working Directory).
+"/lib/x86_64-linux-gnu/libselinux.so.1" : path lengkap pustaka dinamis yang ingin diakses.
+O_RDONLY|O_CLOEXEC : membuka file hanya untuk dibaca (read-only), dan otomatis ditutup jika proses mengeksekusi program lain.
+Hasil : = 3 menunjukan file berhasil dibuka untuk dibaca 
+---
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+Fungsi : Membaca isi file dari file descriptor 3 sebanyak 832 byte 
+Keterangan : 
+3 : file descriptor yang diperoleh dari openat() sebelumnya.
+"\177ELF\2\1..." : buffer yang berisi data hasil pembacaan (ditampilkan sebagian).
+Awal data ini (\177ELF) menunjukkan bahwa file tersebut berformat ELF (Executable and Linkable Format), format standar file biner di Linux.
+832 : jumlah byte yang diminta untuk dibaca dari file.
+Hasil : = 832 berhasil dibaca
+---
+
+---
+Kesimpulan 
+Dari hasil di atas, dapat disimpulkan bahwa system call awal pada perintah ls bertugas untuk:
+1.Menjalankan program (execve)
+2.Menyiapkan memori dan heap (brk, mmap)
+3.Mengecek dan memuat pustaka dinamis (access, openat, fstat, mmap)
+4.Membaca dan menutup file pustaka (read, close)
