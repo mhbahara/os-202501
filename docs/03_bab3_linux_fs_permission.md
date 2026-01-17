@@ -80,6 +80,19 @@ Setelah menyelesaikan tugas ini, mahasiswa mampu:
    git commit -m "Minggu 3 - Linux File System & Permission"
    git push origin main
    ```
+** EKSPERIMEN 1 **
+
+- hasil perintah `pwd` tersebut adalah Perintah dalam Linux atau sistem berbasis Unix berarti *Print Working Directory* Artinya, kamu sedang berada di direktori Documents di dalam folder.
+
+- hasil perintah` ls -l` tersebut adalah digunakan untuk menampilkan daftar file dan folder secara rinci.
+- Hasil perintah `cd` tersebut adalah *change directory* artinya berpindah direktori.
+- hasil perintah `/tmp` tersebut adalah 
+
+
+
+
+
+
 
 ---
 
