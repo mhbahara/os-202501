@@ -1,7 +1,7 @@
 import os
 from utils import load_processes, load_pages
-# from scheduler import fcfs_algorithm
-# from memory import fifo_algorithm
+from memory import fifo_algorithm
+from scheduling import fcfs_algorithm, read_processes
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -21,25 +21,23 @@ def main_menu():
 
         if pilihan == '1':
             print("\n--- Menjalankan FCFS ---")
-            data = load_processes("processes.csv")
+            data = read_processes("processes.csv")
             if data:
                 print(f"Berhasil memuat {len(data)} proses.")
-                # Panggil fungsi dari Anggota 2 di sini nanti
-                # fcfs_algorithm(data)
+                # PASTIKAN BARIS INI ADA DAN SEJAJAR:
+                fcfs_algorithm(data)
             else:
                 print("Gagal memuat data proses.")
             input("\nTekan Enter untuk kembali...")
 
         elif pilihan == '2':
             print("\n--- Menjalankan FIFO Memory ---")
-            data = load_pages("pages.csv")
+            data = load_pages("pages.csv") 
             if data:
-                print(f"Berhasil memuat data halaman: {data}")
-                # Panggil fungsi dari Anggota 3 di sini nanti
-                # fifo_algorithm(data)
+                fifo_algorithm(data, capacity=3)
             else:
-                print("Gagal memuat data halaman.")
-            input("\nTekan Enter untuk kembali...")
+                print("Data halaman tidak ditemukan atau kosong!")
+            input("\nTekan Enter untuk kembali...") 
 
         elif pilihan == '3':
             print("Terima kasih! Program selesai.")
