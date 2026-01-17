@@ -2,7 +2,7 @@
 ## Laporan Proyek Kelompok: Mini Simulasi Sistem Operasi
 
 **1. Pendahuluan** 
------------------------
+------------------------
 **A. Latar Belakang**
 1. Pendahuluan
 A. Latar Belakang
