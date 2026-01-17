@@ -110,9 +110,17 @@ P5: 5 ms
 
 ### 3.2 Tabel Perbandingan Output Terminal
 
+![Screenshot hasil](screenshots/week14.1..png)
 
+Keterangan:
 
+1.Waiting Time (WT): Merupakan durasi waktu yang dihabiskan proses di dalam antrean. Pada FCFS, waktu tunggu P4 sangat tinggi (23 ms) karena harus menunggu proses panjang (P1) selesai. Sebaliknya, pada SJF, P4 memiliki waktu tunggu 0 ms karena langsung dieksekusi sebagai proses terpendek.
 
+2.Average Waiting Time (AWT): Nilai rata-rata dari seluruh waktu tunggu. Hasil menunjukkan bahwa SJF (7.0 ms) jauh lebih unggul dibandingkan FCFS (15.0 ms).
+
+3.Efisiensi: Berdasarkan data tersebut, penggunaan algoritma SJF mampu meningkatkan efisiensi waktu tunggu sebesar 53,3% pada dataset yang sama.
+
+4.Penumpukan Proses: Angka pada kolom FCFS membuktikan terjadinya Penumpukan Proses, di mana proses dengan burst time kecil (seperti P4 dan P2) mengalami hambatan yang tidak proporsional akibat proses besar (P1) yang datang lebih awal.
 
 ---
 
