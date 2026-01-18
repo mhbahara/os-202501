@@ -1,5 +1,5 @@
 
-# Laporan Praktikum Minggu [X]
+# Laporan Praktikum Minggu [13]
 Topik: [Docker – Resource Limit (CPU & Memori)]
 
 ---
@@ -41,38 +41,94 @@ sistem terutama ketika menjalankan banyak aplikasi secara bersamaan.
 ---
 
 ## Langkah Praktikum
-1. Langkah-langkah yang dilakukan.  
-2. Perintah yang dijalankan.  
-3. File dan kode yang dibuat.  
-4. Commit message yang digunakan.
+
+1.Melakukan inisialisasi lingkungan kerja dengan memverifikasi instalasi Docker melalui docker version dan menyiapkan struktur folder sesuai ketentuan teknis.
+
+2.Mengembangkan skrip uji app.py yang dirancang untuk memberikan beban komputasi pada CPU serta alokasi memori progresif, kemudian membungkusnya menggunakan Dockerfile berbasis python:3.9-slim.
+
+3.Membangun image Docker dengan perintah docker build -t week13-resource-limit . hingga proses build selesai sepenuhnya.
+
+4.Menjalankan kontainer dalam kondisi tanpa batasan menggunakan docker run --rm week13-resource-limit untuk mengamati kapasitas maksimal yang diberikan sistem host (default sekitar 3.6 GB).
+
+5.Menjalankan kembali kontainer dengan parameter pembatasan spesifik melalui perintah docker run --rm --cpus="0.5" --memory="256m" week13-resource-limit.
+
+6.Melakukan monitoring secara real-time menggunakan docker stats untuk memverifikasi bahwa penggunaan CPU tertahan di kisaran 46-50% dan limit memori terkunci ketat pada angka 256 MiB.
+
+7.Commit Message yang Digunakan
+
+git add .
+git commit -m "Minggu 13 - Docker Resource Limit"
+git push origin main
 
 ---
 
 ## Kode / Perintah
-Tuliskan potongan kode atau perintah utama:
+
 ```bash
-uname -a
-lsmod | head
-dmesg | head
+FROM python:3.9-slim
+WORKDIR /app
+COPY app.py .
+CMD ["python", "app.py"]
+
+# Membangun image dari folder code
+docker build -t week13-resource-limit .
+
+# Menjalankan dengan limit
+docker run --rm --cpus="0.5" --memory="256m" week13-resource-limit
+
+#Menjalankan Container Tanpa Limit
+docker run --rm week13-resource-limit
+
+
 ```
 
 ---
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+![Screenshot hasil](screenshots/Week13.1.png)
+
+![Screenshot hasil](screenshots/Week13.2.png)
+
+![Screenshot hasil](screenshots/Week13.3.png)
+
+![Screenshot hasil](screenshots/Week13.4.png)
 
 ---
 
 ## Analisis
-- Jelaskan makna hasil percobaan.  
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
+
+1.Tanpa Limit (Default)
+Pada tahap ini, container dijalankan secara standar tanpa tambahan parameter pembatas.
+
+-Perintah: docker run --rm week13-resource-limit.
+
+-Batas Memori: Pada monitoring, terlihat LIMIT memori sebesar 3.674 GiB. Ini adalah total kapasitas RAM yang dialokasikan oleh sistem host (Windows) untuk Docker Desktop secara keseluruhan.
+
+-Perilaku Aplikasi: Program berhasil mengisi RAM hingga target 500 MB tanpa hambatan karena batas atas (3.6 GB) masih sangat jauh.
+
+-Penggunaan CPU: Terpantau penggunaan CPU berada di angka 29.26%.
+
+2. Dengan Limit (Resource Quotas)
+
+Pada tahap ini, diterapkan batasan ketat menggunakan flag --cpus dan --memory.
+
+-Perintah: docker run --rm --cpus="0.5" --memory="256m" week13-resource-limit.
+
+-Batas Memori: Kolom LIMIT kini terkunci tepat pada angka 256 MiB.
+
+-Batas CPU: Dengan jatah 0.5 core, penggunaan CPU terpantau naik menjadi 46.48%. Hal ini menunjukkan container bekerja hampir maksimal sesuai jatah kecil yang diberikan (mendekati 50% dari 1 core).
+
+-Perilaku Aplikasi: Meskipun aplikasi mencoba mengisi RAM hingga 500 MB, sistem Docker akan membatasi atau mematikan container jika penggunaan riil menembus angka 256 MB guna menjaga stabilitas sistem utama.
+
+ Perbedaan utama dari kedua kondisi ini terletak pada tingkat keamanan dan kontrol sumber daya. Pada kondisi Tanpa Limit, prioritas diberikan pada performa aplikasi sehingga ia bisa mengambil apa pun yang tersedia di host, namun stabilitas sistem induk menjadi taruhannya. Sebaliknya, pada kondisi Dengan Limit, prioritas dialihkan pada stabilitas sistem secara keseluruhan dengan mengisolasi container ke dalam jatah sumber daya yang kecil dan pasti. Jika aplikasi dalam kondisi limit ini dipaksa untuk terus menambah data melebihi 256 MB, sistem Docker akan menjalankan protokol keamanan dengan mematikan container tersebut secara otomatis guna mencegah dampak kerusakan yang lebih luas pada perangkat
 
 ---
 
 ## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
+Berdasarkan pengujian yang telah dilakukan, menunjukkan bahwa tanpa limitasi, container menggunakan batas memori default sistem sebesar 3.674 GiB, sehingga aplikasi stress test dapat berjalan bebas mencapai target 500 MB. Kondisi ini berisiko tinggi karena ketiadaan isolasi memori dapat menyebabkan container menghabiskan seluruh sumber daya host dan mengganggu stabilitas sistem operasi utama.
+
+Sebaliknya, penerapan limitasi --cpus="0.5" dan --memory="256m" secara efektif mengunci penggunaan sumber daya. Statistik menunjukkan beban CPU tertahan di 46.48% dan memori dibatasi ketat pada angka 256 MiB, meskipun aplikasi tetap mencoba meminta kapasitas lebih besar. Hal ini membuktikan bahwa fitur Resource Quotas berfungsi sebagai pengaman otomatis yang melindungi stabilitas sistem dengan memaksa container tetap berada dalam koridor penggunaan yang aman.
 
 ---
 
