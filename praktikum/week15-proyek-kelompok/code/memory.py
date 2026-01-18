@@ -1,39 +1,42 @@
-from collections import deque
-
-def fifo_algorithm(pages, capacity=3):
-    # Menggunakan deque untuk efisiensi struktur data antrean (FIFO)
-    memory = deque(maxlen=capacity)
+def simulasi_fifo_game(daftar_klik_game, kapasitas_ram=3):
+    memori_ram = []
     page_faults = 0
     
-    print(f"\n[Konfigurasi: Kapasitas Frame = {capacity}]")
-    print(f"{'Step':<5} | {'Page':<5} | {'Memory Frame':<20} | {'Status'}")
-    print("-" * 60)
+    print(f"\nKapasitas RAM HP: {kapasitas_ram} Slot Game")
+    print(f"{'Step':<5} | {'Game Dibuka':<15} | {'Isi RAM Sekarang':<45} | {'Status'}")
+    print("-" * 90)
 
-    for step, page in enumerate(pages, 1):
-        if page in memory:
-            status = "HIT"
-        else:
-            status = "MISS (Fault)"
+    for step, game in enumerate(daftar_klik_game, 1):
+        status = ""
+        # 1. Cek: Apakah game sudah ada di RAM?
+        if game not in memori_ram:
             page_faults += 1
-            # Deque dengan maxlen otomatis membuang elemen tertua jika penuh
-            memory.append(page)
+            status = "MISS (Loading Ulang)"
+            
+            # 2. Jika RAM Penuh (3 slot terisi)
+            if len(memori_ram) >= kapasitas_ram:
+                # 3. FIFO: Tendang game yang pertama kali masuk (index 0)
+                game_dibuang = memori_ram.pop(0) 
+                memori_ram.append(game)
+                status += f" -> {game_dibuang} DIBUANG"
+            else:
+                # Jika masih ada slot kosong
+                memori_ram.append(game)
+        else:
+            # 4. Jika game sudah ada di RAM (HIT)
+            status = "HIT (Lancar)"
         
-        # Representasi visual memori
-        mem_display = list(memory)
-        print(f"{step:<5} | {page:<5} | {str(mem_display):<20} | {status}")
+        print(f"{step:<5} | {game:<15} | {str(memori_ram):<45} | {status}")
 
-    # Kalkulasi Statistik
-    total = len(pages)
+    # Statistik Performa HP Master
+    total = len(daftar_klik_game)
     hits = total - page_faults
-    hit_ratio = (hits / total) * 100
+    print("-" * 90)
+    print(f"Hasil Akhir: HP Anda mengalami {page_faults} kali loading ulang dan {hits} kali lancar.")
+    print(f"Skor Kelancaran (Hit Ratio): {(hits/total)*100:.2f}%")
 
-    print("-" * 60)
-    print(f"Ringkasan Eksekusi:")
-    print(f" - Total Page Faults : {page_faults}")
-    print(f" - Total Page Hits   : {hits}")
-    print(f" - Hit Ratio         : {hit_ratio:.2f}%")
+# Data dari file pages.csv Master
+urutan_game = ["PUBG", "Delta Force", "Arena Breakout", "War Thunder", "PUBG", "Delta Force", "War Thunder"]
 
-# Contoh eksekusi
-if __name__ == "__main__":
-    referensi_halaman = [7, 0, 1, 2, 0, 3, 0, 4, 2, 3]
-    fifo_algorithm(referensi_halaman, 3)
+# Jalankan!
+simulasi_fifo_game(urutan_game)
