@@ -24,7 +24,7 @@ def simulasi_fifo_game(daftar_klik_game, kapasitas_ram=3):
                 memori_ram.append(game)
         else:
             # 4. Jika game sudah ada di RAM (HIT)
-            status = "HIT (Lancar Jaya!)"
+            status = "HIT (Lancar)"
         
         print(f"{step:<5} | {game:<15} | {str(memori_ram):<45} | {status}")
 
@@ -32,7 +32,7 @@ def simulasi_fifo_game(daftar_klik_game, kapasitas_ram=3):
     total = len(daftar_klik_game)
     hits = total - page_faults
     print("-" * 90)
-    print(f"Hasil Akhir: HP Master mengalami {page_faults} kali loading ulang dan {hits} kali lancar.")
+    print(f"Hasil Akhir: HP Anda mengalami {page_faults} kali loading ulang dan {hits} kali lancar.")
     print(f"Skor Kelancaran (Hit Ratio): {(hits/total)*100:.2f}%")
 
 # Data dari file pages.csv Master
