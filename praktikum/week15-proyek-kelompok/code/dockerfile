@@ -1,0 +1,30 @@
+# Gunakan Python 3.14 Alpine sebagai base image untuk ukuran yang ringan
+FROM python:3.14-alpine
+
+# Set metadata untuk dokumentasi
+LABEL maintainer=" Proyek Kelompok 2 "
+LABEL description="Mini Simulasi Sistem Operasi - FCFS & LRU"
+LABEL version="1.0"
+
+# Set working directory di dalam container
+WORKDIR /app
+
+# Copy semua file Python ke dalam container
+COPY *.py /app/
+
+# Copy folder data yang berisi dataset CSV
+COPY data/ /app/data/
+
+# Set environment variable untuk Python
+# Mencegah Python membuat file .pyc
+ENV PYTHONDONTWRITEBYTECODE=1
+# Mencegah buffering output untuk logging yang lebih baik
+ENV PYTHONUNBUFFERED=1
+
+# Informasi bahwa aplikasi berjalan di terminal interaktif
+# (Opsional, hanya untuk dokumentasi)
+EXPOSE 8080
+
+# Command default saat container dijalankan
+# Menjalankan main.py sebagai entry point aplikasi
+CMD ["python", "main.py"]
